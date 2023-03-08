@@ -1,4 +1,5 @@
 import { router } from 'navigation';
+import { PrimaryLayout } from 'layouts';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { RouteMiddleware, RouterSwitch } from 'react-typesafe-routes';
 
@@ -17,7 +18,9 @@ const App = () => {
   return (
     <div>
       <BrowserRouter>
-        <RouterSwitch router={router(AuthMiddleware)} />
+        <PrimaryLayout>
+          <RouterSwitch router={router(AuthMiddleware)} />
+        </PrimaryLayout>
       </BrowserRouter>
     </div>
   );
