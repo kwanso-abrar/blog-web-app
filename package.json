@@ -15,7 +15,9 @@
     "react-dom": "^18.2.0",
     "react-scripts": "5.0.1",
     "typescript": "^4.9.5",
-    "web-vitals": "^2.1.4"
+    "web-vitals": "^2.1.4",
+    "react-router-dom": "5.2.0",
+    "react-typesafe-routes": "^0.0.8"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -54,6 +56,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "prettier": "^2.8.4"
+    "prettier": "^2.8.4",
+    "@types/react-router-dom": "^5.3.3"
   }
 }
