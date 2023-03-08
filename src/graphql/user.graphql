@@ -1,0 +1,8 @@
+mutation signUp($name: String!, $email: String!, $password: String!) {
+  signUp(createUserInput: { name: $name, email: $email, password: $password }) {
+    name
+    email
+    password
+    roles
+  }
+}
