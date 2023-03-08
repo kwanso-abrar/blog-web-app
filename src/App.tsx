@@ -1,8 +1,8 @@
 import { router } from 'navigation';
+import { useState } from 'react';
 import { PrimaryLayout } from 'layouts';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { RouteMiddleware, RouterSwitch } from 'react-typesafe-routes';
-import { useState } from 'react';
 import AppContext from 'AppContext';
 
 const App = () => {
