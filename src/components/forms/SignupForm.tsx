@@ -6,11 +6,14 @@ import { useSignInMutation, useSignUpMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
+import { useContextApi } from 'AppContext';
+import { useEffect } from 'react';
 
 const Wrapper = styled(Box)(() => ({}));
 
 const SignupForm = () => {
   const history = useHistory();
+  const { isLoggedIn, setIsLoggedIn } = useContextApi();
 
   const [signUp, { loading: signupLoading }] = useSignUpMutation({
     onCompleted: () => {
@@ -25,6 +28,7 @@ const SignupForm = () => {
     onCompleted: (data) => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
+        setIsLoggedIn(true);
         history.push('/');
       }
     },
@@ -32,6 +36,12 @@ const SignupForm = () => {
       toast.error('Invalid Credentials!');
     },
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/');
+    }
+  }, []);
 
   const formik = useFormik({
     initialValues: {

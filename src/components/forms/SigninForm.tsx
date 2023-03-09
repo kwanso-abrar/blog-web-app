@@ -2,20 +2,24 @@ import { styled } from '@mui/material/styles';
 import { saveToken } from 'utils/SessionManagement';
 import { useFormik } from 'formik';
 import { useHistory } from 'react-router-dom';
+import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
+import { useEffect } from 'react';
 
 const Wrapper = styled(Box)(() => ({}));
 
 const SigninForm = () => {
   const history = useHistory();
+  const { isLoggedIn, setIsLoggedIn } = useContextApi();
 
   const [signIn, { loading: signInLoading }] = useSignInMutation({
     onCompleted: (data) => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
+        setIsLoggedIn(true);
         history.push('/');
       }
     },
@@ -39,6 +43,12 @@ const SigninForm = () => {
       });
     },
   });
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      history.push('/');
+    }
+  }, []);
 
   return (
     <Wrapper>
