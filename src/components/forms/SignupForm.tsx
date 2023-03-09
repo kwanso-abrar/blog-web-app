@@ -1,9 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { saveToken } from 'utils/SessionManagement';
 import { useFormik } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useSignInMutation, useSignUpMutation } from 'generated';
-import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
+import { Backdrop, Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
 import { useContextApi } from 'AppContext';
@@ -128,9 +128,7 @@ const SignupForm = () => {
             </Link> */}
           </Grid>
           <Grid item>
-            <Link href="/signin" variant="body2">
-              {'Already have an account? Sign In'}
-            </Link>
+            <Link to="/signin">{'Already have an account? Sign In'}</Link>
           </Grid>
         </Grid>
       </Box>

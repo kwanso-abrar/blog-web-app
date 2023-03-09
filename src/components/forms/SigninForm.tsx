@@ -1,10 +1,10 @@
 import { styled } from '@mui/material/styles';
 import { saveToken } from 'utils/SessionManagement';
 import { useFormik } from 'formik';
-import { useHistory } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
-import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
+import { Backdrop, Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
 import { useEffect } from 'react';
@@ -90,14 +90,10 @@ const SigninForm = () => {
         </form>
         <Grid container sx={{ marginTop: '5px' }}>
           <Grid item xs>
-            <Link href="#" variant="body2">
-              Forgot password?
-            </Link>
+            <Link to="#">Forgot password?</Link>
           </Grid>
           <Grid item>
-            <Link href="/signup" variant="body2">
-              {"Don't have an account? Sign Up"}
-            </Link>
+            <Link to="/signup">{"Don't have an account? Sign Up"}</Link>
           </Grid>
         </Grid>
       </Box>
