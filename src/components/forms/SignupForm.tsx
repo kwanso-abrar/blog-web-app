@@ -1,28 +1,42 @@
 import { styled } from '@mui/material/styles';
+import { saveToken } from 'utils/SessionManagement';
 import { useFormik } from 'formik';
+import { useHistory } from 'react-router-dom';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
+import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
 
 const Wrapper = styled(Box)(() => ({}));
 
 const SignupForm = () => {
+  const history = useHistory();
+
   const [signUp, { loading: signupLoading }] = useSignUpMutation({
-    onCompleted: (data) => {
-      alert('Registered!!!');
+    onCompleted: () => {
+      toast.success('Successfully Signed up');
     },
-    onError: (error) => {
-      console.log('error while sigining up user', error);
-      alert('Error while signing up!!!');
+    onError: () => {
+      toast.error('User already registerd');
     },
   });
 
+  // this is working
+
+  // useEffect(() => {
+  //   history.push('/signin');
+  // }, []);
+
   const [signIn, { loading: signInLoading }] = useSignInMutation({
     onCompleted: (data) => {
-      alert('Logged in!');
+      if (data.signIn.accesstoken) {
+        saveToken(data.signIn.accesstoken);
+        console.log('navigating to home page');
+        history.push('/');
+      }
     },
-    onError: (error) => {
-      alert('Error while logging in user');
+    onError: () => {
+      // show error message
     },
   });
 
