@@ -1,11 +1,29 @@
 import { styled } from '@mui/material/styles';
+import { saveToken } from 'utils/SessionManagement';
 import { useFormik } from 'formik';
-import { Box, Button, Grid, Link, TextField } from '@mui/material';
+import { useHistory } from 'react-router-dom';
+import { useSignInMutation } from 'generated';
+import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
+import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
 
 const Wrapper = styled(Box)(() => ({}));
 
 const SigninForm = () => {
+  const history = useHistory();
+
+  const [signIn, { loading: signInLoading }] = useSignInMutation({
+    onCompleted: (data) => {
+      if (data.signIn.accesstoken) {
+        saveToken(data.signIn.accesstoken);
+        history.push('/');
+      }
+    },
+    onError: () => {
+      toast.error('Invalid Credentials!');
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -13,12 +31,22 @@ const SigninForm = () => {
     },
     validationSchema: yupSchema.signIn,
     onSubmit: (values) => {
-      console.log('Signin form submitted: ', values);
+      signIn({
+        variables: {
+          email: values.email,
+          password: values.password,
+        },
+      });
     },
   });
 
   return (
     <Wrapper>
+      {signInLoading && (
+        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={signInLoading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
       <Box>
         <form onSubmit={formik.handleSubmit}>
           <TextField

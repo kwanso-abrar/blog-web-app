@@ -21,22 +21,15 @@ const SignupForm = () => {
     },
   });
 
-  // this is working
-
-  // useEffect(() => {
-  //   history.push('/signin');
-  // }, []);
-
   const [signIn, { loading: signInLoading }] = useSignInMutation({
     onCompleted: (data) => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
-        console.log('navigating to home page');
         history.push('/');
       }
     },
     onError: () => {
-      // show error message
+      toast.error('Invalid Credentials!');
     },
   });
 
