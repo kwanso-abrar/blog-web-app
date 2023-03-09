@@ -1,29 +1,30 @@
 import { Routes } from './routes';
-import { OptionsRouter, RouteMiddleware } from 'react-typesafe-routes';
 import { Home, Signin, Signup } from 'pages';
+import { OptionsRouter, RouteMiddleware } from 'react-typesafe-routes';
 
 export const router = (AuthMiddleware?: RouteMiddleware) => {
   const defaultOptions = {
-    showFooter: true,
-    showHeader: true,
+    isSecondaryLayout: false,
+    isPrimaryLayout: false,
   };
   const routes = OptionsRouter(defaultOptions, (route) => ({
     signup: route(Routes.SIGNUP, {
       component: Signup,
       options: {
-        showFooter: false,
-        showHeader: false,
+        isSecondaryLayout: true,
       },
     }),
     signin: route(Routes.SIGNIN, {
       component: Signin,
       options: {
-        showFooter: false,
-        showHeader: false,
+        isSecondaryLayout: true,
       },
     }),
     home: route(Routes.HOME, {
       component: Home,
+      options: {
+        isPrimaryLayout: true,
+      },
       middleware: AuthMiddleware,
     }),
   }));
