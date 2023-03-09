@@ -1,11 +1,31 @@
 import { styled } from '@mui/material/styles';
 import { useFormik } from 'formik';
-import { Box, Button, Grid, Link, TextField } from '@mui/material';
+import { useSignInMutation, useSignUpMutation } from 'generated';
+import { Backdrop, Box, Button, CircularProgress, Grid, Link, TextField } from '@mui/material';
 import yupSchema from 'utils/yupSchema';
 
 const Wrapper = styled(Box)(() => ({}));
 
 const SignupForm = () => {
+  const [signUp, { loading: signupLoading }] = useSignUpMutation({
+    onCompleted: (data) => {
+      alert('Registered!!!');
+    },
+    onError: (error) => {
+      console.log('error while sigining up user', error);
+      alert('Error while signing up!!!');
+    },
+  });
+
+  const [signIn, { loading: signInLoading }] = useSignInMutation({
+    onCompleted: (data) => {
+      alert('Logged in!');
+    },
+    onError: (error) => {
+      alert('Error while logging in user');
+    },
+  });
+
   const formik = useFormik({
     initialValues: {
       name: '',
@@ -14,12 +34,33 @@ const SignupForm = () => {
     },
     validationSchema: yupSchema.signUp,
     onSubmit: (values) => {
-      console.log('Signup form submitted: ', values);
+      signUp({
+        variables: {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        },
+      }).then((response) => {
+        if (response) {
+          signIn({
+            variables: {
+              email: values.email,
+              password: values.password,
+            },
+          });
+        }
+      });
     },
   });
 
   return (
     <Wrapper>
+      {(signupLoading || signInLoading) && (
+        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={!signupLoading}>
+          <CircularProgress color="inherit" />
+        </Backdrop>
+      )}
+
       <Box>
         <form onSubmit={formik.handleSubmit}>
           <TextField
