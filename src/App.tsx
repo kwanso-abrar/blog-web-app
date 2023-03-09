@@ -7,7 +7,7 @@ import { ApolloProvider } from '@apollo/client';
 import { BrowserRouter, Redirect } from 'react-router-dom';
 import { RouteMiddleware, RouterSwitch } from 'react-typesafe-routes';
 import theme from 'theme';
-import client from './graphql/index';
+import client from 'graphql/client';
 import AppContext from 'AppContext';
 
 const App = () => {
