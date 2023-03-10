@@ -1,11 +1,12 @@
 import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 
-type SecondaryLayoutProps = {
-  children: React.ReactElement;
-};
-
-const SecondaryLayout = ({ children }: SecondaryLayoutProps) => {
-  return <Box>{children}</Box>;
+const SecondaryLayout = () => {
+  return (
+    <Box>
+      <Outlet />
+    </Box>
+  );
 };
 
 export default SecondaryLayout;

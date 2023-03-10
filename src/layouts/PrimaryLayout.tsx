@@ -1,16 +1,13 @@
 import { Box } from '@mui/material';
+import { Outlet } from 'react-router-dom';
 import { PrimaryFooter } from 'components';
 import PrimaryHeader from 'components/header/PrimaryHeader';
 
-type PrimaryLayoutProps = {
-  children: React.ReactElement;
-};
-
-const PrimaryLayout = ({ children }: PrimaryLayoutProps) => {
+const PrimaryLayout = () => {
   return (
     <Box>
       <PrimaryHeader />
-      {children}
+      <Outlet />
       <PrimaryFooter />
     </Box>
   );

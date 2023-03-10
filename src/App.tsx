@@ -7,10 +7,10 @@ import { ApolloProvider } from '@apollo/client';
 import { Home, Signin, Signup } from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import theme from 'theme';
-import Layout from 'layouts/layout';
 import client from 'graphql/client';
 import Protected from 'routes/Protected';
 import AppContext from 'AppContext';
+import { PrimaryLayout, SecondaryLayout } from 'layouts';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
@@ -23,10 +23,13 @@ const App = () => {
           <ThemeProvider theme={theme}>
             <CssBaseline />
             <BrowserRouter>
-              <Layout>
-                <Routes>
+              <Routes>
+                <Route element={<SecondaryLayout />}>
                   <Route path="/signin" element={<Signin />} />
                   <Route path="/signup" element={<Signup />} />
+                </Route>
+
+                <Route element={<PrimaryLayout />}>
                   <Route
                     path=""
                     element={
@@ -35,8 +38,8 @@ const App = () => {
                       </Protected>
                     }
                   />
-                </Routes>
-              </Layout>
+                </Route>
+              </Routes>
             </BrowserRouter>
           </ThemeProvider>
         </AppContext.Provider>

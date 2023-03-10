@@ -4,7 +4,6 @@ import { Box, Typography } from '@mui/material';
 
 const Wrapper = styled(Box)(({ theme }) => ({
   paddingTop: '88px',
-  minHeight: '100vh',
   backgroundColor: theme.palette.secondary.contrastText,
 
   // [theme.breakpoints.down('md')]: {
