@@ -31,7 +31,7 @@ const App = () => {
           <Toaster />
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <BrowserRouter>
+            <BrowserRouter forceRefresh>
               <Layout>
                 <RouterSwitch router={router(AuthMiddleware)} />
               </Layout>

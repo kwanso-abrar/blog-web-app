@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
+import { SignInFormV2 } from 'components/forms';
 import { Box, Typography } from '@mui/material';
-import { SigninForm } from 'components/forms';
 
 const Wrapper = styled(Box)(({ theme }) => ({
   paddingTop: '88px',
@@ -31,7 +31,7 @@ const Signin = () => {
     <Wrapper>
       <Heading>Sign in</Heading>
       <Container>
-        <SigninForm />
+        <SignInFormV2 />
       </Container>
     </Wrapper>
   );
