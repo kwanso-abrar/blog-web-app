@@ -1,26 +1,18 @@
 import { styled } from '@mui/material/styles';
-import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils/SessionManagement';
-import { yupResolver } from '@hookform/resolvers/yup';
+import { useFormik } from 'formik';
+import { yupSchema } from 'utils';
 import { useContextApi } from 'AppContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
-import yupSchema from 'utils/yupSchema';
 
 const Wrapper = styled(Box)(() => ({}));
 
-const schema = yupSchema.signUp;
-
-const SignUpFormV2 = () => {
+const SignupForm = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContextApi();
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
 
   const [signUp, { loading: signupLoading }] = useSignUpMutation({
     onCompleted: () => {
@@ -44,24 +36,32 @@ const SignUpFormV2 = () => {
     },
   });
 
-  const onFormSubmit = (values: any) => {
-    signUp({
-      variables: {
-        name: values.name,
-        email: values.email,
-        password: values.password,
-      },
-    }).then((response) => {
-      if (response) {
-        signIn({
-          variables: {
-            email: values.email,
-            password: values.password,
-          },
-        });
-      }
-    });
-  };
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validationSchema: yupSchema.signUp,
+    onSubmit: (values) => {
+      signUp({
+        variables: {
+          name: values.name,
+          email: values.email,
+          password: values.password,
+        },
+      }).then((response) => {
+        if (response) {
+          signIn({
+            variables: {
+              email: values.email,
+              password: values.password,
+            },
+          });
+        }
+      });
+    },
+  });
 
   return (
     <Wrapper>
@@ -70,34 +70,43 @@ const SignUpFormV2 = () => {
           <CircularProgress color="inherit" />
         </Backdrop>
       )}
+
       <Box>
-        <form onSubmit={handleSubmit(onFormSubmit)}>
+        <form onSubmit={formik.handleSubmit}>
           <TextField
             fullWidth
             id="name"
+            name="name"
             label="name"
-            {...register('name')}
-            error={errors?.name ? true : false}
-            helperText={errors?.name ? errors.name.message?.toString() : ''}
+            value={formik.values.name}
+            onChange={formik.handleChange}
+            error={formik.touched.name && Boolean(formik.errors.name)}
+            helperText={formik.touched.name && formik.errors.name}
             sx={{ marginTop: '10px' }}
           />
+
           <TextField
             fullWidth
             id="email"
+            name="email"
             label="Email"
-            {...register('email')}
-            error={errors?.email ? true : false}
-            helperText={errors?.email ? errors.email.message?.toString() : ''}
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
             sx={{ marginTop: '10px' }}
           />
+
           <TextField
             fullWidth
             id="password"
+            name="password"
             label="Password"
             type="password"
-            {...register('password')}
-            error={errors?.password ? true : false}
-            helperText={errors?.password ? errors.password.message?.toString() : ''}
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
             sx={{ marginTop: '10px' }}
           />
 
@@ -116,4 +125,4 @@ const SignUpFormV2 = () => {
   );
 };
 
-export default SignUpFormV2;
+export default SignupForm;

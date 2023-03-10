@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { SignInFormV2 } from 'components/forms';
+import { SignInFormV2 } from 'components';
 import { Box, Typography } from '@mui/material';
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -25,7 +25,7 @@ const Container = styled(Box)(() => ({
   justifyContent: 'center',
 }));
 
-const Signin = () => {
+export const Signin = () => {
   return (
     <Wrapper>
       <Heading>Sign in</Heading>
@@ -35,5 +35,3 @@ const Signin = () => {
     </Wrapper>
   );
 };
-
-export default Signin;

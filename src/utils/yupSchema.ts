@@ -26,9 +26,7 @@ const signIn = yup.object({
   password: password,
 });
 
-const yupSchema = {
+export const yupSchema = {
   signUp,
   signIn,
 };
-
-export default yupSchema;

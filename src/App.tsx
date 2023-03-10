@@ -5,8 +5,8 @@ import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { Home, Signin, Signup } from 'pages';
+import { AuthLayout, MainLayout } from 'layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { PrimaryLayout, SecondaryLayout } from 'layouts';
 import theme from 'theme';
 import client from 'graphql/client';
 import Protected from 'routes/Protected';
@@ -24,12 +24,11 @@ const App = () => {
             <CssBaseline />
             <BrowserRouter>
               <Routes>
-                <Route element={<SecondaryLayout />}>
+                <Route element={<AuthLayout />}>
                   <Route path="/signin" element={<Signin />} />
                   <Route path="/signup" element={<Signup />} />
                 </Route>
-
-                <Route element={<PrimaryLayout />}>
+                <Route element={<MainLayout />}>
                   <Route
                     path=""
                     element={

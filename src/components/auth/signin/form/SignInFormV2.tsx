@@ -1,13 +1,13 @@
 import { styled } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils/SessionManagement';
+import { yupSchema } from 'utils';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { Link, useNavigate } from 'react-router-dom';
 import { useSignInMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
-import yupSchema from 'utils/yupSchema';
 
 const Wrapper = styled(Box)(() => ({}));
 
