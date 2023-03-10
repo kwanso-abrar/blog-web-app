@@ -1,10 +1,9 @@
 import { styled } from '@mui/material/styles';
 import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils/SessionManagement';
-import { useEffect } from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useSignInMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
@@ -15,8 +14,8 @@ const Wrapper = styled(Box)(() => ({}));
 const schema = yupSchema.signIn;
 
 const SignInFormV2 = () => {
-  const history = useHistory();
-  const { isLoggedIn, setIsLoggedIn } = useContextApi();
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useContextApi();
   const {
     register,
     handleSubmit,
@@ -28,7 +27,7 @@ const SignInFormV2 = () => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
         setIsLoggedIn(true);
-        history.push('/');
+        navigate('/');
       }
     },
     onError: () => {
@@ -44,12 +43,6 @@ const SignInFormV2 = () => {
       },
     });
   };
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      history.push('/');
-    }
-  }, []);
 
   return (
     <Wrapper>

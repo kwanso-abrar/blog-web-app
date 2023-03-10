@@ -1,28 +1,19 @@
-import { router } from 'navigation';
 import { Toaster } from 'react-hot-toast';
 import { isToken } from 'utils/SessionManagement';
 import { useState } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
-import { BrowserRouter, Redirect } from 'react-router-dom';
-import { RouteMiddleware, RouterSwitch } from 'react-typesafe-routes';
+import { Home, Signin, Signup } from 'pages';
+import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import theme from 'theme';
 import Layout from 'layouts/layout';
 import client from 'graphql/client';
+import Protected from 'navigation/Protected';
 import AppContext from 'AppContext';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
-
-  const AuthMiddleware: RouteMiddleware = (next: any) => {
-    if (isLoggedIn) {
-      return next;
-    } else {
-      // eslint-disable-next-line react/display-name
-      return () => <Redirect to={router().signin().$} />;
-    }
-  };
 
   return (
     <div>
@@ -31,9 +22,20 @@ const App = () => {
           <Toaster />
           <ThemeProvider theme={theme}>
             <CssBaseline />
-            <BrowserRouter forceRefresh>
+            <BrowserRouter>
               <Layout>
-                <RouterSwitch router={router(AuthMiddleware)} />
+                <Routes>
+                  <Route path="/signin" element={<Signin />} />
+                  <Route path="/signup" element={<Signup />} />
+                  <Route
+                    path=""
+                    element={
+                      <Protected>
+                        <Home />
+                      </Protected>
+                    }
+                  />
+                </Routes>
               </Layout>
             </BrowserRouter>
           </ThemeProvider>

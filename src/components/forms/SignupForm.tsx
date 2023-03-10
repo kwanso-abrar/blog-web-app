@@ -1,19 +1,18 @@
+import { Link, useNavigate } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { saveToken } from 'utils/SessionManagement';
 import { useFormik } from 'formik';
-import { Link, useHistory } from 'react-router-dom';
+import { useContextApi } from 'AppContext';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 import { Backdrop, Box, Button, CircularProgress, Grid, TextField } from '@mui/material';
 import toast from 'react-hot-toast';
 import yupSchema from 'utils/yupSchema';
-import { useContextApi } from 'AppContext';
-import { useEffect } from 'react';
 
 const Wrapper = styled(Box)(() => ({}));
 
 const SignupForm = () => {
-  const history = useHistory();
-  const { isLoggedIn, setIsLoggedIn } = useContextApi();
+  const navigate = useNavigate();
+  const { setIsLoggedIn } = useContextApi();
 
   const [signUp, { loading: signupLoading }] = useSignUpMutation({
     onCompleted: () => {
@@ -29,19 +28,13 @@ const SignupForm = () => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
         setIsLoggedIn(true);
-        history.push('/');
+        navigate('/');
       }
     },
     onError: () => {
       toast.error('Invalid Credentials!');
     },
   });
-
-  useEffect(() => {
-    if (isLoggedIn) {
-      history.push('/');
-    }
-  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -122,11 +115,7 @@ const SignupForm = () => {
           </Button>
         </form>
         <Grid container sx={{ marginTop: '5px' }}>
-          <Grid item xs>
-            {/* <Link href="#" variant="body2">
-              Forgot password?
-            </Link> */}
-          </Grid>
+          <Grid item xs></Grid>
           <Grid item>
             <Link to="/signin">{'Already have an account? Sign In'}</Link>
           </Grid>
