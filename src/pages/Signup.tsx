@@ -1,5 +1,5 @@
 import { styled } from '@mui/material/styles';
-import { SignUpFormV2 } from 'components';
+import { SignUpForm } from 'components';
 import { Box, Typography } from '@mui/material';
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -30,7 +30,7 @@ export const Signup = () => {
     <Wrapper>
       <Heading>Sign Up</Heading>
       <Container>
-        <SignUpFormV2 />
+        <SignUpForm />
       </Container>
     </Wrapper>
   );
