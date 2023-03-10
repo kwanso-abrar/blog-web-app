@@ -9,7 +9,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import theme from 'theme';
 import Layout from 'layouts/layout';
 import client from 'graphql/client';
-import Protected from 'navigation/Protected';
+import Protected from 'routes/Protected';
 import AppContext from 'AppContext';
 
 const App = () => {
