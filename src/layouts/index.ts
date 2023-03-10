@@ -1,2 +1,2 @@
-export { default as PrimaryLayout } from './PrimaryLayout';
-export { default as SecondaryLayout } from './SecondaryLayout';
+export { PrimaryLayout } from './PrimaryLayout';
+export { SecondaryLayout } from './SecondaryLayout';

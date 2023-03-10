@@ -6,11 +6,11 @@ import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { Home, Signin, Signup } from 'pages';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { PrimaryLayout, SecondaryLayout } from 'layouts';
 import theme from 'theme';
 import client from 'graphql/client';
 import Protected from 'routes/Protected';
 import AppContext from 'AppContext';
-import { PrimaryLayout, SecondaryLayout } from 'layouts';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
