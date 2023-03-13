@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
-import { Navigate, Outlet } from 'react-router-dom';
 import { useContextApi } from 'AppContext';
+import { Navigate, Outlet } from 'react-router-dom';
 
 export const AuthLayout = () => {
   const { isLoggedIn } = useContextApi();

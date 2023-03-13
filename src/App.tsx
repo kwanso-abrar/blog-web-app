@@ -1,5 +1,5 @@
 import { Toaster } from 'react-hot-toast';
-import { isToken } from 'utils/SessionManagement';
+import { isToken } from 'utils';
 import { useState } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';

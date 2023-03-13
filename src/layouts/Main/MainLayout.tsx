@@ -2,20 +2,12 @@ import { Box } from '@mui/material';
 import { Outlet } from 'react-router-dom';
 import { useState } from 'react';
 import { CustomMenu } from 'components';
-import { navigationButtonsData } from 'utils';
+import { navigationButtonsData } from '../../constants';
 import AppBar from '@mui/material/AppBar';
 import Drawer from '@mui/material/Drawer';
 import Toolbar from '@mui/material/Toolbar';
 import MenuIcon from '@mui/icons-material/Menu';
 import IconButton from '@mui/material/IconButton';
-
-// export const MainLayout = () => (
-//   <Box>
-//     <Header />
-//     <Outlet />
-//     <Footer />
-//   </Box>
-// );
 
 const drawerWidth = 240;
 

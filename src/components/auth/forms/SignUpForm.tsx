@@ -1,6 +1,6 @@
 import { styled } from '@mui/material/styles';
-import { saveToken } from 'utils/SessionManagement';
-import { yupSchema } from 'utils';
+import { saveToken } from 'utils';
+import { yupSchema } from 'formValidations';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { Link, useNavigate } from 'react-router-dom';
@@ -16,11 +16,7 @@ const schema = yupSchema.signUp;
 export const SignUpForm = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContextApi();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm({ resolver: yupResolver(schema) });
+  const { control, handleSubmit } = useForm({ resolver: yupResolver(schema) });
 
   const [signUp, { loading: signupLoading }] = useSignUpMutation({
     onCompleted: () => {
@@ -52,7 +48,7 @@ export const SignUpForm = () => {
         password: values.password,
       },
     }).then((response) => {
-      if (response) {
+      if (!response.errors) {
         signIn({
           variables: {
             email: values.email,
@@ -75,58 +71,24 @@ export const SignUpForm = () => {
           <Controller
             control={control}
             name="name"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <TextField
-                ref={ref}
-                onChange={onChange}
-                onBlur={onBlur}
-                value={value}
-                fullWidth
-                id="name"
-                label="name"
-                error={errors?.name ? true : false}
-                helperText={errors?.name ? errors.name.message?.toString() : ''}
-                sx={{ marginTop: '10px' }}
-              />
+            render={({ field, fieldState: { error } }) => (
+              <TextField {...field} error={!!error} helperText={error?.message} fullWidth sx={{ marginTop: '10px' }} />
             )}
           />
 
           <Controller
             control={control}
             name="email"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <TextField
-                ref={ref}
-                onChange={onChange}
-                onBlur={onBlur}
-                value={value}
-                fullWidth
-                id="email"
-                label="Email"
-                error={errors?.email ? true : false}
-                helperText={errors?.email ? errors.email.message?.toString() : ''}
-                sx={{ marginTop: '10px' }}
-              />
+            render={({ field, fieldState: { error } }) => (
+              <TextField {...field} error={!!error} helperText={error?.message} sx={{ marginTop: '10px' }} fullWidth />
             )}
           />
 
           <Controller
             control={control}
             name="password"
-            render={({ field: { onChange, onBlur, value, ref } }) => (
-              <TextField
-                ref={ref}
-                onChange={onChange}
-                onBlur={onBlur}
-                value={value}
-                fullWidth
-                id="password"
-                label="Password"
-                type="password"
-                error={errors?.password ? true : false}
-                helperText={errors?.password ? errors.password.message?.toString() : ''}
-                sx={{ marginTop: '10px' }}
-              />
+            render={({ field, fieldState: { error } }) => (
+              <TextField {...field} error={!!error} helperText={error?.message} fullWidth sx={{ marginTop: '10px' }} />
             )}
           />
 

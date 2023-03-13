@@ -1,6 +1,7 @@
+import { removeToken } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { useContextApi } from 'AppContext';
-import { NavigationButtonProps, removeToken } from 'utils';
+import { NavigationButtonProps } from 'types';
 import { Divider, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Toolbar } from '@mui/material';
 import MailIcon from '@mui/icons-material/Mail';
 import InboxIcon from '@mui/icons-material/MoveToInbox';
