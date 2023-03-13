@@ -4,9 +4,9 @@ import { useState } from 'react';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
-import { Home, Signin, Signup } from 'pages';
 import { AuthLayout, MainLayout } from 'layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import { CreatePost, Home, ReadAllPost, Signin, Signup, UpdatePost } from 'pages';
 import theme from 'theme';
 import client from 'graphql/client';
 import Protected from 'routes/Protected';
@@ -34,6 +34,30 @@ const App = () => {
                     element={
                       <Protected>
                         <Home />
+                      </Protected>
+                    }
+                  />
+                  <Route
+                    path="/create"
+                    element={
+                      <Protected>
+                        <CreatePost />
+                      </Protected>
+                    }
+                  />
+                  <Route
+                    path="/read-all"
+                    element={
+                      <Protected>
+                        <ReadAllPost />
+                      </Protected>
+                    }
+                  />
+                  <Route
+                    path="/update"
+                    element={
+                      <Protected>
+                        <UpdatePost />
                       </Protected>
                     }
                   />
