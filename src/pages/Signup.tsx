@@ -1,21 +1,26 @@
+import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { SignUpForm } from 'components';
+import { SignupFormV2 } from 'components/auth/forms/SignupFormV2';
 import { Box, Typography } from '@mui/material';
 
-const Wrapper = styled(Box)(({ theme }) => ({
-  paddingTop: '88px',
-  backgroundColor: theme.palette.secondary.contrastText,
-
-  // [theme.breakpoints.down('md')]: {
-  //   backgroundColor: 'red',
-  // },
+const Heading = styled(Typography)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  fontSize: '27px',
+  textAlign: 'center',
+  fontWeight: 600,
+  lineHeight: '140%',
+  textTransform: 'capitalize',
 }));
 
-const Heading = styled(Typography)(({ theme }) => ({
-  color: theme.palette.secondary.dark,
-  fontSize: '48px',
-  fontWeight: 700,
+const SubHeading = styled(Link)(({ theme }) => ({
+  color: theme.palette.primary.main,
+  display: 'flex',
+  fontSize: '15px',
   textAlign: 'center',
+  fontWeight: 400,
+  lineHeight: '150%',
+  justifyContent: 'center',
+  textDecoration: 'none',
 }));
 
 const Container = styled(Box)(() => ({
@@ -27,11 +32,13 @@ const Container = styled(Box)(() => ({
 
 export const Signup = () => {
   return (
-    <Wrapper>
-      <Heading>Sign Up</Heading>
+    <Box>
+      <Heading>Create an account</Heading>
+      <SubHeading to="/signin">Already have an account? Log in</SubHeading>
       <Container>
-        <SignUpForm />
+        {/* <SignUpForm /> */}
+        <SignupFormV2 />
       </Container>
-    </Wrapper>
+    </Box>
   );
 };
