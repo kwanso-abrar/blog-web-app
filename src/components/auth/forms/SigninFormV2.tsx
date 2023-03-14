@@ -1,62 +1,30 @@
-import { Link, useNavigate } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { ForgetPasswordLink, GoToSignUpPage, InputField, VisibilityIconText } from 'styles';
 import {
   Box,
   Button,
   Divider,
   Checkbox,
   FormGroup,
-  TextField,
   IconButton,
   Typography,
   InputAdornment,
   FormControlLabel
 } from '@mui/material';
 
-const Wrapper = styled(Box)(() => ({
-  marginTop: '74px'
-}));
-
-const InputField = styled(TextField)(() => ({
-  width: '100%'
-}));
-
-const VisibilityIconText = styled(Typography)(() => ({
-  fontWeight: '400',
-  fontSize: '15px',
-  lineHeight: '150%',
-  marginBottom: '5px',
-  marginLeft: '10px',
-  color: '#666666'
-}));
-
-const ForgetPassword = styled(Link)(({ theme }) => ({
-  color: theme.palette.primary.main,
-  fontSize: '16px',
-  fontWeight: 400,
-  lineHeight: '24px',
-  display: 'block',
-  textAlign: 'right',
-  marginTop: '5px'
-}));
-
 export const SigninFormV2 = () => {
-  const [showPassword, setShowPassword] = useState(true);
   const navigate = useNavigate();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
+  const [showPassword, setShowPassword] = useState(true);
 
   return (
-    <Wrapper>
+    <Box sx={{ marginTop: '74px' }}>
       <Box>
         <form>
           <Box sx={{ width: '712px' }}>
-            <InputField
-              variant="outlined"
-              label="Email address or user name"
-              InputLabelProps={{ shrink: true, sx: { top: '-20px', fontSize: '18px', lineHeight: '150%' } }}
-            />
+            <InputField variant="outlined" label="Email address or user name" InputLabelProps={{ shrink: true }} />
           </Box>
 
           <Box sx={{ marginTop: '50px', width: '712px' }}>
@@ -64,10 +32,10 @@ export const SigninFormV2 = () => {
               variant="outlined"
               type={showPassword ? 'text' : 'password'}
               label="Password"
-              InputLabelProps={{ shrink: true, sx: { top: '-20px', fontSize: '18px', lineHeight: '150%' } }}
+              InputLabelProps={{ shrink: true }}
               InputProps={{
                 endAdornment: (
-                  <InputAdornment position="end" sx={{ position: 'absolute', right: '0', top: '-20px' }}>
+                  <InputAdornment position="end">
                     <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
                       {showPassword ? (
                         <>
@@ -85,7 +53,7 @@ export const SigninFormV2 = () => {
                 )
               }}
             />
-            <ForgetPassword to="#">Forget your password</ForgetPassword>
+            <ForgetPasswordLink to="#">Forget your password</ForgetPasswordLink>
           </Box>
 
           <FormGroup>
@@ -104,22 +72,10 @@ export const SigninFormV2 = () => {
         <Typography sx={{ color: '#333333', fontSize: '27px', lineHeight: '140%', textAlign: 'center' }}>
           Don’t have an account?
         </Typography>
-        <Button
-          variant="outlined"
-          sx={{
-            width: '100%',
-            marginTop: '20px',
-            height: '64px',
-            borderRadius: '40px',
-            fontSize: '21px',
-            fontWeight: '600',
-            lineHeight: '140%'
-          }}
-          onClick={() => navigate('/signup')}
-        >
+        <GoToSignUpPage variant="outlined" onClick={() => navigate('/signup')}>
           Sign up
-        </Button>
+        </GoToSignUpPage>
       </Box>
-    </Wrapper>
+    </Box>
   );
 };

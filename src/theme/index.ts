@@ -7,7 +7,6 @@ declare module '@mui/material/Button' {
   }
 }
 
-// A custom theme for this app
 const theme = createTheme({
   palette: {
     primary: {
@@ -40,6 +39,24 @@ const theme = createTheme({
           '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
             paddingLeft: '24px'
           }
+        }
+      }
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          top: '-20px',
+          fontSize: '18px',
+          lineHeight: '150%'
+        }
+      }
+    },
+    MuiInputAdornment: {
+      styleOverrides: {
+        root: {
+          position: 'absolute',
+          right: '0',
+          top: '-20px'
         }
       }
     },
