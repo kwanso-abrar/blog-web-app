@@ -7,21 +7,8 @@ const Wrapper = styled(Box)(() => ({
   marginTop: '74px'
 }));
 
-const InputField = styled(TextField)(({ theme }) => ({
-  width: '100%',
-
-  '& .MuiOutlinedInput-notchedOutline': {
-    border: `1px solid ${theme.palette.secondary.main} !important`,
-    borderRadius: '20px'
-  },
-
-  '& legend': {
-    display: 'none'
-  },
-
-  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-    paddingLeft: '24px'
-  }
+const InputField = styled(TextField)(() => ({
+  width: '100%'
 }));
 
 const VisibilityIconText = styled(Typography)(() => ({
@@ -87,8 +74,9 @@ export const SignupFormV2 = () => {
               helperText={'Use 8 or more characters with a mix of letters, numbers & symbols'}
             />
           </Box>
-          <Box sx={{ width: '715px', height: '64px', marginTop: '40px' }}>
-            <Button variant="contained" fullWidth disabled sx={{ padding: '17px 16px', borderRadius: '40px' }}>
+
+          <Box sx={{ marginTop: '40px' }}>
+            <Button variant="auth" disabled>
               Create an account
             </Button>
           </Box>
