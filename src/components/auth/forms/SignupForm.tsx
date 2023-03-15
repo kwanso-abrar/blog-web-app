@@ -13,7 +13,7 @@ import { Backdrop, Box, Button, CircularProgress, IconButton, InputAdornment } f
 
 const schema = yupSchema.signUp;
 
-export const SignupFormV2 = () => {
+export const SignupForm = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContextApi();
   const handleClickShowPassword = () => setShowPassword((show) => !show);

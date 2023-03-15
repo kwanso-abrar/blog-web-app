@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { SignupFormV2 } from 'components/auth/forms/SignupFormV2';
+import { SignupForm } from 'components';
 import { AuthPageFormContainer, AuthPageHeading, AuthPageSubHeading } from 'styles';
 
 export const Signup = () => {
@@ -8,7 +8,7 @@ export const Signup = () => {
       <AuthPageHeading>Create an account</AuthPageHeading>
       <AuthPageSubHeading to="/signin">Already have an account? Log in</AuthPageSubHeading>
       <AuthPageFormContainer>
-        <SignupFormV2 />
+        <SignupForm />
       </AuthPageFormContainer>
     </Box>
   );

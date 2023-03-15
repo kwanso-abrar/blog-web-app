@@ -25,7 +25,7 @@ import {
 
 const schema = yupSchema.signIn;
 
-export const SigninFormV2 = () => {
+export const SigninForm = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContextApi();
   const handleClickShowPassword = () => setShowPassword((show) => !show);
@@ -39,7 +39,7 @@ export const SigninFormV2 = () => {
     defaultValues: {
       email: '',
       password: '',
-      rememberMe: false
+      rememberMe: true
     }
   });
 
@@ -135,7 +135,7 @@ export const SigninFormV2 = () => {
             name="rememberMe"
             render={({ field }) => (
               <FormGroup>
-                <FormControlLabel control={<Checkbox {...field} />} label="Remember me" />
+                <FormControlLabel control={<Checkbox {...field} />} checked={field.value} label="Remember me" />
               </FormGroup>
             )}
           />

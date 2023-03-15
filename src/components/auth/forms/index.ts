@@ -1,2 +1,2 @@
-export { SignInForm } from './SignInForm';
-export { SignUpForm } from './SignUpForm';
+export { SigninForm } from './SigninForm';
+export { SignupForm } from './SignupForm';
