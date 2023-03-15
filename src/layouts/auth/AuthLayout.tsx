@@ -3,7 +3,7 @@ import { useContextApi } from 'AppContext';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Wrapper = styled(Box)(() => ({
-  paddingTop: '93px',
+  paddingTop: '93px'
 }));
 
 export const AuthLayout = () => {

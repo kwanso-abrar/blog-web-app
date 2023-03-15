@@ -61,3 +61,30 @@ export const GoToSignUpPage = styled(Button)(() => ({
   lineHeight: '140%',
   borderRadius: '40px'
 }));
+
+export const HeaderWrapper = styled(Box)(() => ({
+  backgroundColor: 'white',
+  borderBottom: '1.5px solid rgba(102, 102, 102, 0.25)',
+  padding: '16px 40px'
+}));
+
+export const HeaderNavLink = styled(Link)(() => ({
+  fontSize: '16px',
+  lineHeight: '24px',
+  color: '#111111',
+  textDecoration: 'none',
+  alignSelf: 'center'
+}));
+
+export const SearchBar = styled(TextField)(() => ({
+  width: '100%',
+
+  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '5px',
+    paddingLeft: '25px'
+  },
+
+  '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '12px !important'
+  }
+}));

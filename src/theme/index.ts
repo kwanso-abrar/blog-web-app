@@ -4,6 +4,7 @@ import { createTheme } from '@mui/material/styles';
 declare module '@mui/material/Button' {
   interface ButtonPropsVariantOverrides {
     auth: true;
+    filled: true;
   }
 }
 
@@ -102,6 +103,47 @@ const theme = createTheme({
             ':hover': {
               color: 'white !important',
               backgroundColor: '#111111'
+            }
+          }
+        },
+        {
+          props: {
+            variant: 'filled'
+          },
+          style: {
+            background: '#111111',
+            border: '1px solid #111111',
+            borderRadius: '8px',
+            width: '100%',
+            fontSize: '16px',
+            lineHeight: '24px',
+            color: '#FFFFFF',
+            textAlign: 'center',
+            textTransform: 'none',
+            padding: '8px 26px',
+            ':hover': {
+              color: '#FFFFFF',
+              backgroundColor: '#111111'
+            }
+          }
+        },
+        {
+          props: {
+            variant: 'outlined'
+          },
+          style: {
+            border: '1px solid #111111',
+            borderRadius: '8px',
+            background: '#FFFFFF',
+            fontSize: '16px',
+            lineHeight: '24px',
+            color: '#111111',
+            textAlign: 'center',
+            textTransform: 'none',
+            padding: '8px 26px',
+            ':hover': {
+              color: '#111111',
+              backgroundColor: '#FFFFFF'
             }
           }
         }

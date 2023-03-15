@@ -29,14 +29,7 @@ const App = () => {
                   <Route path="/signup" element={<Signup />} />
                 </Route>
                 <Route element={<MainLayout />}>
-                  <Route
-                    path=""
-                    element={
-                      <Protected>
-                        <Home />
-                      </Protected>
-                    }
-                  />
+                  <Route path="" element={<Home />} />
                   <Route
                     path="/create"
                     element={
