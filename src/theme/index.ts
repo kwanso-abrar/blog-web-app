@@ -78,14 +78,17 @@ const theme = createTheme({
             borderRadius: '40px',
             textTransform: 'capitalize',
             backgroundColor: '#333333',
+
             ':hover': {
               color: 'white !important',
               backgroundColor: '#333333'
             }
           }
         },
+
         {
           props: { variant: 'auth', disabled: true },
+
           style: {
             color: 'white !important',
             width: '100%',
@@ -100,6 +103,7 @@ const theme = createTheme({
             borderRadius: '40px',
             textTransform: 'capitalize',
             backgroundColor: '#111111',
+
             ':hover': {
               color: 'white !important',
               backgroundColor: '#111111'
@@ -110,6 +114,7 @@ const theme = createTheme({
           props: {
             variant: 'filled'
           },
+
           style: {
             background: '#111111',
             border: '1px solid #111111',

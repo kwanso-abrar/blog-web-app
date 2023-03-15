@@ -88,3 +88,20 @@ export const SearchBar = styled(TextField)(() => ({
     padding: '12px !important'
   }
 }));
+
+export const GreyBox = styled(Box)(() => ({
+  width: '40px',
+  height: '40px',
+  justifySelf: 'center',
+  borderRadius: '50%',
+  backgroundColor: '#C4C4C4'
+}));
+
+export const BlackBox = styled(Box)(() => ({
+  width: '40px',
+  height: '40px',
+  marginLeft: '20px',
+  justifySelf: 'center',
+  borderRadius: '50%',
+  backgroundColor: '#222222'
+}));
