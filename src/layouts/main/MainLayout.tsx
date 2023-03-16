@@ -5,7 +5,12 @@ import { Box, Stack } from '@mui/material';
 export const MainLayout = () => (
   <Stack justifyContent="space-between">
     <Header />
-    <Box>
+    <Box
+      sx={{
+        marginTop: '68px',
+        marginLeft: '120px'
+      }}
+    >
       <Outlet />
     </Box>
   </Stack>
