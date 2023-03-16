@@ -8,10 +8,9 @@ import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
 import { Controller, useForm } from 'react-hook-form';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { ForgetPasswordLink, GoToSignUpPage, InputField, VisibilityIconText } from 'styles';
+import { AuthButtonLarge, ForgetPasswordLink, InputField, VisibilityIconText } from 'styles';
 import {
   Box,
-  Button,
   Divider,
   Backdrop,
   Checkbox,
@@ -24,6 +23,18 @@ import {
 } from '@mui/material';
 
 const schema = yupSchema.signIn;
+
+const DONT_HAVE_ACCOUNT_SX = {
+  color: '#333333',
+  fontSize: '27px',
+  lineHeight: '140%',
+  textAlign: 'center'
+};
+
+const VISIBILTY_ICON_SX = {
+  width: '24px',
+  height: '24px'
+};
 
 export const SigninForm = () => {
   const navigate = useNavigate();
@@ -80,9 +91,9 @@ export const SigninForm = () => {
               name="email"
               render={({ field, fieldState: { error } }) => (
                 <InputField
+                  {...field}
                   variant="outlined"
                   label="Email address or user name"
-                  {...field}
                   error={!!error}
                   helperText={error?.message}
                   InputLabelProps={{ shrink: true }}
@@ -110,12 +121,12 @@ export const SigninForm = () => {
                         <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
                           {showPassword ? (
                             <>
-                              <VisibilityOff sx={{ width: '24px', height: '24px' }} />
+                              <VisibilityOff sx={{ ...VISIBILTY_ICON_SX }} />
                               <VisibilityIconText>Hide</VisibilityIconText>
                             </>
                           ) : (
                             <>
-                              <Visibility sx={{ width: '24px', height: '24px' }} />
+                              <Visibility sx={{ ...VISIBILTY_ICON_SX }} />
                               <VisibilityIconText> Show</VisibilityIconText>
                             </>
                           )}
@@ -141,20 +152,18 @@ export const SigninForm = () => {
           />
 
           <Box sx={{ marginTop: '40px' }}>
-            <Button variant="auth" disabled={!(dirtyFields.email && dirtyFields.password)} type="submit">
+            <AuthButtonLarge variant="contained" fullWidth disabled={!(dirtyFields.email && dirtyFields.password)} type="submit">
               Log in
-            </Button>
+            </AuthButtonLarge>
           </Box>
         </form>
       </Box>
       <Divider sx={{ marginTop: '40px', borderBottom: '2px solid #E5E5E5' }} />
       <Box sx={{ marginTop: '40px' }}>
-        <Typography sx={{ color: '#333333', fontSize: '27px', lineHeight: '140%', textAlign: 'center' }}>
-          Don’t have an account?
-        </Typography>
-        <GoToSignUpPage variant="outlined" onClick={() => navigate('/signup')}>
+        <Typography sx={{ ...DONT_HAVE_ACCOUNT_SX }}>Don’t have an account?</Typography>
+        <AuthButtonLarge variant="outlined" fullWidth onClick={() => navigate('/signup')} sx={{ marginTop: '20px' }}>
           Sign up
-        </GoToSignUpPage>
+        </AuthButtonLarge>
       </Box>
     </Box>
   );

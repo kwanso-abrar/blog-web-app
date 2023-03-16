@@ -2,8 +2,8 @@ import { useState } from 'react';
 import { removeToken } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { useContextApi } from 'AppContext';
-import { Box, Button, Stack, Menu, MenuItem } from '@mui/material';
-import { BlackBox, GreyBox, HeaderNavLink, HeaderWrapper, SearchBar } from 'styles';
+import { Box, Stack, Menu, MenuItem } from '@mui/material';
+import { BlackBox, GreyBox, HeaderButton, HeaderNavLink, HeaderWrapper, SearchBar } from 'styles';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ export const Header = () => {
           {isLoggedIn ? (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <Button variant="filled">Create Article</Button>
+                <HeaderButton variant="contained">Create Article</HeaderButton>
               </Box>
 
               <Box>
@@ -71,15 +71,15 @@ export const Header = () => {
           ) : (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <Button variant="outlined" onClick={() => navigate('/signin')}>
+                <HeaderButton variant="outlined" onClick={() => navigate('/signin')}>
                   Log in
-                </Button>
+                </HeaderButton>
               </Box>
 
               <Box sx={{ marginLeft: '20px' }}>
-                <Button variant="filled" onClick={() => navigate('/signup')}>
+                <HeaderButton variant="contained" onClick={() => navigate('/signup')}>
                   Sign up
-                </Button>
+                </HeaderButton>
               </Box>
             </>
           )}

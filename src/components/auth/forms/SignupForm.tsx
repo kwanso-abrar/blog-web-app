@@ -7,11 +7,16 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { Controller, useForm } from 'react-hook-form';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { InputField, VisibilityIconText } from 'styles';
 import { useSignInMutation, useSignUpMutation } from 'generated';
-import { Backdrop, Box, Button, CircularProgress, IconButton, InputAdornment } from '@mui/material';
+import { AuthButtonLarge, InputField, VisibilityIconText } from 'styles';
+import { Backdrop, Box, CircularProgress, IconButton, InputAdornment } from '@mui/material';
 
 const schema = yupSchema.signUp;
+
+const VISIBILTY_ICON_SX = {
+  width: '24px',
+  height: '24px'
+};
 
 export const SignupForm = () => {
   const navigate = useNavigate();
@@ -135,12 +140,12 @@ export const SignupForm = () => {
                         <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
                           {showPassword ? (
                             <>
-                              <VisibilityOff sx={{ width: '24px', height: '24px' }} />
+                              <VisibilityOff sx={{ ...VISIBILTY_ICON_SX }} />
                               <VisibilityIconText>Hide</VisibilityIconText>
                             </>
                           ) : (
                             <>
-                              <Visibility sx={{ width: '24px', height: '24px' }} />
+                              <Visibility sx={{ ...VISIBILTY_ICON_SX }} />
                               <VisibilityIconText> Show</VisibilityIconText>
                             </>
                           )}
@@ -154,9 +159,14 @@ export const SignupForm = () => {
           </Box>
 
           <Box sx={{ marginTop: '40px' }}>
-            <Button variant="auth" disabled={!(dirtyFields.name && dirtyFields.email && dirtyFields.password)} type="submit">
+            <AuthButtonLarge
+              fullWidth
+              disabled={!(dirtyFields.name && dirtyFields.email && dirtyFields.password)}
+              type="submit"
+              variant="contained"
+            >
               Create an account
-            </Button>
+            </AuthButtonLarge>
           </Box>
         </form>
       </Box>

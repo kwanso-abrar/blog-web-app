@@ -52,16 +52,6 @@ export const AuthPageFormContainer = styled(Box)(() => ({
   justifyContent: 'center'
 }));
 
-export const GoToSignUpPage = styled(Button)(() => ({
-  width: '100%',
-  height: '64px',
-  fontSize: '21px',
-  marginTop: '20px',
-  fontWeight: '600',
-  lineHeight: '140%',
-  borderRadius: '40px'
-}));
-
 export const HeaderWrapper = styled(Box)(() => ({
   backgroundColor: 'white',
   borderBottom: '1.5px solid rgba(102, 102, 102, 0.25)',
@@ -104,4 +94,21 @@ export const BlackBox = styled(Box)(() => ({
   justifySelf: 'center',
   borderRadius: '50%',
   backgroundColor: '#222222'
+}));
+
+export const AuthButtonLarge = styled(Button)(() => ({
+  padding: '17px 0px',
+  fontSize: '21px',
+  fontWeight: '600',
+  lineHeight: '140%',
+  borderRadius: '40px',
+  textTransform: 'capitalize'
+}));
+
+export const HeaderButton = styled(Button)(() => ({
+  padding: '9px 23px',
+  fontSize: '16px',
+  lineHeight: '24px',
+  borderRadius: '8px',
+  textTransform: 'none'
 }));
