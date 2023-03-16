@@ -33,6 +33,18 @@ const theme = createTheme({
 
           '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
             paddingLeft: '24px'
+          },
+
+          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:after': {
+            border: 'none'
+          },
+
+          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:before': {
+            border: 'none'
+          },
+
+          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
+            border: 'none'
           }
         }
       }
@@ -43,15 +55,6 @@ const theme = createTheme({
           top: '-20px',
           fontSize: '18px',
           lineHeight: '150%'
-        }
-      }
-    },
-    MuiInputAdornment: {
-      styleOverrides: {
-        root: {
-          position: 'absolute',
-          right: '0',
-          top: '-20px'
         }
       }
     }

@@ -7,34 +7,12 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
 import { Controller, useForm } from 'react-hook-form';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { AuthButtonLarge, ForgetPasswordLink, InputField, VisibilityIconText } from 'styles';
-import {
-  Box,
-  Divider,
-  Backdrop,
-  Checkbox,
-  FormGroup,
-  IconButton,
-  Typography,
-  InputAdornment,
-  CircularProgress,
-  FormControlLabel
-} from '@mui/material';
+import { DONT_HAVE_ACCOUNT_SX } from 'styles/constants';
+import { PasswordInputAdornment } from '../PasswordInputAdornment';
+import { AuthButtonLarge, ForgetPasswordLink, InputField } from 'styles';
+import { Box, Divider, Backdrop, Checkbox, FormGroup, Typography, CircularProgress, FormControlLabel } from '@mui/material';
 
 const schema = yupSchema.signIn;
-
-const DONT_HAVE_ACCOUNT_SX = {
-  color: '#333333',
-  fontSize: '27px',
-  lineHeight: '140%',
-  textAlign: 'center'
-};
-
-const VISIBILTY_ICON_SX = {
-  width: '24px',
-  height: '24px'
-};
 
 export const SigninForm = () => {
   const navigate = useNavigate();
@@ -117,21 +95,7 @@ export const SigninForm = () => {
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end">
-                        <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
-                          {showPassword ? (
-                            <>
-                              <VisibilityOff sx={{ ...VISIBILTY_ICON_SX }} />
-                              <VisibilityIconText>Hide</VisibilityIconText>
-                            </>
-                          ) : (
-                            <>
-                              <Visibility sx={{ ...VISIBILTY_ICON_SX }} />
-                              <VisibilityIconText> Show</VisibilityIconText>
-                            </>
-                          )}
-                        </IconButton>
-                      </InputAdornment>
+                      <PasswordInputAdornment showPassword={showPassword} onhandleClickShowPassword={handleClickShowPassword} />
                     )
                   }}
                 />
@@ -160,7 +124,7 @@ export const SigninForm = () => {
       </Box>
       <Divider sx={{ marginTop: '40px', borderBottom: '2px solid #E5E5E5' }} />
       <Box sx={{ marginTop: '40px' }}>
-        <Typography sx={{ ...DONT_HAVE_ACCOUNT_SX }}>Don’t have an account?</Typography>
+        <Typography sx={DONT_HAVE_ACCOUNT_SX}>Don’t have an account?</Typography>
         <AuthButtonLarge variant="outlined" fullWidth onClick={() => navigate('/signup')} sx={{ marginTop: '20px' }}>
           Sign up
         </AuthButtonLarge>

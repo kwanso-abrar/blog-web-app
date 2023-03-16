@@ -1,8 +1,9 @@
+import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { removeToken } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { useContextApi } from 'AppContext';
-import { Box, Stack, Menu, MenuItem } from '@mui/material';
+import { Box, Stack, Menu, MenuItem, InputAdornment } from '@mui/material';
 import { BlackBox, GreyBox, HeaderButton, HeaderNavLink, HeaderWrapper, SearchBar } from 'styles';
 
 export const Header = () => {
@@ -36,8 +37,18 @@ export const Header = () => {
         </Stack>
 
         <Stack sx={{ marginLeft: 'auto', alignItems: 'center' }} direction="row">
-          <Box sx={{ width: '255px', height: '34px' }}>
-            <SearchBar />
+          <Box sx={{ width: '300px', height: '34px' }}>
+            <SearchBar
+              placeholder="Search"
+              variant="filled"
+              InputProps={{
+                startAdornment: (
+                  <InputAdornment position="start">
+                    <SearchIcon />
+                  </InputAdornment>
+                )
+              }}
+            />
           </Box>
 
           {isLoggedIn ? (

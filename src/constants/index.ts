@@ -8,20 +8,20 @@ export const navigationButtonsData: NavigationButtonProps[] = [
   {
     id: 1,
     text: 'Create posst',
-    path: '/create',
+    path: '/create'
   },
   {
     id: 2,
     text: 'Read posts',
-    path: '/read-all',
+    path: '/read-all'
   },
   {
     id: 3,
     text: 'Update post',
-    path: '/update',
+    path: '/update'
   },
   {
     id: 4,
-    text: 'Logout',
-  },
+    text: 'Logout'
+  }
 ];

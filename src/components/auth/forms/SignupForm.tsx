@@ -6,17 +6,12 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { Controller, useForm } from 'react-hook-form';
-import { Visibility, VisibilityOff } from '@mui/icons-material';
+import { PasswordInputAdornment } from '../PasswordInputAdornment';
+import { AuthButtonLarge, InputField } from 'styles';
+import { Backdrop, Box, CircularProgress } from '@mui/material';
 import { useSignInMutation, useSignUpMutation } from 'generated';
-import { AuthButtonLarge, InputField, VisibilityIconText } from 'styles';
-import { Backdrop, Box, CircularProgress, IconButton, InputAdornment } from '@mui/material';
 
 const schema = yupSchema.signUp;
-
-const VISIBILTY_ICON_SX = {
-  width: '24px',
-  height: '24px'
-};
 
 export const SignupForm = () => {
   const navigate = useNavigate();
@@ -136,21 +131,7 @@ export const SignupForm = () => {
                   InputLabelProps={{ shrink: true }}
                   InputProps={{
                     endAdornment: (
-                      <InputAdornment position="end" sx={{ position: 'absolute', right: '0', top: '-20px' }}>
-                        <IconButton aria-label="toggle password visibility" onClick={handleClickShowPassword}>
-                          {showPassword ? (
-                            <>
-                              <VisibilityOff sx={{ ...VISIBILTY_ICON_SX }} />
-                              <VisibilityIconText>Hide</VisibilityIconText>
-                            </>
-                          ) : (
-                            <>
-                              <Visibility sx={{ ...VISIBILTY_ICON_SX }} />
-                              <VisibilityIconText> Show</VisibilityIconText>
-                            </>
-                          )}
-                        </IconButton>
-                      </InputAdornment>
+                      <PasswordInputAdornment showPassword={showPassword} onhandleClickShowPassword={handleClickShowPassword} />
                     )
                   }}
                 />

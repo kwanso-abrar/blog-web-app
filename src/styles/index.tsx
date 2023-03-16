@@ -74,8 +74,14 @@ export const SearchBar = styled(TextField)(() => ({
     paddingLeft: '25px'
   },
 
-  '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: '12px !important'
+  '& .css-1vbc0rj-MuiInputBase-input-MuiFilledInput-input': {
+    padding: '8px'
+  },
+
+  '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root': {
+    border: '1px solid rgba(102, 102, 102, 0.35)',
+    borderRadius: '16px',
+    alignItems: 'baseline'
   }
 }));
 
