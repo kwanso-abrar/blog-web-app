@@ -1,15 +1,15 @@
 import { Toaster } from 'react-hot-toast';
 import { isToken } from 'utils';
 import { useState } from 'react';
+import { mainRoutes } from 'routes';
 import { CssBaseline } from '@mui/material';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
+import { Signin, Signup } from 'pages';
 import { AuthLayout, MainLayout } from 'layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CreatePost, Home, MyArticles, ReadAllPost, Settings, Signin, Signup, UpdatePost } from 'pages';
 import theme from 'theme';
 import client from 'graphql/client';
-import Protected from 'routes/Protected';
 import AppContext from 'AppContext';
 
 const App = () => {
@@ -29,47 +29,9 @@ const App = () => {
                   <Route path="/signup" element={<Signup />} />
                 </Route>
                 <Route element={<MainLayout />}>
-                  <Route path="" element={<Home />} />
-                  <Route
-                    path="/my-articles"
-                    element={
-                      <Protected>
-                        <MyArticles />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="/create"
-                    element={
-                      <Protected>
-                        <CreatePost />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="/read-all"
-                    element={
-                      <Protected>
-                        <ReadAllPost />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="/update"
-                    element={
-                      <Protected>
-                        <UpdatePost />
-                      </Protected>
-                    }
-                  />
-                  <Route
-                    path="/settings"
-                    element={
-                      <Protected>
-                        <Settings />
-                      </Protected>
-                    }
-                  />
+                  {mainRoutes.map((route, index) => (
+                    <Route path={route.path} element={route.element} key={index} />
+                  ))}
                 </Route>
               </Routes>
             </BrowserRouter>

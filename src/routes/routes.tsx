@@ -1,31 +1,50 @@
+import { Protected } from './Protected';
 import { RouteProps } from 'react-router-dom';
-import { Home, Signin, Signup } from 'pages';
-import Protected from './Protected';
+import { CreatePost, Home, MyArticles, ReadAllPost, Settings, UpdatePost } from 'pages';
 
-type CustomRouteProps = RouteProps & {
-  key: number;
-};
-
-const appRoutes: CustomRouteProps[] = [
+export const mainRoutes: RouteProps[] = [
   {
-    key: 1,
-    path: '/',
+    path: '',
+    element: <Home />
+  },
+  {
+    path: '/my-articles',
     element: (
       <Protected>
-        <Home />
+        <MyArticles />
       </Protected>
-    ),
+    )
   },
   {
-    key: 2,
-    path: '/signin',
-    element: <Signin />,
+    path: '/create',
+    element: (
+      <Protected>
+        <CreatePost />
+      </Protected>
+    )
   },
   {
-    key: 3,
-    path: '/signup',
-    element: <Signup />,
+    path: '/read-all',
+    element: (
+      <Protected>
+        <ReadAllPost />
+      </Protected>
+    )
   },
+  {
+    path: '/update',
+    element: (
+      <Protected>
+        <UpdatePost />
+      </Protected>
+    )
+  },
+  {
+    path: '/settings',
+    element: (
+      <Protected>
+        <Settings />
+      </Protected>
+    )
+  }
 ];
-
-export default appRoutes;
