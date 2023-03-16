@@ -56,7 +56,9 @@ export const Header = () => {
           {isLoggedIn ? (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton variant="contained">Create Article</HeaderButton>
+                <HeaderButton variant="contained" onClick={() => navigate('/create')}>
+                  Create Article
+                </HeaderButton>
               </Box>
 
               <Box>
@@ -76,7 +78,12 @@ export const Header = () => {
                   transformOrigin={{ horizontal: 'right', vertical: 'top' }}
                   anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
-                  <MenuItem onClick={handleClose}>
+                  <MenuItem
+                    onClick={() => {
+                      navigate('/settings');
+                      handleClose();
+                    }}
+                  >
                     <ListItemIcon>
                       <Settings fontSize="small" />
                     </ListItemIcon>

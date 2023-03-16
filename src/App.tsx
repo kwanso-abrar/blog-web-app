@@ -6,7 +6,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { AuthLayout, MainLayout } from 'layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import { CreatePost, Home, MyArticles, ReadAllPost, Signin, Signup, UpdatePost } from 'pages';
+import { CreatePost, Home, MyArticles, ReadAllPost, Settings, Signin, Signup, UpdatePost } from 'pages';
 import theme from 'theme';
 import client from 'graphql/client';
 import Protected from 'routes/Protected';
@@ -59,6 +59,14 @@ const App = () => {
                     element={
                       <Protected>
                         <UpdatePost />
+                      </Protected>
+                    }
+                  />
+                  <Route
+                    path="/settings"
+                    element={
+                      <Protected>
+                        <Settings />
                       </Protected>
                     }
                   />
