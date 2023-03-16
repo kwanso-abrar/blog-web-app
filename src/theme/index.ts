@@ -19,7 +19,7 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
-            border: '1px solid #E5E5E5 !important',
+            border: '1px solid #E5E5E5 ',
             borderRadius: '20px'
           },
 
