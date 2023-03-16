@@ -2,9 +2,11 @@ import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { removeToken } from 'utils';
 import { useNavigate } from 'react-router-dom';
+import { paperPropsSx } from 'styles/constants';
 import { useContextApi } from 'AppContext';
-import { Box, Stack, Menu, MenuItem, InputAdornment } from '@mui/material';
-import { BlackBox, GreyBox, HeaderButton, HeaderNavLink, HeaderWrapper, SearchBar } from 'styles';
+import { Logout, Settings } from '@mui/icons-material';
+import { Box, Stack, Menu, MenuItem, InputAdornment, ListItemIcon } from '@mui/material';
+import { CustomAvatar, GreyBox, HeaderButton, HeaderNavLink, HeaderWrapper, SearchBar } from 'styles';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -58,22 +60,37 @@ export const Header = () => {
               </Box>
 
               <Box>
-                <BlackBox onClick={(e) => handleClick(e)} />
+                <CustomAvatar onClick={(e) => handleClick(e)} />
                 <Menu
-                  id="basic-menu"
+                  id="account-menu"
                   anchorEl={anchorEl}
                   open={open}
                   onClose={handleClose}
                   MenuListProps={{
                     'aria-labelledby': 'basic-button'
                   }}
+                  PaperProps={{
+                    elevation: 0,
+                    sx: paperPropsSx
+                  }}
+                  transformOrigin={{ horizontal: 'right', vertical: 'top' }}
+                  anchorOrigin={{ horizontal: 'right', vertical: 'bottom' }}
                 >
+                  <MenuItem onClick={handleClose}>
+                    <ListItemIcon>
+                      <Settings fontSize="small" />
+                    </ListItemIcon>
+                    Settings
+                  </MenuItem>
                   <MenuItem
                     onClick={() => {
                       removeToken();
                       setIsLoggedIn(false);
                     }}
                   >
+                    <ListItemIcon>
+                      <Logout fontSize="small" />
+                    </ListItemIcon>
                     Logout
                   </MenuItem>
                 </Menu>

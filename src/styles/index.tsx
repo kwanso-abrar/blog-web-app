@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Box, Button, TextField, Typography } from '@mui/material';
+import { Avatar, Box, Button, TextField, Typography } from '@mui/material';
 
 export const InputField = styled(TextField)(() => ({
   width: '100%'
@@ -93,13 +93,14 @@ export const GreyBox = styled(Box)(() => ({
   backgroundColor: '#C4C4C4'
 }));
 
-export const BlackBox = styled(Box)(() => ({
+export const CustomAvatar = styled(Avatar)(() => ({
   width: '40px',
   height: '40px',
   marginLeft: '20px',
   justifySelf: 'center',
-  borderRadius: '50%',
-  backgroundColor: '#222222'
+  ':hover': {
+    cursor: 'pointer'
+  }
 }));
 
 export const AuthButtonLarge = styled(Button)(() => ({
