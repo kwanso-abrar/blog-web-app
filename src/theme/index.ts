@@ -15,10 +15,15 @@ const theme = createTheme({
   },
   typography: {
     h1: {
-      fontWeight: '600',
       fontSize: '27px',
+      fontWeight: '600',
       lineHeight: '140%',
       textTransform: 'capitalize'
+    },
+    h2: {
+      fontSize: '24px',
+      fontWeight: '600',
+      lineHeight: '140%'
     }
   },
 
