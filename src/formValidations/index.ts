@@ -15,18 +15,31 @@ const password = yup
   .min(8, 'Password is too short')
   .matches(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, 'Must contain letters, numbers and specials characters ');
 
+const text = yup.string().default('').required('Text is required').min(10, 'post should be of minimum 10 words');
+
+const title = yup.string().default('').required('Title is required').min(6, 'title should be of minimum 6 words');
+
+const minToRead = yup.number().default(1).required('Minutes to read is required');
+
 const signUp = yup.object({
-  name: name,
-  email: email,
-  password: password,
+  name,
+  email,
+  password
 });
 
 const signIn = yup.object({
-  email: email,
-  password: password,
+  email,
+  password
+});
+
+const createPost = yup.object({
+  text,
+  title,
+  minToRead
 });
 
 export const yupSchema = {
-  signUp,
   signIn,
+  signUp,
+  createPost
 };

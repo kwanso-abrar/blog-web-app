@@ -6,7 +6,7 @@ export function saveToken(token: string) {
 
 export function getToken() {
   const token = localStorage.getItem(BLOGII_AUTH_TOKEN_KEY);
-  return token ? token : '';
+  return token;
 }
 
 export function removeToken() {

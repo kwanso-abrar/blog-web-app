@@ -1,0 +1,14 @@
+mutation createPost($title: String!, $text: String!) {
+  createPosts(createPostDto: { title: $title, text: $text }) {
+    response {
+      message
+      error
+      status
+    }
+    post {
+      id
+      title
+      text
+    }
+  }
+}

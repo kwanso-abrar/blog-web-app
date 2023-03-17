@@ -1,27 +1,16 @@
-import { NavigationButtonProps } from 'types';
-
 export const BLOGII_AUTH_TOKEN_KEY = 'auth_token';
 
-export const dummy = 'dummy';
-
-export const navigationButtonsData: NavigationButtonProps[] = [
+export const CREATE_POST_MIN_TO_READ_SELECT_OPTIONS = [
   {
-    id: 1,
-    text: 'Create posst',
-    path: '/create'
+    value: 1,
+    label: '1 Min. To Read'
   },
   {
-    id: 2,
-    text: 'Read posts',
-    path: '/read-all'
+    value: 2,
+    label: '2 Min. To Read'
   },
   {
-    id: 3,
-    text: 'Update post',
-    path: '/update'
-  },
-  {
-    id: 4,
-    text: 'Logout'
+    value: 3,
+    label: '3 Min. To Read'
   }
 ];

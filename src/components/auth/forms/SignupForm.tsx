@@ -25,9 +25,7 @@ export const SignupForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      name: '',
-      email: '',
-      password: ''
+      ...schema.getDefault()
     }
   });
 

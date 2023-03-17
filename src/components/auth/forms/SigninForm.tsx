@@ -26,9 +26,8 @@ export const SigninForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      email: '',
-      password: '',
-      rememberMe: true
+      rememberMe: true,
+      ...schema.getDefault()
     }
   });
 
