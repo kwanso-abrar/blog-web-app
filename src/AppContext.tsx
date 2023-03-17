@@ -8,7 +8,7 @@ type ContextType = {
 const AppContext = createContext<ContextType>({
   isLoggedIn: false,
   // eslint-disable-next-line @typescript-eslint/no-empty-function
-  setIsLoggedIn: () => {},
+  setIsLoggedIn: () => {}
 });
 
 export const useContextApi = () => useContext(AppContext);

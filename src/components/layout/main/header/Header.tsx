@@ -6,7 +6,14 @@ import { paperPropsSx } from 'styles/constants';
 import { useContextApi } from 'AppContext';
 import { Logout, Settings } from '@mui/icons-material';
 import { Box, Stack, Menu, MenuItem, InputAdornment, ListItemIcon } from '@mui/material';
-import { CustomAvatar, GreyBox, HeaderButton, HeaderNavLink, HeaderWrapper, SearchBar } from 'styles';
+import {
+  GreyBox,
+  SearchBar,
+  CustomAvatar,
+  HeaderButton,
+  HeaderNavLink,
+  HeaderWrapper
+} from 'styles';
 
 export const Header = () => {
   const navigate = useNavigate();

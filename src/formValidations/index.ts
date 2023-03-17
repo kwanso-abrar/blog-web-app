@@ -13,11 +13,22 @@ const password = yup
   .default('')
   .required('Password is required')
   .min(8, 'Password is too short')
-  .matches(/^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/, 'Must contain letters, numbers and specials characters ');
+  .matches(
+    /^(?=.*[a-z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/,
+    'Must contain letters, numbers and specials characters '
+  );
 
-const text = yup.string().default('').required('Text is required').min(10, 'post should be of minimum 10 words');
+const text = yup
+  .string()
+  .default('')
+  .required('Text is required')
+  .min(10, 'post should be of minimum 10 words');
 
-const title = yup.string().default('').required('Title is required').min(6, 'title should be of minimum 6 words');
+const title = yup
+  .string()
+  .default('')
+  .required('Title is required')
+  .min(6, 'title should be of minimum 6 words');
 
 const minToRead = yup.number().default(1).required('Minutes to read is required');
 

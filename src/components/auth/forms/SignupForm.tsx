@@ -1,13 +1,13 @@
 import toast from 'react-hot-toast';
-import { useState } from 'react';
+import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { PrimaryButton } from 'styles';
 import { useContextApi } from 'AppContext';
-import { Controller, useForm } from 'react-hook-form';
-import { PasswordInputAdornment } from '../PasswordInputAdornment';
-import { PrimaryButton, InputField } from 'styles';
+import { PrimaryInputField } from 'components/common';
+import { PrimaryPasswordField } from 'components/common/inputFields/PrimaryPasswordField';
 import { Backdrop, Box, CircularProgress } from '@mui/material';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 
@@ -16,8 +16,6 @@ const schema = yupSchema.signUp;
 export const SignupForm = () => {
   const navigate = useNavigate();
   const { setIsLoggedIn } = useContextApi();
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const [showPassword, setShowPassword] = useState(false);
   const {
     control,
     handleSubmit,
@@ -73,67 +71,38 @@ export const SignupForm = () => {
   return (
     <Box sx={{ marginTop: '74px' }}>
       {(signupLoading || signInLoading) && (
-        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={signupLoading || signInLoading}>
+        <Backdrop
+          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={signupLoading || signInLoading}
+        >
           <CircularProgress color="inherit" />
         </Backdrop>
       )}
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Box sx={{ width: '712px' }}>
-            <Controller
-              control={control}
+            <PrimaryInputField
               name="name"
-              render={({ field, fieldState: { error } }) => (
-                <InputField
-                  {...field}
-                  error={!!error}
-                  helperText={error?.message}
-                  label="What’s your full name?"
-                  variant="outlined"
-                  placeholder="Enter your full name"
-                  InputLabelProps={{ shrink: true }}
-                />
-              )}
+              label="What’s your full name?"
+              control={control}
+              placeholder="Enter your full name"
             />
           </Box>
           <Box sx={{ marginTop: '50px', width: '712px' }}>
-            <Controller
-              control={control}
+            <PrimaryInputField
               name="email"
-              render={({ field, fieldState: { error } }) => (
-                <InputField
-                  {...field}
-                  error={!!error}
-                  helperText={error?.message}
-                  placeholder="Enter your email address"
-                  variant="outlined"
-                  label="What’s your email?"
-                  InputLabelProps={{ shrink: true }}
-                />
-              )}
+              label="What’s your email?"
+              control={control}
+              placeholder="Enter your email address"
             />
           </Box>
           <Box sx={{ marginTop: '50px', width: '712px' }}>
-            <Controller
-              control={control}
+            <PrimaryPasswordField
               name="password"
-              render={({ field, fieldState: { error } }) => (
-                <InputField
-                  {...field}
-                  error={!!error}
-                  helperText={error ? error?.message : 'Use 8 or more characters with a mix of letters, numbers & symbols'}
-                  placeholder="Enter your password"
-                  variant="outlined"
-                  type={showPassword ? 'text' : 'password'}
-                  label="Create a password"
-                  InputLabelProps={{ shrink: true }}
-                  InputProps={{
-                    endAdornment: (
-                      <PasswordInputAdornment showPassword={showPassword} onhandleClickShowPassword={handleClickShowPassword} />
-                    )
-                  }}
-                />
-              )}
+              label="Create a password"
+              control={control}
+              placeholder="Enter your password"
+              helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
             />
           </Box>
 

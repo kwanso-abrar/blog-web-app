@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { useState } from 'react';
-import { PasswordInputAdornment } from 'components/auth/PasswordInputAdornment';
+import { PasswordInputAdornment } from 'components/common/PasswordInputAdornment';
 import { InputField, PrimaryButton } from 'styles';
 
 export const SettingsForm = () => {
@@ -20,7 +20,10 @@ export const SettingsForm = () => {
             InputLabelProps={{ shrink: true }}
             InputProps={{
               endAdornment: (
-                <PasswordInputAdornment showPassword={showPassword} onhandleClickShowPassword={handleClickShowPassword} />
+                <PasswordInputAdornment
+                  showPassword={showPassword}
+                  onhandleClickShowPassword={handleClickShowPassword}
+                />
               )
             }}
           />

@@ -1,9 +1,10 @@
+import { useForm } from 'react-hook-form';
 import { yupSchema } from 'formValidations';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { Controller, useForm } from 'react-hook-form';
+import { PrimaryButton } from 'styles';
 import { useCreatePostMutation } from 'generated';
-import { InputField, PrimaryButton } from 'styles';
+import { PrimaryInputField, PrimarySelectField } from 'components';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS } from '../../constants';
 import { Backdrop, Box, CircularProgress, MenuItem } from '@mui/material';
 import toast from 'react-hot-toast';
@@ -12,6 +13,7 @@ const schema = yupSchema.createPost;
 
 export const CreatePostForm = () => {
   const navigate = useNavigate();
+
   const {
     handleSubmit,
     control,
@@ -56,69 +58,33 @@ export const CreatePostForm = () => {
       )}
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <Box sx={{ width: '715px' }}>
-          <Controller
-            control={control}
-            name="title"
-            render={({ field, fieldState: { error } }) => (
-              <InputField
-                {...field}
-                error={!!error}
-                helperText={error?.message}
-                variant="outlined"
-                fullWidth
-                label="Give it a title"
-                InputLabelProps={{ shrink: true }}
-              />
-            )}
-          />
+          <PrimaryInputField name="title" control={control} label="Give it a title" />
         </Box>
         <Box sx={{ width: '715px', marginTop: '60px' }}>
-          <Controller
-            control={control}
-            name="minToRead"
-            render={({ field, fieldState: { error } }) => (
-              <InputField
-                {...field}
-                error={!!error}
-                helperText={error?.message}
-                select
-                variant="outlined"
-                fullWidth
-                label="Min. to read"
-                InputLabelProps={{ shrink: true }}
-              >
-                {CREATE_POST_MIN_TO_READ_SELECT_OPTIONS.map((options, index) => (
-                  <MenuItem value={options.value} key={index + options.value}>
-                    {options.label}
-                  </MenuItem>
-                ))}
-              </InputField>
-            )}
-          />
+          <PrimarySelectField name="minToRead" label="Min. to read" control={control}>
+            {CREATE_POST_MIN_TO_READ_SELECT_OPTIONS.map((options, index) => (
+              <MenuItem value={options.value} key={index + options.value}>
+                {options.label}
+              </MenuItem>
+            ))}
+          </PrimarySelectField>
         </Box>
         <Box sx={{ width: '715px', marginTop: '60px' }}>
-          <Controller
-            control={control}
+          <PrimaryInputField
             name="text"
-            render={({ field, fieldState: { error } }) => (
-              <InputField
-                {...field}
-                error={!!error}
-                helperText={error?.message}
-                variant="outlined"
-                multiline
-                rows={6}
-                maxRows={5}
-                fullWidth
-                label="Write something about it"
-                InputLabelProps={{ shrink: true }}
-              />
-            )}
+            control={control}
+            label="Write something about it"
+            props={{ multiline: true, rows: 6 }}
           />
         </Box>
 
         <Box sx={{ width: '356px', marginTop: '57px' }}>
-          <PrimaryButton disabled={!(dirtyFields.text && dirtyFields.title)} variant="contained" fullWidth type="submit">
+          <PrimaryButton
+            disabled={!(dirtyFields.text && dirtyFields.title)}
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
             Publish article
           </PrimaryButton>
         </Box>

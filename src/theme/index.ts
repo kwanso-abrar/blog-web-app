@@ -56,9 +56,10 @@ const theme = createTheme({
             border: 'none'
           },
 
-          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:hover:not(.Mui-disabled, .Mui-error):before': {
-            border: 'none'
-          }
+          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:hover:not(.Mui-disabled, .Mui-error):before':
+            {
+              border: 'none'
+            }
         }
       }
     },
