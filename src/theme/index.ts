@@ -13,6 +13,14 @@ const theme = createTheme({
       main: red.A400
     }
   },
+  typography: {
+    h1: {
+      fontWeight: '600',
+      fontSize: '27px',
+      lineHeight: '140%',
+      textTransform: 'capitalize'
+    }
+  },
 
   components: {
     MuiTextField: {
@@ -53,8 +61,9 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           top: '-20px',
-          fontSize: '18px',
-          lineHeight: '150%'
+          fontSize: '20px',
+          lineHeight: '24px',
+          color: '#666666'
         }
       }
     }

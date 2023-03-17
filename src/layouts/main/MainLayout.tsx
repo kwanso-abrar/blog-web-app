@@ -7,8 +7,7 @@ export const MainLayout = () => (
     <Header />
     <Box
       sx={{
-        marginTop: '68px',
-        marginLeft: '120px'
+        padding: '68px 120px'
       }}
     >
       <Outlet />

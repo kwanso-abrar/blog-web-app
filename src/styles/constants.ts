@@ -33,3 +33,8 @@ export const paperPropsSx = {
     zIndex: 0
   }
 };
+
+export const TITLE_WITH_BORDER_BOTTOM = {
+  paddingBottom: '14px',
+  borderBottom: '1px solid rgba(102, 102, 102, 0.25)'
+};

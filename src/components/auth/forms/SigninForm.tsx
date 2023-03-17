@@ -9,7 +9,7 @@ import { useSignInMutation } from 'generated';
 import { Controller, useForm } from 'react-hook-form';
 import { DONT_HAVE_ACCOUNT_SX } from 'styles/constants';
 import { PasswordInputAdornment } from '../PasswordInputAdornment';
-import { AuthButtonLarge, ForgetPasswordLink, InputField } from 'styles';
+import { PrimaryButton, ForgetPasswordLink, InputField } from 'styles';
 import { Box, Divider, Backdrop, Checkbox, FormGroup, Typography, CircularProgress, FormControlLabel } from '@mui/material';
 
 const schema = yupSchema.signIn;
@@ -116,18 +116,18 @@ export const SigninForm = () => {
           />
 
           <Box sx={{ marginTop: '40px' }}>
-            <AuthButtonLarge variant="contained" fullWidth disabled={!(dirtyFields.email && dirtyFields.password)} type="submit">
+            <PrimaryButton variant="contained" fullWidth disabled={!(dirtyFields.email && dirtyFields.password)} type="submit">
               Log in
-            </AuthButtonLarge>
+            </PrimaryButton>
           </Box>
         </form>
       </Box>
       <Divider sx={{ marginTop: '40px', borderBottom: '2px solid #E5E5E5' }} />
       <Box sx={{ marginTop: '40px' }}>
         <Typography sx={DONT_HAVE_ACCOUNT_SX}>Don’t have an account?</Typography>
-        <AuthButtonLarge variant="outlined" fullWidth onClick={() => navigate('/signup')} sx={{ marginTop: '20px' }}>
+        <PrimaryButton variant="outlined" fullWidth onClick={() => navigate('/signup')} sx={{ marginTop: '20px' }}>
           Sign up
-        </AuthButtonLarge>
+        </PrimaryButton>
       </Box>
     </Box>
   );

@@ -7,7 +7,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { Controller, useForm } from 'react-hook-form';
 import { PasswordInputAdornment } from '../PasswordInputAdornment';
-import { AuthButtonLarge, InputField } from 'styles';
+import { PrimaryButton, InputField } from 'styles';
 import { Backdrop, Box, CircularProgress } from '@mui/material';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 
@@ -140,14 +140,14 @@ export const SignupForm = () => {
           </Box>
 
           <Box sx={{ marginTop: '40px' }}>
-            <AuthButtonLarge
+            <PrimaryButton
               fullWidth
               disabled={!(dirtyFields.name && dirtyFields.email && dirtyFields.password)}
               type="submit"
               variant="contained"
             >
               Create an account
-            </AuthButtonLarge>
+            </PrimaryButton>
           </Box>
         </form>
       </Box>

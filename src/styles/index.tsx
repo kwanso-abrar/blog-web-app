@@ -103,7 +103,7 @@ export const CustomAvatar = styled(Avatar)(() => ({
   }
 }));
 
-export const AuthButtonLarge = styled(Button)(() => ({
+export const PrimaryButton = styled(Button)(() => ({
   padding: '17px 0px',
   fontSize: '21px',
   fontWeight: '600',
