@@ -1,10 +1,10 @@
 import { toast } from 'react-hot-toast';
+import { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useFindAllPostsQuery } from 'generated';
 import { BlogCard, PrimaryLoader } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 import { BlogImage1, BlogImage2, UserDummyImage } from 'assets';
-import { useEffect } from 'react';
 
 export const MyArticles = () => {
   const {
@@ -21,7 +21,7 @@ export const MyArticles = () => {
 
   useEffect(() => {
     refetch();
-  }, [refetch]);
+  }, []);
 
   return (
     <Box>
@@ -32,7 +32,7 @@ export const MyArticles = () => {
       </Typography>
 
       <Box marginTop="60px">
-        {allPosts?.findAllPosts.total &&
+        {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total > 0 ? (
           allPosts.findAllPosts.items.map((post, index) => (
             <BlogCard
               key={post.id}
@@ -46,7 +46,10 @@ export const MyArticles = () => {
               date={index % 2 === 0 ? '02 December 2021' : '16 March 2023'}
               duration={index % 2 === 0 ? '3 min. to read' : '5 min. to read'}
             />
-          ))}
+          ))
+        ) : (
+          <Typography>No blogs found!</Typography>
+        )}
       </Box>
     </Box>
   );

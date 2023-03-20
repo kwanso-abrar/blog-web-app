@@ -61,5 +61,6 @@ export const PRIMARY_BLOG_CARD_TEXT = {
 export const PRIMARY_BLOG_CARD_TITLE = {
   maxWidth: '615px',
   overflow: 'hidden',
-  marginTop: '12px'
+  marginTop: '12px',
+  textTransform: 'capitalize'
 };
