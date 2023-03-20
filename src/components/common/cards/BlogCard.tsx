@@ -33,7 +33,7 @@ export const BlogCard = ({
         <Stack sx={{ marginTop: '10px' }} direction="row" alignItems="center">
           <Stack direction="row" alignItems="center">
             <Box sx={{ width: '18px', height: '18px' }}>
-              <img src={authorAvatar} width="100%" />
+              <img src={authorAvatar} width="100%" style={{ borderRadius: '50%' }} />
             </Box>
             <BlogCardMetaText>{author}</BlogCardMetaText>
           </Stack>

@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
@@ -6,9 +7,8 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { PrimaryButton } from 'styles';
 import { useContextApi } from 'AppContext';
-import { PrimaryInputField } from 'components/common';
 import { PrimaryPasswordField } from 'components/common/inputFields/PrimaryPasswordField';
-import { Backdrop, Box, CircularProgress } from '@mui/material';
+import { PrimaryInputField, PrimaryLoader } from 'components/common';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 
 const schema = yupSchema.signUp;
@@ -70,14 +70,7 @@ export const SignupForm = () => {
 
   return (
     <Box sx={{ marginTop: '74px' }}>
-      {(signupLoading || signInLoading) && (
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={signupLoading || signInLoading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
+      <PrimaryLoader isLoading={signupLoading || signInLoading} />
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Box sx={{ width: '712px' }}>

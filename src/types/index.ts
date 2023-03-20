@@ -54,3 +54,7 @@ export type BlogCardProps = {
   authorAvatar: string;
   styles?: SxProps<Theme>;
 };
+
+export type PrimaryLoaderProps = {
+  isLoading: boolean;
+};

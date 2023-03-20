@@ -8,17 +8,8 @@ import { useSignInMutation } from 'generated';
 import { Controller, useForm } from 'react-hook-form';
 import { DONT_HAVE_ACCOUNT_SX } from 'styles/constants';
 import { PrimaryButton, ForgetPasswordLink } from 'styles';
-import { PrimaryInputField, PrimaryPasswordField } from 'components';
-import {
-  Box,
-  Divider,
-  Backdrop,
-  Checkbox,
-  FormGroup,
-  Typography,
-  CircularProgress,
-  FormControlLabel
-} from '@mui/material';
+import { PrimaryInputField, PrimaryLoader, PrimaryPasswordField } from 'components';
+import { Box, Divider, Checkbox, FormGroup, Typography, FormControlLabel } from '@mui/material';
 
 const schema = yupSchema.signIn;
 
@@ -62,14 +53,7 @@ export const SigninForm = () => {
 
   return (
     <Box sx={{ marginTop: '74px' }}>
-      {signInLoading && (
-        <Backdrop
-          sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }}
-          open={signInLoading}
-        >
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
+      <PrimaryLoader isLoading={signInLoading} />
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Box sx={{ width: '712px' }}>

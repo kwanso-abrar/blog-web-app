@@ -1,4 +1,4 @@
-import { Protected } from './Protected';
+import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
 import { CreatePost, Home, MyArticles, ReadAllPost, Settings, UpdatePost } from 'pages';
 
