@@ -12,3 +12,31 @@ mutation createPost($title: String!, $text: String!) {
     }
   }
 }
+
+query findAllPosts($skip: Int!, $take: Int!) {
+  findAllPosts(paginationInput: { skip: $skip, take: $take }) {
+    total
+    items {
+      id
+      title
+      text
+      userId
+      comments {
+        id
+        text
+        userId
+        postsId
+        parentId
+        replyCount
+        user {
+          name
+          email
+        }
+      }
+      user {
+        name
+        email
+      }
+    }
+  }
+}
