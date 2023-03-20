@@ -4,15 +4,24 @@ import { useFindAllPostsQuery } from 'generated';
 import { BlogCard, PrimaryLoader } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 import { BlogImage1, BlogImage2, UserDummyImage } from 'assets';
+import { useEffect } from 'react';
 
 export const MyArticles = () => {
-  const { data: allPosts, loading } = useFindAllPostsQuery({
+  const {
+    data: allPosts,
+    loading,
+    refetch
+  } = useFindAllPostsQuery({
     variables: {
       skip: 0,
       take: 10000
     },
     onError: (error) => toast.error(error.message)
   });
+
+  useEffect(() => {
+    refetch();
+  }, [refetch]);
 
   return (
     <Box>
