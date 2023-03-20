@@ -5,7 +5,7 @@ import { ProtectedProps } from 'types';
 export const Protected = ({ children }: ProtectedProps) => {
   const { isLoggedIn } = useContextApi();
   if (!isLoggedIn) {
-    return <Navigate to="/signin" replace />;
+    return <Navigate to="" replace />;
   }
   return children;
 };

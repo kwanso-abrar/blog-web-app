@@ -38,3 +38,9 @@ export const TITLE_WITH_BORDER_BOTTOM = {
   paddingBottom: '14px',
   borderBottom: '1px solid rgba(102, 102, 102, 0.25)'
 };
+
+export const PRIMARY_IMAGE_CONTAINER = {
+  width: '266px',
+  height: '180px',
+  borderRadius: '5px'
+};

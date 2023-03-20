@@ -119,3 +119,23 @@ export const HeaderButton = styled(Button)(() => ({
   borderRadius: '8px',
   textTransform: 'none'
 }));
+
+export const BlogTag = styled(Box)(() => ({
+  color: '#111111',
+  width: '50px',
+  height: '20px',
+  padding: '4px 8px',
+  fontSize: '12px',
+  background: 'rgba(17, 17, 17, 0.05);',
+  lineHeight: '100%',
+  borderRadius: '3px',
+  textTransform: 'capitalize'
+}));
+
+export const BlogMetaText = styled(Typography)(() => ({
+  color: '#777777',
+  fontSize: '12px',
+  lineHeight: '100%',
+  marginLeft: '8px',
+  textTransform: 'capitalize'
+}));
