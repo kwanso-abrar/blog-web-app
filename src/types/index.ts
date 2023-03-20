@@ -1,5 +1,5 @@
 import { ReactNode } from 'react';
-import { BaseTextFieldProps } from '@mui/material';
+import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
 
 export type NavigationButtonProps = {
   id: number;
@@ -41,4 +41,16 @@ export type ProtectedProps = {
 export type PasswordInputAdornmentProps = {
   showPassword: boolean;
   onhandleClickShowPassword: () => void;
+};
+
+export type BlogCardProps = {
+  tag: string;
+  date: string;
+  text: string;
+  title: string;
+  author: string;
+  duration: string;
+  thumbnail: string;
+  authorAvatar: string;
+  styles?: SxProps<Theme>;
 };

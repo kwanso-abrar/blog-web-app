@@ -120,9 +120,10 @@ export const HeaderButton = styled(Button)(() => ({
   textTransform: 'none'
 }));
 
-export const BlogTag = styled(Box)(() => ({
+export const BlogTag = styled(Typography)(() => ({
   color: '#111111',
-  width: '50px',
+  minWidth: '50px',
+  width: 'max-content',
   height: '20px',
   padding: '4px 8px',
   fontSize: '12px',
