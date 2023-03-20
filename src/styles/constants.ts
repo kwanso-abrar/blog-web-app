@@ -39,8 +39,27 @@ export const TITLE_WITH_BORDER_BOTTOM = {
   borderBottom: '1px solid rgba(102, 102, 102, 0.25)'
 };
 
-export const PRIMARY_IMAGE_CONTAINER = {
+export const PRIMARY_BLOG_CARD_IMAGE_CONTAINER = {
   width: '266px',
   height: '180px',
   borderRadius: '5px'
+};
+
+export const PRIMARY_BLOG_CARD_META_DATA_DIVIDER = {
+  height: '12px',
+  marginLeft: '10px',
+  backgroundColor: '#999999'
+};
+
+export const PRIMARY_BLOG_CARD_TEXT = {
+  color: '#555555',
+  fontSize: '15px',
+  maxWidth: '540px',
+  lineHeight: '150%'
+};
+
+export const PRIMARY_BLOG_CARD_TITLE = {
+  maxWidth: '615px',
+  overflow: 'hidden',
+  marginTop: '12px'
 };

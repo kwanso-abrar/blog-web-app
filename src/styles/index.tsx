@@ -120,7 +120,7 @@ export const HeaderButton = styled(Button)(() => ({
   textTransform: 'none'
 }));
 
-export const BlogTag = styled(Typography)(() => ({
+export const BlogCardTag = styled(Typography)(() => ({
   color: '#111111',
   minWidth: '50px',
   width: 'max-content',
@@ -133,10 +133,16 @@ export const BlogTag = styled(Typography)(() => ({
   textTransform: 'capitalize'
 }));
 
-export const BlogMetaText = styled(Typography)(() => ({
+export const BlogCardMetaText = styled(Typography)(() => ({
   color: '#777777',
   fontSize: '12px',
   lineHeight: '100%',
   marginLeft: '8px',
   textTransform: 'capitalize'
+}));
+
+export const BlogCardMetaDataIconContainer = styled(Box)(() => ({
+  width: '10px',
+  height: '12px',
+  marginBottom: '10px'
 }));
