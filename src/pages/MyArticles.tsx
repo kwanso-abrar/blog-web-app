@@ -62,7 +62,7 @@ export const MyArticles = () => {
       <Box sx={{ marginTop: '96px', marginLeft: '120px' }}>
         {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total > 2 && (
           <PrimaryPagination
-            count={Math.ceil(allPosts?.findAllPosts.total / 2 || 2)}
+            count={Math.ceil(allPosts?.findAllPosts.total / 2 || 0)}
             onReftech={onRefetch}
           />
         )}

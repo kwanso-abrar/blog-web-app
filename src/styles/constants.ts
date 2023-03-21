@@ -64,3 +64,28 @@ export const PRIMARY_BLOG_CARD_TITLE = {
   marginTop: '12px',
   textTransform: 'capitalize'
 };
+
+export const PRIMARY_PAGINATION_PAGE_BUTTONS = {
+  color: '#111111',
+  padding: '13px 16px',
+  fontSize: '15px',
+  maxWidth: '41px',
+  minWidth: '41px',
+  maxHeight: '41px',
+  minHeight: '41px',
+  lineHeight: '100%',
+  marginLeft: '16px',
+  borderRadius: '8px'
+};
+
+export const PRIMARY_PAGINATION_NAV_BUTTONS = {
+  width: '105px',
+  height: '41px',
+  fontSize: '15px',
+  maxWidth: '105px',
+  minWidth: '105px',
+  maxHeight: '41px',
+  minHeight: '41px',
+  borderRadius: '8px',
+  textTransform: 'capitalize'
+};

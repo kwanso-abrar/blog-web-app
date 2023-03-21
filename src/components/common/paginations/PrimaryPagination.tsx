@@ -1,6 +1,7 @@
 import { Button } from '@mui/material';
 import { PaginationList } from 'styles';
 import { PrimaryPaginationProps } from 'types';
+import { PRIMARY_PAGINATION_NAV_BUTTONS, PRIMARY_PAGINATION_PAGE_BUTTONS } from 'styles/constants';
 import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import usePagination from '@mui/material/usePagination/usePagination';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
@@ -27,16 +28,7 @@ export const PrimaryPagination = ({ count, onReftech }: PrimaryPaginationProps) 
               variant="outlined"
               sx={{
                 fontWeight: selected ? 'bold' : undefined,
-                maxWidth: '41px',
-                minWidth: '41px',
-                maxHeight: '41px',
-                minHeight: '41px',
-                marginLeft: '16px',
-                borderRadius: '8px',
-                padding: '13px 16px',
-                fontSize: '15px',
-                lineHeight: '100%',
-                color: '#111111'
+                ...PRIMARY_PAGINATION_PAGE_BUTTONS
               }}
             >
               {page}
@@ -47,20 +39,12 @@ export const PrimaryPagination = ({ count, onReftech }: PrimaryPaginationProps) 
             <Button
               {...item}
               type="button"
-              startIcon={type === 'previous' && <ArrowBackIcon />}
               endIcon={type === 'next' && <ArrowForwardIcon />}
               variant={type === 'previous' ? 'outlined' : 'contained'}
+              startIcon={type === 'previous' && <ArrowBackIcon />}
               sx={{
-                borderRadius: '8px',
-                maxWidth: '105px',
-                minWidth: '105px',
-                minHeight: '41px',
-                maxHeight: '41px',
-                width: '105px',
-                height: '41px',
-                fontSize: '15px',
                 marginLeft: type === 'next' ? '16px' : 'initial',
-                textTransform: 'capitalize'
+                ...PRIMARY_PAGINATION_NAV_BUTTONS
               }}
             >
               {type === 'previous' ? 'Prev.' : 'Next'}
