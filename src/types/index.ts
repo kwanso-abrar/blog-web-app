@@ -72,3 +72,10 @@ export type BlogCardsListProps = {
   perPage?: number;
   onRefetch?: (page: number) => void;
 };
+
+export type BlogMetaDataProps = {
+  date: string;
+  author: string;
+  duration?: string;
+  authorAvatar: string;
+};

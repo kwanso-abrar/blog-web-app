@@ -120,13 +120,13 @@ export const HeaderButton = styled(Button)(() => ({
   textTransform: 'none'
 }));
 
-export const BlogCardTag = styled(Typography)(() => ({
+export const BlogTagChip = styled(Typography)(() => ({
   color: '#111111',
-  minWidth: '50px',
   width: 'max-content',
   height: '20px',
   padding: '4px 8px',
   fontSize: '12px',
+  minWidth: '50px',
   background: 'rgba(17, 17, 17, 0.05);',
   lineHeight: '100%',
   borderRadius: '3px',

@@ -58,6 +58,13 @@ export const PRIMARY_BLOG_CARD_TEXT = {
   lineHeight: '150%'
 };
 
+export const BLOG_TEXT = {
+  color: '#666666',
+  fontSize: '15px',
+  marginTop: '40px',
+  lineHeight: '150%'
+};
+
 export const PRIMARY_BLOG_CARD_TITLE = {
   maxWidth: '615px',
   overflow: 'hidden',
@@ -88,4 +95,10 @@ export const PRIMARY_PAGINATION_NAV_BUTTONS = {
   minHeight: '41px',
   borderRadius: '8px',
   textTransform: 'capitalize'
+};
+
+export const READ_BLOG_TIME_TO_READ_TAG_CHIP = {
+  color: '#111111',
+  background: 'rgba(100, 53, 200, 0.12)',
+  marginLeft: '20px'
 };

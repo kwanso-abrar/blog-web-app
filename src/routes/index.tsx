@@ -1,6 +1,6 @@
 import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
-import { CreatePost, Home, MyArticles, Settings } from 'pages';
+import { CreatePost, Home, MyArticles, ReadBlog, Settings } from 'pages';
 
 export const mainRoutes: RouteProps[] = [
   {
@@ -30,5 +30,9 @@ export const mainRoutes: RouteProps[] = [
         <Settings />
       </Protected>
     )
+  },
+  {
+    path: '/read/:id',
+    element: <ReadBlog />
   }
 ];
