@@ -1,6 +1,6 @@
 import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
-import { CreatePost, Home, MyArticles, ReadAllPost, Settings } from 'pages';
+import { CreatePost, Home, MyArticles, Settings } from 'pages';
 
 export const mainRoutes: RouteProps[] = [
   {
@@ -20,14 +20,6 @@ export const mainRoutes: RouteProps[] = [
     element: (
       <Protected>
         <CreatePost />
-      </Protected>
-    )
-  },
-  {
-    path: '/read-all',
-    element: (
-      <Protected>
-        <ReadAllPost />
       </Protected>
     )
   },
