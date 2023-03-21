@@ -2,9 +2,9 @@ import { toast } from 'react-hot-toast';
 import { useEffect } from 'react';
 import { Box, Typography } from '@mui/material';
 import { useFindAllPostsQuery } from 'generated';
-import { BlogCard, PrimaryLoader } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 import { BlogImage1, BlogImage2, UserDummyImage } from 'assets';
+import { BlogCard, PrimaryLoader, PrimaryPagination } from 'components';
 
 export const MyArticles = () => {
   const {
@@ -14,10 +14,14 @@ export const MyArticles = () => {
   } = useFindAllPostsQuery({
     variables: {
       skip: 0,
-      take: 10000
+      take: 2
     },
     onError: (error) => toast.error(error.message)
   });
+
+  const onRefetch = (page: number) => {
+    refetch({ skip: 2 * (page - 1), take: 2 });
+  };
 
   useEffect(() => {
     refetch();
@@ -29,6 +33,10 @@ export const MyArticles = () => {
 
       <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
         Recent Posts
+      </Typography>
+
+      <Typography sx={{ marginTop: '25px' }}>
+        Results: {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total}
       </Typography>
 
       <Box marginTop="60px">
@@ -49,6 +57,14 @@ export const MyArticles = () => {
           ))
         ) : (
           <Typography>No blogs found!</Typography>
+        )}
+      </Box>
+      <Box sx={{ marginTop: '96px', marginLeft: '120px' }}>
+        {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total > 2 && (
+          <PrimaryPagination
+            count={Math.ceil(allPosts?.findAllPosts.total / 2 || 2)}
+            onReftech={onRefetch}
+          />
         )}
       </Box>
     </Box>

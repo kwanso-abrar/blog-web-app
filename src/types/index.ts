@@ -58,3 +58,8 @@ export type BlogCardProps = {
 export type PrimaryLoaderProps = {
   isLoading: boolean;
 };
+
+export type PrimaryPaginationProps = {
+  count: number;
+  onReftech: (page: number) => void;
+};

@@ -146,3 +146,10 @@ export const BlogCardMetaDataIconContainer = styled(Box)(() => ({
   height: '12px',
   marginBottom: '10px'
 }));
+
+export const PaginationList = styled('ul')({
+  margin: 0,
+  display: 'flex',
+  padding: 0,
+  listStyle: 'none'
+});
