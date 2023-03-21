@@ -15,4 +15,4 @@ export const CREATE_POST_MIN_TO_READ_SELECT_OPTIONS = [
   }
 ];
 
-export const BLOGS_PER_PAGE = 2;
+export const BLOGS_PER_PAGE = 3;

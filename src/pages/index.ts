@@ -4,5 +4,4 @@ export { Signup } from './Signup';
 export { Settings } from './Settings';
 export { CreatePost } from './CreatePost';
 export { MyArticles } from './MyArticles';
-export { UpdatePost } from './UpdatePost';
 export { ReadAllPost } from './ReadAllPost';
