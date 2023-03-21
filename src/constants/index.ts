@@ -14,3 +14,5 @@ export const CREATE_POST_MIN_TO_READ_SELECT_OPTIONS = [
     label: '3 Min. To Read'
   }
 ];
+
+export const BLOGS_PER_PAGE = 2;

@@ -1,10 +1,10 @@
 import { toast } from 'react-hot-toast';
 import { useEffect } from 'react';
+import { BLOGS_PER_PAGE } from '../constants';
 import { Box, Typography } from '@mui/material';
-import { useFindAllPostsQuery } from 'generated';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
-import { BlogImage1, BlogImage2, UserDummyImage } from 'assets';
-import { BlogCard, PrimaryLoader, PrimaryPagination } from 'components';
+import { Posts, useFindAllPostsQuery } from 'generated';
+import { BlogCardsList, PrimaryLoader } from 'components';
 
 export const MyArticles = () => {
   const {
@@ -14,13 +14,13 @@ export const MyArticles = () => {
   } = useFindAllPostsQuery({
     variables: {
       skip: 0,
-      take: 2
+      take: BLOGS_PER_PAGE
     },
     onError: (error) => toast.error(error.message)
   });
 
   const onRefetch = (page: number) => {
-    refetch({ skip: 2 * (page - 1), take: 2 });
+    refetch({ skip: BLOGS_PER_PAGE * (page - 1), take: BLOGS_PER_PAGE });
   };
 
   useEffect(() => {
@@ -35,37 +35,18 @@ export const MyArticles = () => {
         Recent Posts
       </Typography>
 
-      <Typography sx={{ marginTop: '25px' }}>
-        Results: {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total}
+      <Typography sx={{ marginTop: '20px' }}>
+        Results: <b>{allPosts?.findAllPosts.total}</b>
       </Typography>
 
-      <Box marginTop="60px">
-        {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total > 0 ? (
-          allPosts.findAllPosts.items.map((post, index) => (
-            <BlogCard
-              key={post.id}
-              text={post.text}
-              title={post.title}
-              author={post.user.name}
-              authorAvatar={UserDummyImage}
-              tag={index % 2 === 0 ? 'Dummy' : 'Fashion'}
-              styles={{ marginTop: index > 0 ? '64px' : '0px' }}
-              thumbnail={index % 2 === 0 ? BlogImage1 : BlogImage2}
-              date={index % 2 === 0 ? '02 December 2021' : '16 March 2023'}
-              duration={index % 2 === 0 ? '3 min. to read' : '5 min. to read'}
-            />
-          ))
-        ) : (
-          <Typography>No blogs found!</Typography>
-        )}
-      </Box>
-      <Box sx={{ marginTop: '96px', marginLeft: '120px' }}>
-        {allPosts?.findAllPosts.total && allPosts?.findAllPosts.total > 2 && (
-          <PrimaryPagination
-            count={Math.ceil(allPosts?.findAllPosts.total / 2 || 0)}
-            onReftech={onRefetch}
-          />
-        )}
+      <Box sx={{ marginTop: '48px' }}>
+        <BlogCardsList
+          paginate
+          onRefetch={onRefetch}
+          perPage={BLOGS_PER_PAGE}
+          total={allPosts?.findAllPosts.total || 0}
+          data={(allPosts?.findAllPosts.items as Posts[]) || []}
+        />
       </Box>
     </Box>
   );

@@ -1,4 +1,4 @@
-import { Button } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import { PaginationList } from 'styles';
 import { PrimaryPaginationProps } from 'types';
 import { PRIMARY_PAGINATION_NAV_BUTTONS, PRIMARY_PAGINATION_PAGE_BUTTONS } from 'styles/constants';
@@ -19,7 +19,7 @@ export const PrimaryPagination = ({ count, onReftech }: PrimaryPaginationProps) 
         let children = null;
 
         if (type === 'start-ellipsis' || type === 'end-ellipsis') {
-          children = '…';
+          children = <Box sx={{ marginLeft: '16px' }}>……</Box>;
         } else if (type === 'page') {
           children = (
             <Button

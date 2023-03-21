@@ -1,3 +1,4 @@
+import { Posts } from 'generated';
 import { ReactNode } from 'react';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
 
@@ -62,4 +63,12 @@ export type PrimaryLoaderProps = {
 export type PrimaryPaginationProps = {
   count: number;
   onReftech: (page: number) => void;
+};
+
+export type BlogCardsListProps = {
+  data: Posts[];
+  total: number;
+  paginate: boolean;
+  perPage?: number;
+  onRefetch?: (page: number) => void;
 };
