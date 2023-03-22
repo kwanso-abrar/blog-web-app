@@ -77,7 +77,7 @@ export const CommentCard = ({
           </>
         )}
         {isLoggedIn && (
-          <Box sx={{ marginTop: '50px', width: '600px' }}>
+          <Box sx={{ marginTop: '40px', width: '600px' }}>
             <AddComment
               postId={postId}
               parentId={id}
