@@ -15,6 +15,7 @@ export const BlogCommentSection = ({ comments }: BlogCommentSectionProps) => {
         {comments.map((comment) => (
           <CommentCardContainer key={comment.id}>
             <CommentCard
+              id={comment.id}
               userName={comment.user.name}
               avatar={UserDummyImage}
               text={comment.text}

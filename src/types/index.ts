@@ -81,6 +81,7 @@ export type BlogMetaDataProps = {
 };
 
 export type CommentCardProps = {
+  id: number;
   text: string;
   avatar: string;
   userName: string;

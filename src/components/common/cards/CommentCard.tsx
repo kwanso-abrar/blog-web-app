@@ -1,6 +1,9 @@
+import toast from 'react-hot-toast';
 import { useState } from 'react';
-import { BlogAvatar } from 'assets';
+import { PrimaryLoader } from 'components';
+import { UserDummyImage } from 'assets';
 import { CommentCardProps } from 'types';
+import { useRepliesLazyQuery } from 'generated';
 import { ReplyCommentCardContainer } from 'styles';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import {
@@ -10,10 +13,16 @@ import {
   COMMENT_CARD_USER_NAME
 } from 'styles/constants';
 
-export const CommentCard = ({ avatar, text, totallReplies, userName }: CommentCardProps) => {
+export const CommentCard = ({ id, avatar, text, totallReplies, userName }: CommentCardProps) => {
   const [showReplies, setShowReplies] = useState(false);
+
+  const [fetchReplies, { data, loading }] = useRepliesLazyQuery({
+    onError: (error) => toast.error(error.message)
+  });
+
   return (
     <Stack direction="row">
+      <PrimaryLoader isLoading={loading} />
       <Box sx={{ width: '32px', height: '32px' }}>
         <img src={avatar} width="100%" style={{ borderRadius: '50%' }} />
       </Box>
@@ -28,18 +37,26 @@ export const CommentCard = ({ avatar, text, totallReplies, userName }: CommentCa
             type="button"
             variant="text"
             sx={SHOW_REPLIES_BUTTON}
-            onClick={() => setShowReplies(!showReplies)}
+            onClick={() => {
+              setShowReplies(!showReplies);
+              fetchReplies({ variables: { commentId: id } });
+            }}
           >
             Show replies ({totallReplies})
           </Button>
         ) : (
-          <ReplyCommentCardContainer>
-            <CommentCard
-              userName="Jesica koli"
-              avatar={BlogAvatar}
-              text="Did you come here for something in particular or just general Riker-bashing? And blowing into maximum"
-              totallReplies={5}
-            />
+          <ReplyCommentCardContainer sx={{ marginTop: totallReplies > 0 ? '16px' : '0px' }}>
+            {data?.replies.map((reply) => (
+              <Box key={reply.id} sx={{ marginTop: '16px' }}>
+                <CommentCard
+                  id={reply.id}
+                  text={reply.text}
+                  avatar={UserDummyImage}
+                  userName={reply.user.name}
+                  totallReplies={reply.replyCount || 0}
+                />
+              </Box>
+            ))}
           </ReplyCommentCardContainer>
         )}
       </Box>

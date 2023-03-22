@@ -76,3 +76,18 @@ query findPostById($id: Float!) {
     }
   }
 }
+
+query replies($commentId: Float!) {
+  replies(commentId: $commentId) {
+    id
+    text
+    userId
+    postsId
+    parentId
+    replyCount
+    user {
+      name
+      email
+    }
+  }
+}
