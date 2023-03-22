@@ -102,3 +102,38 @@ export const READ_BLOG_TIME_TO_READ_TAG_CHIP = {
   background: 'rgba(100, 53, 200, 0.12)',
   marginLeft: '20px'
 };
+
+export const COMMENT_CARD_USER_NAME = {
+  color: '#111111',
+  fontSize: '15px',
+  fontWeight: '500',
+  lineHeight: '150%',
+  textTransform: 'capitalize'
+};
+
+export const COMMENT_CARD_TIME = {
+  color: '#666666',
+  fontSize: '15px',
+  fontWeight: '500',
+  lineHeight: '150%',
+  marginLeft: '8px',
+  textTransform: 'capitalize'
+};
+
+export const COMMENT_CARD_TEXT = {
+  color: '#666666',
+  fontSize: '15px',
+  marginTop: '5px',
+  fontWeight: '500',
+  lineHeight: '150%',
+  textTransform: 'none'
+};
+
+export const SHOW_REPLIES_BUTTON = {
+  color: '#00A1E7',
+  padding: '0',
+  fontSize: '15px',
+  marginTop: '4px',
+  lineHeight: '150%',
+  textTransform: 'none'
+};

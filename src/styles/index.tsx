@@ -153,3 +153,14 @@ export const PaginationList = styled('ul')({
   padding: 0,
   listStyle: 'none'
 });
+
+export const CommentCardContainer = styled(Box)({
+  marginTop: '30px'
+});
+
+export const ReplyCommentCardContainer = styled(Box)({
+  marginTop: '16px',
+  marginLeft: '16px',
+  paddingLeft: '20px',
+  borderLeft: '1px solid rgba(102, 102, 102, 0.3)'
+});

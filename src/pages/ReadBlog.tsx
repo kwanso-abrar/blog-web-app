@@ -1,5 +1,5 @@
 import { Box } from '@mui/material';
-import { BlogContent } from 'components';
+import { BlogCommentSection, BlogContent } from 'components';
 
 export const ReadBlog = () => {
   //   const { id } = useParams();
@@ -7,6 +7,9 @@ export const ReadBlog = () => {
   return (
     <Box sx={{ maxWidth: '856px' }}>
       <BlogContent />
+      <Box sx={{ marginTop: '60px' }}>
+        <BlogCommentSection />
+      </Box>
     </Box>
   );
 };
