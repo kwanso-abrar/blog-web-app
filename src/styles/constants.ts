@@ -55,14 +55,18 @@ export const PRIMARY_BLOG_CARD_TEXT = {
   color: '#555555',
   fontSize: '15px',
   maxWidth: '540px',
-  lineHeight: '150%'
+  overflow: 'hidden',
+  lineHeight: '150%',
+  whiteSpace: 'nowrap',
+  textOverflow: 'ellipsis'
 };
 
 export const BLOG_TEXT = {
   color: '#666666',
   fontSize: '15px',
   marginTop: '40px',
-  lineHeight: '150%'
+  lineHeight: '150%',
+  whiteSpace: 'break-spaces'
 };
 
 export const PRIMARY_BLOG_CARD_TITLE = {

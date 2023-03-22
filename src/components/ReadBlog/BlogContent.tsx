@@ -20,6 +20,6 @@ export const BlogContent = ({ text, title, authorName }: BlogContentProps) => (
     <Box sx={{ width: '856px', height: '432px', marginTop: '35px' }}>
       <img src={BlogThumbnail1} width="100%" style={{ objectFit: 'cover', borderRadius: '5px' }} />
     </Box>
-    <Typography sx={BLOG_TEXT}>{text}</Typography>
+    <Typography sx={BLOG_TEXT}>{`${text}`}</Typography>
   </>
 );

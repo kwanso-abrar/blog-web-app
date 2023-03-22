@@ -1,3 +1,4 @@
+import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupSchema } from 'formValidations';
 import { useNavigate } from 'react-router-dom';
@@ -7,7 +8,6 @@ import { useCreatePostMutation } from 'generated';
 import { PrimaryInputField, PrimarySelectField } from 'components';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS } from '../../constants';
 import { Backdrop, Box, CircularProgress, MenuItem } from '@mui/material';
-import toast from 'react-hot-toast';
 
 const schema = yupSchema.createPost;
 
@@ -43,7 +43,7 @@ export const CreatePostForm = () => {
   const onFormSubmit = async (values: any) => {
     createPost({
       variables: {
-        text: values.text,
+        text: values.text.replace(/(\r\n|\r|\n)/g, '\n'),
         title: values.title
       }
     });
