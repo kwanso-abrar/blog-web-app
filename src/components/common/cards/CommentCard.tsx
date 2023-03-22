@@ -26,7 +26,8 @@ export const CommentCard = ({
   const { isLoggedIn } = useContextApi();
 
   const [fetchReplies, { data, loading }] = useRepliesLazyQuery({
-    onError: (error) => toast.error(error.message)
+    onError: (error) => toast.error(error.message),
+    fetchPolicy: 'no-cache'
   });
 
   const onRetchRepliesData = () => {
