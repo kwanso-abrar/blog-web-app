@@ -161,6 +161,16 @@ export const CommentCardContainer = styled(Box)({
 export const ReplyCommentCardContainer = styled(Box)({
   marginTop: '16px',
   marginLeft: '16px',
-  paddingLeft: '20px',
+  paddingLeft: '24px',
   borderLeft: '1px solid rgba(102, 102, 102, 0.3)'
 });
+
+export const SecondaryButton = styled(Button)(() => ({
+  padding: '15px 32px',
+  fontSize: '16px',
+  maxWidth: '98px',
+  fontWeight: '600',
+  lineHeight: '24px',
+  borderRadius: '8px',
+  textTransform: 'capitalize'
+}));

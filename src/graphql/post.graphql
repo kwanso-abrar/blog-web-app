@@ -13,6 +13,17 @@ mutation createPost($title: String!, $text: String!) {
   }
 }
 
+mutation createComment($text: String!, $postId: Float!, $parentId: Float) {
+  createComment(createCommentDto: { text: $text, postId: $postId, parentId: $parentId }) {
+    id
+    text
+    userId
+    postsId
+    parentId
+    replyCount
+  }
+}
+
 query findAllPosts($skip: Int!, $take: Int!) {
   findAllPosts(paginationInput: { skip: $skip, take: $take }) {
     total

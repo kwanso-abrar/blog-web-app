@@ -18,11 +18,7 @@ const password = yup
     'Must contain letters, numbers and specials characters '
   );
 
-const text = yup
-  .string()
-  .default('')
-  .required('Text is required')
-  .min(10, 'post should be of minimum 10 words');
+const text = yup.string().default('').required('Text is required');
 
 const title = yup
   .string()
@@ -49,8 +45,13 @@ const createPost = yup.object({
   minToRead
 });
 
+const createComment = yup.object({
+  text
+});
+
 export const yupSchema = {
   signIn,
   signUp,
-  createPost
+  createPost,
+  createComment
 };

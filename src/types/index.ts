@@ -84,6 +84,7 @@ export type CommentCardProps = {
   id: number;
   text: string;
   avatar: string;
+  postId: number;
   userName: string;
   totallReplies: number;
 };
@@ -95,5 +96,14 @@ export type BlogContentProps = {
 };
 
 export type BlogCommentSectionProps = {
+  postId: number;
+  onRetech: () => void;
   comments: Comments[];
+};
+
+export type AddCommentProps = {
+  postId: number;
+  parentId?: number;
+  isReply?: boolean;
+  onRefetch: () => void;
 };

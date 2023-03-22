@@ -1,9 +1,9 @@
 import toast from 'react-hot-toast';
 import { useState } from 'react';
-import { PrimaryLoader } from 'components';
 import { UserDummyImage } from 'assets';
 import { CommentCardProps } from 'types';
 import { useRepliesLazyQuery } from 'generated';
+import { AddComment, PrimaryLoader } from 'components';
 import { ReplyCommentCardContainer } from 'styles';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import {
@@ -12,13 +12,26 @@ import {
   SHOW_REPLIES_BUTTON,
   COMMENT_CARD_USER_NAME
 } from 'styles/constants';
+import { useContextApi } from 'AppContext';
 
-export const CommentCard = ({ id, avatar, text, totallReplies, userName }: CommentCardProps) => {
+export const CommentCard = ({
+  id,
+  text,
+  avatar,
+  postId,
+  userName,
+  totallReplies
+}: CommentCardProps) => {
   const [showReplies, setShowReplies] = useState(false);
+  const { isLoggedIn } = useContextApi();
 
   const [fetchReplies, { data, loading }] = useRepliesLazyQuery({
     onError: (error) => toast.error(error.message)
   });
+
+  const onRetchRepliesData = () => {
+    fetchReplies({ variables: { commentId: id } });
+  };
 
   return (
     <Stack direction="row">
@@ -45,19 +58,32 @@ export const CommentCard = ({ id, avatar, text, totallReplies, userName }: Comme
             Show replies ({totallReplies})
           </Button>
         ) : (
-          <ReplyCommentCardContainer sx={{ marginTop: totallReplies > 0 ? '16px' : '0px' }}>
-            {data?.replies.map((reply) => (
-              <Box key={reply.id} sx={{ marginTop: '16px' }}>
-                <CommentCard
-                  id={reply.id}
-                  text={reply.text}
-                  avatar={UserDummyImage}
-                  userName={reply.user.name}
-                  totallReplies={reply.replyCount || 0}
-                />
-              </Box>
-            ))}
-          </ReplyCommentCardContainer>
+          <>
+            <ReplyCommentCardContainer sx={{ marginTop: totallReplies > 0 ? '16px' : '0px' }}>
+              {data?.replies.map((reply) => (
+                <Box key={reply.id} sx={{ marginTop: '16px' }}>
+                  <CommentCard
+                    postId={postId}
+                    id={reply.id}
+                    text={reply.text}
+                    avatar={UserDummyImage}
+                    userName={reply.user.name}
+                    totallReplies={reply.replyCount || 0}
+                  />
+                </Box>
+              ))}
+            </ReplyCommentCardContainer>
+          </>
+        )}
+        {isLoggedIn && (
+          <Box sx={{ marginTop: '50px', width: '600px' }}>
+            <AddComment
+              postId={postId}
+              parentId={id}
+              onRefetch={() => onRetchRepliesData()}
+              isReply
+            />
+          </Box>
         )}
       </Box>
     </Stack>
