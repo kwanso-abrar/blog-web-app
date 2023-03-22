@@ -14,8 +14,6 @@ export const ReadBlog = () => {
     onError: (error) => toast.error(error.message)
   });
 
-  post?.findPostById.post?.comments;
-
   return (
     <Box sx={{ maxWidth: '856px' }}>
       <PrimaryLoader isLoading={loading} />
