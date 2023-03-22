@@ -33,7 +33,6 @@ export const AddComment = ({ postId, parentId, onRefetch, isReply = false }: Add
       }
     });
     reset();
-    console.log('refetching');
     onRefetch();
   };
 
