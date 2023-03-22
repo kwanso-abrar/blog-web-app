@@ -21,6 +21,10 @@ query findAllPosts($skip: Int!, $take: Int!) {
       title
       text
       userId
+      user {
+        name
+        email
+      }
       comments {
         id
         text
@@ -36,6 +40,38 @@ query findAllPosts($skip: Int!, $take: Int!) {
       user {
         name
         email
+      }
+    }
+  }
+}
+
+query findPostById($id: Float!) {
+  findPostById(id: $id) {
+    response {
+      message
+      error
+      status
+    }
+    post {
+      id
+      title
+      text
+      userId
+      user {
+        name
+        email
+      }
+      comments {
+        id
+        text
+        userId
+        postsId
+        parentId
+        replyCount
+        user {
+          name
+          email
+        }
       }
     }
   }

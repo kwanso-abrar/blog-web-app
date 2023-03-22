@@ -1,14 +1,31 @@
+import toast from 'react-hot-toast';
 import { Box } from '@mui/material';
-import { BlogCommentSection, BlogContent } from 'components';
+import { useParams } from 'react-router-dom';
+import { Comments, useFindPostByIdQuery } from 'generated';
+import { BlogCommentSection, BlogContent, PrimaryLoader } from 'components';
 
 export const ReadBlog = () => {
-  //   const { id } = useParams();
+  const { id } = useParams();
+
+  const { data: post, loading } = useFindPostByIdQuery({
+    variables: {
+      id: parseFloat(id || '0')
+    },
+    onError: (error) => toast.error(error.message)
+  });
+
+  post?.findPostById.post?.comments;
 
   return (
     <Box sx={{ maxWidth: '856px' }}>
-      <BlogContent />
+      <PrimaryLoader isLoading={loading} />
+      <BlogContent
+        text={post?.findPostById.post?.text || ''}
+        title={post?.findPostById.post?.title || ''}
+        authorName={post?.findPostById.post?.user.name || ''}
+      />
       <Box sx={{ marginTop: '60px' }}>
-        <BlogCommentSection />
+        <BlogCommentSection comments={(post?.findPostById.post?.comments as Comments[]) || []} />
       </Box>
     </Box>
   );

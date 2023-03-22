@@ -1,5 +1,5 @@
-import { Posts } from 'generated';
 import { ReactNode } from 'react';
+import { Comments, Posts } from 'generated';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
 
 export type NavigationButtonProps = {
@@ -85,4 +85,14 @@ export type CommentCardProps = {
   avatar: string;
   userName: string;
   totallReplies: number;
+};
+
+export type BlogContentProps = {
+  title: string;
+  text: string;
+  authorName: string;
+};
+
+export type BlogCommentSectionProps = {
+  comments: Comments[];
 };
