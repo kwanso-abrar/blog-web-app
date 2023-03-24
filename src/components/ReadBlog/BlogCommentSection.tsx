@@ -26,7 +26,7 @@ export const BlogCommentSection = ({ postId, comments, onRetech }: BlogCommentSe
       <Box
         sx={{
           marginTop: '30px',
-          minWidth: '100%'
+          flexGrow: '1'
         }}
       >
         {comments.map((comment) => (

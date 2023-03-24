@@ -2,7 +2,6 @@ import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
 import { yupSchema } from 'formValidations';
 import { Box, Stack } from '@mui/material';
-import { yupResolver } from '@hookform/resolvers/yup';
 import { AddCommentProps } from 'types';
 import { SecondaryButton } from 'styles';
 import { useCreateCommentMutation } from 'generated';
@@ -17,23 +16,29 @@ export const AddComment = ({ postId, parentId, onRefetch, isReply = false }: Add
     }
   });
 
-  const { handleSubmit, control, reset } = useForm({
-    resolver: yupResolver(schema),
+  const {
+    handleSubmit,
+    control,
+    reset,
+    formState: { isDirty }
+  } = useForm({
     defaultValues: {
       ...schema.getDefault()
     }
   });
 
   const onFormSubmit = async (values: any) => {
-    await createComment({
-      variables: {
-        parentId: parentId && parentId,
-        postId,
-        text: values.text
-      }
-    });
-    reset();
-    onRefetch();
+    if (isDirty) {
+      await createComment({
+        variables: {
+          parentId: parentId && parentId,
+          postId,
+          text: values.text
+        }
+      });
+      reset();
+      onRefetch();
+    }
   };
 
   return (

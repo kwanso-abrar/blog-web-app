@@ -11,7 +11,8 @@ import {
   COMMENT_CARD_TEXT,
   COMMENT_CARD_TIME,
   SHOW_REPLIES_BUTTON,
-  COMMENT_CARD_USER_NAME
+  COMMENT_CARD_USER_NAME,
+  COMMENT_CARD_AVATAR_CONTAINER
 } from 'styles/constants';
 
 export const CommentCard = ({
@@ -38,10 +39,10 @@ export const CommentCard = ({
   return (
     <Stack direction="row">
       <PrimaryLoader isLoading={loading} />
-      <Box sx={{ width: '32px', height: '32px' }}>
+      <Box sx={COMMENT_CARD_AVATAR_CONTAINER}>
         <img src={avatar} width="100%" style={{ borderRadius: '50%' }} />
       </Box>
-      <Box sx={{ marginLeft: '16px' }}>
+      <Box sx={{ marginLeft: '16px', flexGrow: '1' }}>
         <Stack direction="row">
           <Typography sx={COMMENT_CARD_USER_NAME}>{userName}</Typography>
           <Typography sx={COMMENT_CARD_TIME}>3 mins ago</Typography>
@@ -63,10 +64,9 @@ export const CommentCard = ({
           <>
             <ReplyCommentCardContainer
               sx={{
-                marginLeft: totallReplies > 0 ? '0px' : '0px',
-                paddingLeft: totallReplies > 0 ? '24px' : '0',
-                marginTop: totallReplies > 0 ? '16px' : '0px',
-                borderLeft: totallReplies > 0 ? '1px solid rgba(102, 102, 102, 0.3)' : 'none'
+                marginTop: totallReplies > 0 ? '18px' : '0px',
+                paddingLeft: totallReplies > 0 ? '28px' : '0',
+                borderLeft: totallReplies > 0 ? '2px solid rgba(102, 102, 102, 0.1)' : 'none'
               }}
             >
               {data?.replies.map((reply) => (
@@ -83,12 +83,12 @@ export const CommentCard = ({
                 </Box>
               ))}
               {isLoggedIn && isParent && (
-                <Box sx={{ marginTop: '40px', width: '600px' }}>
+                <Box sx={{ marginTop: '45px' }}>
                   <AddComment
-                    postId={postId}
-                    parentId={id}
-                    onRefetch={() => onRetchRepliesData()}
                     isReply
+                    parentId={id}
+                    postId={postId}
+                    onRefetch={() => onRetchRepliesData()}
                   />
                 </Box>
               )}

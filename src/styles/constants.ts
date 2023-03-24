@@ -150,3 +150,10 @@ export const SIGN_IN_TO_COMMENT = {
   marginLeft: '40px',
   textTransform: 'none'
 };
+
+export const COMMENT_CARD_AVATAR_CONTAINER = {
+  minWidth: '32px',
+  maxWidth: '32px',
+  maxHeight: '32px',
+  minHeight: '32px'
+};
