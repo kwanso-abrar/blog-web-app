@@ -158,10 +158,10 @@ export const CommentCardContainer = styled(Box)({
 });
 
 export const ReplyCommentCardContainer = styled(Box)({
-  marginTop: '16px',
-  marginLeft: '16px',
-  paddingLeft: '24px',
-  borderLeft: '1px solid rgba(102, 102, 102, 0.3)'
+  // marginTop: '16px',
+  // marginLeft: '16px',
+  // paddingLeft: '24px',
+  // borderLeft: '1px solid rgba(102, 102, 102, 0.3)'
 });
 
 export const SecondaryButton = styled(Button)(() => ({

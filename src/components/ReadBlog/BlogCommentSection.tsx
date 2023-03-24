@@ -32,11 +32,12 @@ export const BlogCommentSection = ({ postId, comments, onRetech }: BlogCommentSe
         {comments.map((comment) => (
           <CommentCardContainer key={comment.id}>
             <CommentCard
-              postId={postId}
               id={comment.id}
-              userName={comment.user.name}
-              avatar={UserDummyImage}
               text={comment.text}
+              avatar={UserDummyImage}
+              postId={postId}
+              isParent={true}
+              userName={comment.user.name}
               totallReplies={comment.replyCount || 0}
             />
           </CommentCardContainer>

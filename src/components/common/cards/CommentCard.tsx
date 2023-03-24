@@ -1,5 +1,6 @@
 import toast from 'react-hot-toast';
 import { useState } from 'react';
+import { useContextApi } from 'AppContext';
 import { UserDummyImage } from 'assets';
 import { CommentCardProps } from 'types';
 import { useRepliesLazyQuery } from 'generated';
@@ -12,7 +13,6 @@ import {
   SHOW_REPLIES_BUTTON,
   COMMENT_CARD_USER_NAME
 } from 'styles/constants';
-import { useContextApi } from 'AppContext';
 
 export const CommentCard = ({
   id,
@@ -20,6 +20,7 @@ export const CommentCard = ({
   avatar,
   postId,
   userName,
+  isParent = false,
   totallReplies
 }: CommentCardProps) => {
   const [showReplies, setShowReplies] = useState(false);
@@ -60,31 +61,39 @@ export const CommentCard = ({
           </Button>
         ) : (
           <>
-            <ReplyCommentCardContainer sx={{ marginTop: totallReplies > 0 ? '16px' : '0px' }}>
+            <ReplyCommentCardContainer
+              sx={{
+                marginLeft: totallReplies > 0 ? '0px' : '0px',
+                paddingLeft: totallReplies > 0 ? '24px' : '0',
+                marginTop: totallReplies > 0 ? '16px' : '0px',
+                borderLeft: totallReplies > 0 ? '1px solid rgba(102, 102, 102, 0.3)' : 'none'
+              }}
+            >
               {data?.replies.map((reply) => (
                 <Box key={reply.id} sx={{ marginTop: '16px' }}>
                   <CommentCard
-                    postId={postId}
-                    id={reply.id}
+                    id={id}
                     text={reply.text}
                     avatar={UserDummyImage}
+                    postId={postId}
+                    isParent={false}
                     userName={reply.user.name}
                     totallReplies={reply.replyCount || 0}
                   />
                 </Box>
               ))}
+              {isLoggedIn && isParent && (
+                <Box sx={{ marginTop: '40px', width: '600px' }}>
+                  <AddComment
+                    postId={postId}
+                    parentId={id}
+                    onRefetch={() => onRetchRepliesData()}
+                    isReply
+                  />
+                </Box>
+              )}
             </ReplyCommentCardContainer>
           </>
-        )}
-        {isLoggedIn && (
-          <Box sx={{ marginTop: '40px', width: '600px' }}>
-            <AddComment
-              postId={postId}
-              parentId={id}
-              onRefetch={() => onRetchRepliesData()}
-              isReply
-            />
-          </Box>
         )}
       </Box>
     </Stack>

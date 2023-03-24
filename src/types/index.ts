@@ -86,6 +86,7 @@ export type CommentCardProps = {
   avatar: string;
   postId: number;
   userName: string;
+  isParent?: boolean;
   totallReplies: number;
 };
 
