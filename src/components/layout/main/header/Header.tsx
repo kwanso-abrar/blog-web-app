@@ -1,19 +1,12 @@
-import SearchIcon from '@mui/icons-material/Search';
 import { useState } from 'react';
 import { removeToken } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { paperPropsSx } from 'styles/constants';
 import { useContextApi } from 'AppContext';
+import { HeaderSearchBar } from 'components';
 import { Logout, Settings } from '@mui/icons-material';
-import { Box, Stack, Menu, MenuItem, InputAdornment, ListItemIcon } from '@mui/material';
-import {
-  GreyBox,
-  SearchBar,
-  CustomAvatar,
-  HeaderButton,
-  HeaderNavLink,
-  HeaderWrapper
-} from 'styles';
+import { Box, Stack, Menu, MenuItem, ListItemIcon } from '@mui/material';
+import { GreyBox, CustomAvatar, HeaderButton, HeaderNavLink, HeaderWrapper } from 'styles';
 
 export const Header = () => {
   const navigate = useNavigate();
@@ -47,17 +40,7 @@ export const Header = () => {
 
         <Stack sx={{ marginLeft: 'auto', alignItems: 'center' }} direction="row">
           <Box sx={{ width: '300px', height: '34px' }}>
-            <SearchBar
-              placeholder="Search"
-              variant="filled"
-              InputProps={{
-                startAdornment: (
-                  <InputAdornment position="start">
-                    <SearchIcon />
-                  </InputAdornment>
-                )
-              }}
-            />
+            <HeaderSearchBar />
           </Box>
 
           {isLoggedIn ? (

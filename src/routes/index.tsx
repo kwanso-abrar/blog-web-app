@@ -1,6 +1,6 @@
 import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
-import { CreatePost, Home, MyArticles, ReadBlog, Settings } from 'pages';
+import { CreatePost, Home, MyArticles, ReadBlog, ReadBlogBySearch, Settings } from 'pages';
 
 export const mainRoutes: RouteProps[] = [
   {
@@ -34,5 +34,9 @@ export const mainRoutes: RouteProps[] = [
   {
     path: '/read/:id',
     element: <ReadBlog />
+  },
+  {
+    path: '/read-by-search/:search',
+    element: <ReadBlogBySearch />
   }
 ];

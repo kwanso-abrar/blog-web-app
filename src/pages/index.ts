@@ -5,3 +5,4 @@ export { ReadBlog } from './ReadBlog';
 export { Settings } from './Settings';
 export { CreatePost } from './CreatePost';
 export { MyArticles } from './MyArticles';
+export { ReadBlogBySearch } from './ReadBlogBySearch';

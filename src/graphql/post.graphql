@@ -102,3 +102,16 @@ query replies($commentId: Float!) {
     }
   }
 }
+
+query getPosts($search: String!) {
+  getPosts(search: $search) {
+    id
+    title
+    text
+    userId
+    user {
+      name
+      email
+    }
+  }
+}
