@@ -1,15 +1,16 @@
 import { useState } from 'react';
 import { removeToken } from 'utils';
-import { useNavigate } from 'react-router-dom';
 import { paperPropsSx } from 'styles/constants';
 import { useContextApi } from 'AppContext';
 import { HeaderSearchBar } from 'components';
 import { Logout, Settings } from '@mui/icons-material';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Box, Stack, Menu, MenuItem, ListItemIcon } from '@mui/material';
 import { GreyBox, CustomAvatar, HeaderButton, HeaderNavLink, HeaderWrapper } from 'styles';
 
 export const Header = () => {
   const navigate = useNavigate();
+  const location = useLocation();
   const { isLoggedIn, setIsLoggedIn } = useContextApi();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -27,12 +28,24 @@ export const Header = () => {
         <Stack direction="row">
           <GreyBox />
 
-          <HeaderNavLink to="" style={{ marginLeft: '40px' }}>
+          <HeaderNavLink
+            to=""
+            style={{
+              marginLeft: '40px',
+              color: location.pathname === '/' ? '#111111' : 'rgba(102, 102, 102, 0.8)'
+            }}
+          >
             Home
           </HeaderNavLink>
 
           {isLoggedIn && (
-            <HeaderNavLink to="/my-articles" style={{ marginLeft: '40px' }}>
+            <HeaderNavLink
+              to="/my-articles"
+              style={{
+                marginLeft: '40px',
+                color: location.pathname === '/my-articles' ? '#111111' : 'rgba(102, 102, 102, 0.8)'
+              }}
+            >
               My Articles
             </HeaderNavLink>
           )}

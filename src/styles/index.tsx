@@ -60,10 +60,9 @@ export const HeaderWrapper = styled(Box)(() => ({
 
 export const HeaderNavLink = styled(Link)(() => ({
   fontSize: '16px',
+  alignSelf: 'center',
   lineHeight: '24px',
-  color: '#111111',
-  textDecoration: 'none',
-  alignSelf: 'center'
+  textDecoration: 'none'
 }));
 
 export const SearchBar = styled(TextField)(() => ({
