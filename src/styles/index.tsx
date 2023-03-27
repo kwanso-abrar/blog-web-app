@@ -70,7 +70,7 @@ export const SearchBar = styled(TextField)(() => ({
   width: '100%',
 
   '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: '5px',
+    padding: '8px',
     paddingLeft: '25px'
   },
 

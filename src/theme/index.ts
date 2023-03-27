@@ -33,7 +33,9 @@ const theme = createTheme({
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
             border: '1px solid #E5E5E5 ',
-            borderRadius: '20px'
+            borderRadius: '20px',
+            outline: 'none',
+            top: '0'
           },
 
           '& legend': {

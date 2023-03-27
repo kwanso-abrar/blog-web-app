@@ -31,8 +31,8 @@ export const SigninForm = () => {
   });
 
   const [signIn, { loading: signInLoading }] = useSignInMutation({
-    onError: () => {
-      toast.error('Invalid Credentials!');
+    onError: (error: any) => {
+      toast.error(error.graphQLErrors[0].extensions?.response.message.message);
     }
   });
 
