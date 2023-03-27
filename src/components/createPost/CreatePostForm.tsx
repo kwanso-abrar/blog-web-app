@@ -3,11 +3,11 @@ import { useForm } from 'react-hook-form';
 import { yupSchema } from 'formValidations';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
+import { Box, MenuItem } from '@mui/material';
 import { PrimaryButton } from 'styles';
 import { useCreatePostMutation } from 'generated';
-import { PrimaryInputField, PrimarySelectField } from 'components';
-import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS } from '../../constants';
-import { Backdrop, Box, CircularProgress, MenuItem } from '@mui/material';
+import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS, ROUTES_PATH } from '../../constants';
+import { PrimaryInputField, PrimaryLoader, PrimarySelectField } from 'components';
 
 const schema = yupSchema.createPost;
 
@@ -29,7 +29,7 @@ export const CreatePostForm = () => {
     onCompleted: (data) => {
       if (data.createPosts.response?.status === 201) {
         toast.success('Post created successfully');
-        navigate('/my-articles');
+        navigate(ROUTES_PATH.myArticles);
       }
     },
     onError: (error) => {
@@ -51,11 +51,7 @@ export const CreatePostForm = () => {
 
   return (
     <Box>
-      {loading && (
-        <Backdrop sx={{ color: '#fff', zIndex: (theme) => theme.zIndex.drawer + 1 }} open={loading}>
-          <CircularProgress color="inherit" />
-        </Backdrop>
-      )}
+      <PrimaryLoader isLoading={loading} />
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <Box sx={{ width: '715px' }}>
           <PrimaryInputField name="title" control={control} label="Give it a title" />

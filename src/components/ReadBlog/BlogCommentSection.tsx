@@ -6,7 +6,7 @@ import { AddComment, CommentCard } from 'components';
 import { BlogCommentSectionProps } from 'types';
 import { SIGN_IN_TO_COMMENT, TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 
-export const BlogCommentSection = ({ postId, comments, onRetech }: BlogCommentSectionProps) => {
+export const BlogCommentSection = ({ postId, comments, onRefetch }: BlogCommentSectionProps) => {
   const { isLoggedIn } = useContextApi();
   return (
     <Box sx={{ minWidth: '100%' }}>
@@ -19,7 +19,7 @@ export const BlogCommentSection = ({ postId, comments, onRetech }: BlogCommentSe
 
       {isLoggedIn && (
         <Box sx={{ marginTop: '60px' }}>
-          <AddComment postId={postId} onRefetch={onRetech} />
+          <AddComment postId={postId} onRefetch={onRefetch} />
         </Box>
       )}
 

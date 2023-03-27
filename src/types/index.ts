@@ -98,7 +98,7 @@ export type BlogContentProps = {
 
 export type BlogCommentSectionProps = {
   postId: number;
-  onRetech: () => void;
+  onRefetch: () => void;
   comments: Comments[];
 };
 
@@ -107,4 +107,16 @@ export type AddCommentProps = {
   parentId?: number;
   isReply?: boolean;
   onRefetch: () => void;
+};
+
+export type HeaderNavLinkType = {
+  id: number;
+  to: string;
+  text: string;
+  isProtected: boolean;
+};
+
+export type NavLinksListProps = {
+  data: HeaderNavLinkType[];
+  isLoggedIn: boolean;
 };

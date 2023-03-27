@@ -1,5 +1,6 @@
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
+import { ROUTES_PATH } from '../constants';
 import { Box, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
@@ -19,7 +20,7 @@ export const ReadBlogBySearch = () => {
     if (search) {
       getPosts({ variables: { search } });
     } else {
-      navigate('/home');
+      navigate(ROUTES_PATH.home);
     }
   }, [search]);
 

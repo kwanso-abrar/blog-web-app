@@ -1,5 +1,6 @@
 import SearchIcon from '@mui/icons-material/Search';
 import { SearchBar } from 'styles';
+import { ROUTES_PATH } from '../../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { InputAdornment } from '@mui/material';
 import { Controller, useForm } from 'react-hook-form';
@@ -19,7 +20,7 @@ export const HeaderSearchBar = () => {
 
   const onFormSubmit = async (values: any) => {
     if (isDirty) {
-      navigate(`/read-by-search/${values.search}`);
+      navigate(`${ROUTES_PATH.readBlogBySearch.replace(':search', values.search)}`);
       reset();
     }
   };

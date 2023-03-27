@@ -3,6 +3,7 @@ import { Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
+import { ROUTES_PATH } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { PrimaryButton } from 'styles';
@@ -41,7 +42,7 @@ export const SignupForm = () => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
         setIsLoggedIn(true);
-        navigate('/');
+        navigate(ROUTES_PATH.home);
       }
     },
     onError: () => {

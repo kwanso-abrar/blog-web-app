@@ -18,7 +18,7 @@ export const ReadBlog = () => {
     onError: (error) => toast.error(error.message)
   });
 
-  const onRetchBlogData = () => {
+  const onRefetchBlogData = () => {
     refetch({ id: parseFloat(id || '0') });
   };
 
@@ -32,7 +32,7 @@ export const ReadBlog = () => {
       />
       <Box sx={{ marginTop: '60px', minWidth: '100%' }}>
         <BlogCommentSection
-          onRetech={onRetchBlogData}
+          onRefetch={onRefetchBlogData}
           postId={post?.findPostById.post?.id || 0}
           comments={(post?.findPostById.post?.comments as Comments[]) || []}
         />

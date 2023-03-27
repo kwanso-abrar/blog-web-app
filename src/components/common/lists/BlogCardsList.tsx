@@ -1,4 +1,5 @@
 import { Box } from '@mui/material';
+import { ROUTES_PATH } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { BlogCardsListProps } from 'types';
 import { BlogCard, PrimaryPagination } from 'components';
@@ -15,7 +16,10 @@ export const BlogCardsList = ({
   return (
     <>
       {data.map((post, index) => (
-        <Box key={post.id} onClick={() => navigate(`/read/${post.id}`)}>
+        <Box
+          key={post.id}
+          onClick={() => navigate(`${ROUTES_PATH.readBlog.replace(':id', post.id.toString())}`)}
+        >
           <BlogCard
             text={post.text}
             title={post.title}

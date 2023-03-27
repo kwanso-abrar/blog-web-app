@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
+import { ROUTES_PATH } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
@@ -47,7 +48,7 @@ export const SigninForm = () => {
         saveToken(response.data.signIn.accesstoken);
       }
       setIsLoggedIn(true);
-      navigate('/');
+      navigate(ROUTES_PATH.home);
     }
   };
 
@@ -99,7 +100,7 @@ export const SigninForm = () => {
         <PrimaryButton
           variant="outlined"
           fullWidth
-          onClick={() => navigate('/signup')}
+          onClick={() => navigate(ROUTES_PATH.signup)}
           sx={{ marginTop: '20px' }}
         >
           Sign up

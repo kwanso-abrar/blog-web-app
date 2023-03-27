@@ -62,6 +62,7 @@ export const HeaderNavLink = styled(Link)(() => ({
   fontSize: '16px',
   alignSelf: 'center',
   lineHeight: '24px',
+  marginLeft: '40px',
   textDecoration: 'none'
 }));
 

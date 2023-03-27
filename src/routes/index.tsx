@@ -1,14 +1,15 @@
 import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
+import { ROUTES_PATH } from '../constants';
 import { CreatePost, Home, MyArticles, ReadBlog, ReadBlogBySearch, Settings } from 'pages';
 
 export const mainRoutes: RouteProps[] = [
   {
-    path: '',
+    path: ROUTES_PATH.home,
     element: <Home />
   },
   {
-    path: '/my-articles',
+    path: ROUTES_PATH.myArticles,
     element: (
       <Protected>
         <MyArticles />
@@ -16,7 +17,7 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: '/create',
+    path: ROUTES_PATH.createPost,
     element: (
       <Protected>
         <CreatePost />
@@ -24,7 +25,7 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: '/settings',
+    path: ROUTES_PATH.settings,
     element: (
       <Protected>
         <Settings />
@@ -32,11 +33,11 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: '/read/:id',
+    path: ROUTES_PATH.readBlog,
     element: <ReadBlog />
   },
   {
-    path: '/read-by-search/:search',
+    path: ROUTES_PATH.readBlogBySearch,
     element: <ReadBlogBySearch />
   }
 ];

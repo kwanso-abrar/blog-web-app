@@ -1,16 +1,16 @@
 import { useState } from 'react';
 import { removeToken } from 'utils';
+import { useNavigate } from 'react-router-dom';
 import { paperPropsSx } from 'styles/constants';
 import { useContextApi } from 'AppContext';
-import { HeaderSearchBar } from 'components';
 import { Logout, Settings } from '@mui/icons-material';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { HEADER_NAV_LINKS, ROUTES_PATH } from '../../../../constants';
+import { HeaderSearchBar, NavLinksList } from 'components';
 import { Box, Stack, Menu, MenuItem, ListItemIcon } from '@mui/material';
-import { GreyBox, CustomAvatar, HeaderButton, HeaderNavLink, HeaderWrapper } from 'styles';
+import { GreyBox, CustomAvatar, HeaderButton, HeaderWrapper } from 'styles';
 
 export const Header = () => {
   const navigate = useNavigate();
-  const location = useLocation();
   const { isLoggedIn, setIsLoggedIn } = useContextApi();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -27,28 +27,7 @@ export const Header = () => {
       <Stack direction="row">
         <Stack direction="row">
           <GreyBox />
-
-          <HeaderNavLink
-            to=""
-            style={{
-              marginLeft: '40px',
-              color: location.pathname === '/' ? '#111111' : 'rgba(102, 102, 102, 0.8)'
-            }}
-          >
-            Home
-          </HeaderNavLink>
-
-          {isLoggedIn && (
-            <HeaderNavLink
-              to="/my-articles"
-              style={{
-                marginLeft: '40px',
-                color: location.pathname === '/my-articles' ? '#111111' : 'rgba(102, 102, 102, 0.8)'
-              }}
-            >
-              My Articles
-            </HeaderNavLink>
-          )}
+          <NavLinksList isLoggedIn={isLoggedIn} data={HEADER_NAV_LINKS} />
         </Stack>
 
         <Stack sx={{ marginLeft: 'auto', alignItems: 'center' }} direction="row">
@@ -59,7 +38,7 @@ export const Header = () => {
           {isLoggedIn ? (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton variant="contained" onClick={() => navigate('/create')}>
+                <HeaderButton variant="contained" onClick={() => navigate(ROUTES_PATH.createPost)}>
                   Create Article
                 </HeaderButton>
               </Box>
@@ -83,7 +62,7 @@ export const Header = () => {
                 >
                   <MenuItem
                     onClick={() => {
-                      navigate('/settings');
+                      navigate(ROUTES_PATH.settings);
                       handleClose();
                     }}
                   >
@@ -109,13 +88,13 @@ export const Header = () => {
           ) : (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton variant="outlined" onClick={() => navigate('/signin')}>
+                <HeaderButton variant="outlined" onClick={() => navigate(ROUTES_PATH.signin)}>
                   Log in
                 </HeaderButton>
               </Box>
 
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton variant="contained" onClick={() => navigate('/signup')}>
+                <HeaderButton variant="contained" onClick={() => navigate(ROUTES_PATH.signup)}>
                   Sign up
                 </HeaderButton>
               </Box>
