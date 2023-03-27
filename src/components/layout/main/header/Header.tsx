@@ -31,7 +31,7 @@ export const Header = () => {
         </Stack>
 
         <Stack sx={{ marginLeft: 'auto', alignItems: 'center' }} direction="row">
-          <Box sx={{ width: '300px', height: '34px' }}>
+          <Box sx={{ width: '300px' }}>
             <HeaderSearchBar />
           </Box>
 
