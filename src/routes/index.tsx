@@ -5,11 +5,11 @@ import { CreatePost, Home, MyArticles, ReadBlog, ReadBlogBySearch, Settings } fr
 
 export const mainRoutes: RouteProps[] = [
   {
-    path: ROUTES_PATH.home,
+    path: ROUTES_PATH.home.path,
     element: <Home />
   },
   {
-    path: ROUTES_PATH.myArticles,
+    path: ROUTES_PATH.myArticles.path,
     element: (
       <Protected>
         <MyArticles />
@@ -17,7 +17,7 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: ROUTES_PATH.createPost,
+    path: ROUTES_PATH.createPost.path,
     element: (
       <Protected>
         <CreatePost />
@@ -25,7 +25,7 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: ROUTES_PATH.settings,
+    path: ROUTES_PATH.settings.path,
     element: (
       <Protected>
         <Settings />
@@ -33,11 +33,11 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: ROUTES_PATH.readBlog,
+    path: ROUTES_PATH.readBlog.path,
     element: <ReadBlog />
   },
   {
-    path: ROUTES_PATH.readBlogBySearch,
+    path: ROUTES_PATH.readBlogBySearch.path,
     element: <ReadBlogBySearch />
   }
 ];

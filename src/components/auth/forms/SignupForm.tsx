@@ -42,7 +42,7 @@ export const SignupForm = () => {
       if (data.signIn.accesstoken) {
         saveToken(data.signIn.accesstoken);
         setIsLoggedIn(true);
-        navigate(ROUTES_PATH.home);
+        navigate(ROUTES_PATH.home.path);
       }
     },
     onError: () => {

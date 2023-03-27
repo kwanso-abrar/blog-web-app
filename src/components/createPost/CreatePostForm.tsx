@@ -29,7 +29,7 @@ export const CreatePostForm = () => {
     onCompleted: (data) => {
       if (data.createPosts.response?.status === 201) {
         toast.success('Post created successfully');
-        navigate(ROUTES_PATH.myArticles);
+        navigate(ROUTES_PATH.myArticles.path);
       }
     },
     onError: (error) => {

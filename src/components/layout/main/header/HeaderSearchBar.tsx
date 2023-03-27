@@ -20,7 +20,12 @@ export const HeaderSearchBar = () => {
 
   const onFormSubmit = async (values: any) => {
     if (isDirty) {
-      navigate(`${ROUTES_PATH.readBlogBySearch.replace(':search', values.search)}`);
+      navigate(
+        `${ROUTES_PATH.readBlogBySearch.path.replace(
+          `:${ROUTES_PATH.readBlogBySearch.params.first}`,
+          values.search
+        )}`
+      );
       reset();
     }
   };

@@ -18,7 +18,14 @@ export const BlogCardsList = ({
       {data.map((post, index) => (
         <Box
           key={post.id}
-          onClick={() => navigate(`${ROUTES_PATH.readBlog.replace(':id', post.id.toString())}`)}
+          onClick={() =>
+            navigate(
+              `${ROUTES_PATH.readBlog.path.replace(
+                `:${ROUTES_PATH.readBlog.params.first}`,
+                post.id.toString()
+              )}`
+            )
+          }
         >
           <BlogCard
             text={post.text}
