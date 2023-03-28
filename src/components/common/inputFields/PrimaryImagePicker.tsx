@@ -24,7 +24,6 @@ export const PrimaryImagePicker = () => {
     <Stack direction="row" alignItems="center">
       <Button
         {...getRootProps({
-          className: 'dropzone',
           draggable: true,
           variant: 'outlined',
           sx: IMAGE_PICKER_BUTTON
