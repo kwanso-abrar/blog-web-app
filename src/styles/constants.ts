@@ -157,3 +157,17 @@ export const COMMENT_CARD_AVATAR_CONTAINER = {
   maxHeight: '32px',
   minHeight: '32px'
 };
+
+export const IMAGE_PICKER_BUTTON = {
+  padding: '11px 26px',
+  fontSize: '16px',
+  lineHeight: '24px',
+  borderRadius: '8px',
+  textTransform: 'none'
+};
+
+export const IMAGE_PICKET_LABEL = {
+  color: '#666666',
+  fontSize: '16px',
+  lineHeight: '24px'
+};

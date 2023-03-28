@@ -7,7 +7,12 @@ import { Box, MenuItem } from '@mui/material';
 import { PrimaryButton } from 'styles';
 import { useCreatePostMutation } from 'generated';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS, ROUTES_PATH } from '../../constants';
-import { PrimaryInputField, PrimaryLoader, PrimarySelectField } from 'components';
+import {
+  PrimaryLoader,
+  PrimaryInputField,
+  PrimaryImagePicker,
+  PrimarySelectField
+} from 'components';
 
 const schema = yupSchema.createPost;
 
@@ -74,7 +79,11 @@ export const CreatePostForm = () => {
           />
         </Box>
 
-        <Box sx={{ width: '356px', marginTop: '57px' }}>
+        <Box sx={{ marginTop: '40px' }}>
+          <PrimaryImagePicker />
+        </Box>
+
+        <Box sx={{ width: '356px', marginTop: '40px' }}>
           <PrimaryButton
             disabled={!(dirtyFields.text && dirtyFields.title)}
             variant="contained"
