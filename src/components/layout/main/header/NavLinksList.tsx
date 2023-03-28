@@ -1,4 +1,3 @@
-import { Box } from '@mui/material';
 import { useLocation } from 'react-router-dom';
 import { HeaderNavLink } from 'styles';
 import { NavLinksListProps } from 'types';
@@ -8,11 +7,12 @@ export const NavLinksList = ({ data, isLoggedIn }: NavLinksListProps) => {
   return (
     <>
       {data.map((link) => (
-        <Box key={link.id}>
+        <>
           {link.isProtected ? (
             isLoggedIn && (
               <HeaderNavLink
                 to={link.to}
+                key={link.id}
                 sx={{
                   color: location.pathname === link.to ? '#111111' : 'rgba(102, 102, 102, 0.8)'
                 }}
@@ -23,6 +23,7 @@ export const NavLinksList = ({ data, isLoggedIn }: NavLinksListProps) => {
           ) : (
             <HeaderNavLink
               to={link.to}
+              key={link.id}
               sx={{
                 color: location.pathname === link.to ? '#111111' : 'rgba(102, 102, 102, 0.8)'
               }}
@@ -30,7 +31,7 @@ export const NavLinksList = ({ data, isLoggedIn }: NavLinksListProps) => {
               {link.text}
             </HeaderNavLink>
           )}
-        </Box>
+        </>
       ))}
     </>
   );
