@@ -75,7 +75,19 @@ export const CreatePostForm = () => {
         </Box>
 
         <Box sx={{ width: '715px', marginTop: '60px' }}>
-          <PrimarySelectField name="minToRead" label="Min. to read" control={control}>
+          <PrimarySelectField
+            name="minToRead"
+            label="Min. to read"
+            control={control}
+            props={{
+              sx: {
+                '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input':
+                  {
+                    paddingLeft: '24px'
+                  }
+              }
+            }}
+          >
             {CREATE_POST_MIN_TO_READ_SELECT_OPTIONS.map((options, index) => (
               <MenuItem value={options.value} key={index + options.value}>
                 {options.label}
