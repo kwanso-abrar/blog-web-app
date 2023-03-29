@@ -20,6 +20,7 @@ const schema = yupSchema.createPost;
 
 export const CreatePostForm = () => {
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
   const [images, setImages] = useState<File[]>();
 
   const {
@@ -33,8 +34,9 @@ export const CreatePostForm = () => {
     }
   });
 
-  const [createPost, { loading }] = useCreatePostMutation({
+  const [createPost] = useCreatePostMutation({
     onCompleted: (data) => {
+      setLoading(false);
       if (data.createPosts.response?.status === 201) {
         toast.success('Post created successfully');
         navigate(ROUTES_PATH.myArticles.path);
@@ -49,6 +51,7 @@ export const CreatePostForm = () => {
   });
 
   const onFormSubmit = async (values: any) => {
+    setLoading(true);
     if (images) {
       const response = await uploadImage(images[0]);
       if (response?.data) {
