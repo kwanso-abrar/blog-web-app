@@ -1,5 +1,4 @@
 import { toast } from 'react-hot-toast';
-import { useEffect } from 'react';
 import { BLOGS_PER_PAGE } from '../constants';
 import { Box, Typography } from '@mui/material';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
@@ -16,16 +15,13 @@ export const MyArticles = () => {
       skip: 0,
       take: BLOGS_PER_PAGE
     },
-    onError: (error) => toast.error(error.message)
+    onError: (error) => toast.error(error.message),
+    fetchPolicy: 'no-cache'
   });
 
   const onRefetch = (page: number) => {
     refetch({ skip: BLOGS_PER_PAGE * (page - 1), take: BLOGS_PER_PAGE });
   };
-
-  useEffect(() => {
-    refetch();
-  }, []);
 
   return (
     <Box>
