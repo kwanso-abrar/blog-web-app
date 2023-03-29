@@ -120,3 +120,13 @@ export type NavLinksListProps = {
   data: HeaderNavLinkType[];
   isLoggedIn: boolean;
 };
+
+export type SelectedImageCardProps = {
+  fileName: string;
+  onClickCloseButton: () => void;
+};
+
+export type PrimaryImagePickerProps = {
+  images: File[] | undefined;
+  setImages: React.Dispatch<React.SetStateAction<File[] | undefined>>;
+};

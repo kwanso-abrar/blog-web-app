@@ -5,6 +5,7 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, MenuItem } from '@mui/material';
 import { PrimaryButton } from 'styles';
+import { useEffect, useState } from 'react';
 import { useCreatePostMutation } from 'generated';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS, ROUTES_PATH } from '../../constants';
 import {
@@ -18,6 +19,7 @@ const schema = yupSchema.createPost;
 
 export const CreatePostForm = () => {
   const navigate = useNavigate();
+  const [images, setImages] = useState<File[]>();
 
   const {
     handleSubmit,
@@ -54,6 +56,10 @@ export const CreatePostForm = () => {
     });
   };
 
+  useEffect(() => {
+    console.log('image: ', images);
+  }, [images]);
+
   return (
     <Box>
       <PrimaryLoader isLoading={loading} />
@@ -61,6 +67,7 @@ export const CreatePostForm = () => {
         <Box sx={{ width: '715px' }}>
           <PrimaryInputField name="title" control={control} label="Give it a title" />
         </Box>
+
         <Box sx={{ width: '715px', marginTop: '60px' }}>
           <PrimarySelectField name="minToRead" label="Min. to read" control={control}>
             {CREATE_POST_MIN_TO_READ_SELECT_OPTIONS.map((options, index) => (
@@ -70,6 +77,7 @@ export const CreatePostForm = () => {
             ))}
           </PrimarySelectField>
         </Box>
+
         <Box sx={{ width: '715px', marginTop: '60px' }}>
           <PrimaryInputField
             name="text"
@@ -80,12 +88,12 @@ export const CreatePostForm = () => {
         </Box>
 
         <Box sx={{ marginTop: '40px' }}>
-          <PrimaryImagePicker />
+          <PrimaryImagePicker images={images} setImages={setImages} />
         </Box>
 
         <Box sx={{ width: '356px', marginTop: '40px' }}>
           <PrimaryButton
-            disabled={!(dirtyFields.text && dirtyFields.title)}
+            disabled={!(dirtyFields.text && dirtyFields.title) || typeof images == 'undefined'}
             variant="contained"
             fullWidth
             type="submit"

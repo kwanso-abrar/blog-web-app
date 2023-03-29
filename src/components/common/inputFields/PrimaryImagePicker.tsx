@@ -1,44 +1,47 @@
-import { useEffect, useState } from 'react';
 import { useDropzone } from 'react-dropzone';
+import { SelectedImageCard } from '../cards';
+import { PrimaryImagePickerProps } from 'types';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { IMAGE_PICKER_BUTTON, IMAGE_PICKET_LABEL } from 'styles/constants';
 
-export const PrimaryImagePicker = () => {
-  const [files, setFiles] = useState<File[]>();
-
+export const PrimaryImagePicker = ({ images, setImages }: PrimaryImagePickerProps) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': []
     },
     onDrop: (acceptedFiles) => {
-      setFiles(acceptedFiles);
+      setImages(acceptedFiles);
     },
     multiple: false
   });
 
-  useEffect(() => {
-    console.log('files', files);
-  }, [files]);
-
   return (
     <Stack direction="row" alignItems="center">
-      <Button
-        {...getRootProps({
-          draggable: true,
-          variant: 'outlined',
-          sx: IMAGE_PICKER_BUTTON
-        })}
-      >
-        <input {...getInputProps()} />
-        <p>Browse</p>
-      </Button>
+      {!images && (
+        <>
+          <Button
+            {...getRootProps({
+              draggable: true,
+              variant: 'outlined',
+              sx: IMAGE_PICKER_BUTTON
+            })}
+          >
+            <input {...getInputProps()} />
+            Browse
+          </Button>
 
-      {!files && (
-        <Box sx={{ marginLeft: '13px' }}>
-          <Typography sx={IMAGE_PICKET_LABEL}>Supports: JPG, JPEG2000, PNG</Typography>
-        </Box>
+          <Box sx={{ marginLeft: '13px' }}>
+            <Typography sx={IMAGE_PICKET_LABEL}>Supports: JPG, JPEG2000, PNG</Typography>
+          </Box>
+        </>
       )}
-      {files && <img src={URL.createObjectURL(files[0])} width={200} />}
+
+      {images && (
+        <SelectedImageCard
+          fileName={images[0].name}
+          onClickCloseButton={() => setImages(undefined)}
+        />
+      )}
     </Stack>
   );
 };

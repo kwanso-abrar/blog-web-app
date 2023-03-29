@@ -174,3 +174,10 @@ export const SecondaryButton = styled(Button)(() => ({
   borderRadius: '8px',
   textTransform: 'capitalize'
 }));
+
+export const CANCEL_SELECTED_IMAGE_BUTTON_CONTAINER = styled(Box)({
+  ':hover': { cursor: 'pointer' },
+  width: '24px',
+  height: '24px',
+  marginLeft: '18px'
+});

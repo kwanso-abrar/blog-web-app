@@ -171,3 +171,10 @@ export const IMAGE_PICKET_LABEL = {
   fontSize: '16px',
   lineHeight: '24px'
 };
+
+export const SELECTED_IMAGE_NAME = {
+  color: '#222222',
+  fontSize: '16px',
+  lineHeight: '24px',
+  marginLeft: '15px'
+};
