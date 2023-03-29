@@ -1,11 +1,12 @@
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { yupSchema } from 'formValidations';
+import { uploadImage } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, MenuItem } from '@mui/material';
 import { PrimaryButton } from 'styles';
-import { useEffect, useState } from 'react';
 import { useCreatePostMutation } from 'generated';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS, ROUTES_PATH } from '../../constants';
 import {
@@ -48,17 +49,19 @@ export const CreatePostForm = () => {
   });
 
   const onFormSubmit = async (values: any) => {
-    createPost({
-      variables: {
-        text: values.text.replace(/(\r\n|\r|\n)/g, '\n'),
-        title: values.title
+    if (images) {
+      const response = await uploadImage(images[0]);
+      if (response?.data) {
+        createPost({
+          variables: {
+            text: values.text.replace(/(\r\n|\r|\n)/g, '\n'),
+            title: values.title,
+            image: response.data.url
+          }
+        });
       }
-    });
+    }
   };
-
-  useEffect(() => {
-    console.log('image: ', images);
-  }, [images]);
 
   return (
     <Box>

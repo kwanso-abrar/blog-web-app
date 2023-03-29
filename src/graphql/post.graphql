@@ -1,5 +1,5 @@
-mutation createPost($title: String!, $text: String!) {
-  createPosts(createPostDto: { title: $title, text: $text }) {
+mutation createPost($title: String!, $text: String!, $image: String!) {
+  createPosts(createPostDto: { title: $title, text: $text, image: $image }) {
     response {
       message
       error
@@ -31,6 +31,7 @@ query findAllPosts($skip: Int!, $take: Int!) {
       id
       title
       text
+      image
       userId
       user {
         name
@@ -67,6 +68,7 @@ query findPostById($id: Float!) {
       id
       title
       text
+      image
       userId
       user {
         name
@@ -104,10 +106,11 @@ query replies($commentId: Float!) {
 }
 
 query getPosts($search: String!) {
-  getPosts(search: $search) {
+  getPosts(search: $search, paginationInput: { skip: 0, take: 1 }) {
     id
     title
     text
+    image
     userId
     user {
       name

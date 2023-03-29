@@ -1,6 +1,7 @@
 import toast from 'react-hot-toast';
 import { Box } from '@mui/material';
 import { useParams } from 'react-router-dom';
+import { BlogThumbnail1 } from 'assets';
 import { Comments, useFindPostByIdQuery } from 'generated';
 import { BlogCommentSection, BlogContent, PrimaryLoader } from 'components';
 
@@ -29,6 +30,7 @@ export const ReadBlog = () => {
         text={post?.findPostById.post?.text || ''}
         title={post?.findPostById.post?.title || ''}
         authorName={post?.findPostById.post?.user.name || ''}
+        image={post?.findPostById.post?.image || BlogThumbnail1}
       />
       <Box sx={{ marginTop: '60px', minWidth: '100%' }}>
         <BlogCommentSection

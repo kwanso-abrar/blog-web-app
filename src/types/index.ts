@@ -91,8 +91,9 @@ export type CommentCardProps = {
 };
 
 export type BlogContentProps = {
-  title: string;
   text: string;
+  image: string;
+  title: string;
   authorName: string;
 };
 

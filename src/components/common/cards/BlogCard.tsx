@@ -22,7 +22,12 @@ export const BlogCard = ({
   <Box sx={{ ...styles, ':hover': { cursor: 'pointer' }, maxWidth: '915px' }}>
     <Stack direction="row">
       <Box sx={PRIMARY_BLOG_CARD_IMAGE_CONTAINER}>
-        <img src={thumbnail} width="100%" />
+        <img
+          src={thumbnail}
+          width="100%"
+          height="100%"
+          style={{ objectFit: 'cover', borderRadius: '5px' }}
+        />
       </Box>
       <Box sx={{ marginLeft: '34px' }}>
         <BlogTagChip>{tag}</BlogTagChip>
