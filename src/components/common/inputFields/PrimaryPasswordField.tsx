@@ -12,7 +12,7 @@ export const PrimaryPasswordField = ({
   helperText = '',
   placeholder = ''
 }: PrimaryPasswordFieldProps) => {
-  const [showPassword, setShowPassword] = useState(true);
+  const [showPassword, setShowPassword] = useState(false);
   const handleClickShowPassword = () => setShowPassword((show) => !show);
 
   return (

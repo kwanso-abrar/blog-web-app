@@ -9,7 +9,7 @@ export const Settings = () => {
         Account Setting
       </Typography>
 
-      <Box sx={{ marginTop: '80px' }}>
+      <Box sx={{ marginTop: '55px' }}>
         <SettingsForm />
       </Box>
     </Box>

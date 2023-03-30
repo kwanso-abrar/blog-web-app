@@ -1,7 +1,7 @@
-import { Box } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { PrimaryButton } from 'styles';
+import { Box, Typography } from '@mui/material';
 import { PrimaryImagePicker, PrimaryInputField, PrimaryPasswordField } from 'components';
 
 export const SettingsForm = () => {
@@ -25,23 +25,28 @@ export const SettingsForm = () => {
   return (
     <Box>
       <form onSubmit={handleSubmit(onFormSubmit)}>
-        <Box sx={{ width: '715px' }}>
+        <Typography variant="h2">Change Username</Typography>
+        <Box sx={{ marginTop: '45px', width: '715px' }}>
           <PrimaryInputField name="name" control={control} label="Username" />
         </Box>
-
-        <Box sx={{ marginTop: '60px', width: '712px' }}>
+        <Typography variant="h2" sx={{ marginTop: '50px' }}>
+          Change password
+        </Typography>
+        <Box sx={{ marginTop: '45px', width: '712px' }}>
           <PrimaryPasswordField control={control} label="New Password" name="password" />
         </Box>
 
-        <Box sx={{ marginTop: '60px', width: '712px' }}>
+        <Box sx={{ marginTop: '45px', width: '712px' }}>
           <PrimaryPasswordField control={control} label="Confirm Password" name="confirmPassword" />
         </Box>
-
-        <Box sx={{ marginTop: '40px' }}>
-          <PrimaryImagePicker images={images} setImages={setImages} buttonText="Avatar" />
+        <Typography variant="h2" sx={{ marginTop: '50px' }}>
+          Change Avatar
+        </Typography>
+        <Box sx={{ marginTop: '20px' }}>
+          <PrimaryImagePicker images={images} setImages={setImages} buttonText="Browse" />
         </Box>
 
-        <Box sx={{ width: '356px', marginTop: '40px' }}>
+        <Box sx={{ width: '356px', marginTop: '55px' }}>
           <PrimaryButton
             disabled={
               !(dirtyFields.password && dirtyFields.confirmPassword) &&
@@ -52,7 +57,7 @@ export const SettingsForm = () => {
             fullWidth
             type="submit"
           >
-            Save
+            Save Changes
           </PrimaryButton>
         </Box>
       </form>
