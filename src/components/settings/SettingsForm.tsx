@@ -1,53 +1,58 @@
 import { Box } from '@mui/material';
+import { useForm } from 'react-hook-form';
 import { useState } from 'react';
-import { PasswordInputAdornment } from 'components/common/PasswordInputAdornment';
-import { InputField, PrimaryButton } from 'styles';
+import { PrimaryButton } from 'styles';
+import { PrimaryImagePicker, PrimaryInputField, PrimaryPasswordField } from 'components';
 
 export const SettingsForm = () => {
-  const handleClickShowPassword = () => setShowPassword((show) => !show);
-  const handleClickShowRepeatPassword = () => setShowRepeatPassword((show) => !show);
-  const [showPassword, setShowPassword] = useState(true);
-  const [showRepeatPassword, setShowRepeatPassword] = useState(true);
+  const [images, setImages] = useState<File[]>();
+  const {
+    handleSubmit,
+    control,
+    formState: { dirtyFields }
+  } = useForm({
+    defaultValues: {
+      name: '',
+      password: '',
+      confirmPassword: ''
+    }
+  });
+
+  const onFormSubmit = async (values: any) => {
+    console.log('values', values);
+  };
+
   return (
     <Box>
-      <form>
+      <form onSubmit={handleSubmit(onFormSubmit)}>
         <Box sx={{ width: '715px' }}>
-          <InputField
-            helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
-            variant="outlined"
-            fullWidth
-            label="Type new password"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              endAdornment: (
-                <PasswordInputAdornment
-                  showPassword={showPassword}
-                  onhandleClickShowPassword={handleClickShowPassword}
-                />
-              )
-            }}
-          />
+          <PrimaryInputField name="name" control={control} label="Username" />
         </Box>
-        <Box sx={{ width: '715px', marginTop: '70px' }}>
-          <InputField
-            helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
-            variant="outlined"
-            fullWidth
-            label="Type new password again"
-            InputLabelProps={{ shrink: true }}
-            InputProps={{
-              endAdornment: (
-                <PasswordInputAdornment
-                  showPassword={showRepeatPassword}
-                  onhandleClickShowPassword={handleClickShowRepeatPassword}
-                />
-              )
-            }}
-          />
+
+        <Box sx={{ marginTop: '60px', width: '712px' }}>
+          <PrimaryPasswordField control={control} label="New Password" name="password" />
         </Box>
-        <Box sx={{ width: '356px', marginTop: '57px' }}>
-          <PrimaryButton disabled variant="contained" fullWidth>
-            Save changes
+
+        <Box sx={{ marginTop: '60px', width: '712px' }}>
+          <PrimaryPasswordField control={control} label="Confirm Password" name="confirmPassword" />
+        </Box>
+
+        <Box sx={{ marginTop: '40px' }}>
+          <PrimaryImagePicker images={images} setImages={setImages} buttonText="Avatar" />
+        </Box>
+
+        <Box sx={{ width: '356px', marginTop: '40px' }}>
+          <PrimaryButton
+            disabled={
+              !(dirtyFields.password && dirtyFields.confirmPassword) &&
+              !dirtyFields.name &&
+              typeof images == 'undefined'
+            }
+            variant="contained"
+            fullWidth
+            type="submit"
+          >
+            Save
           </PrimaryButton>
         </Box>
       </form>

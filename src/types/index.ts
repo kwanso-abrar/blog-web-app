@@ -134,4 +134,5 @@ export type SelectedImageCardProps = {
 export type PrimaryImagePickerProps = {
   images: File[] | undefined;
   setImages: React.Dispatch<React.SetStateAction<File[] | undefined>>;
+  buttonText: string;
 };

@@ -4,7 +4,7 @@ import { PrimaryImagePickerProps } from 'types';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { IMAGE_PICKER_BUTTON, IMAGE_PICKET_LABEL } from 'styles/constants';
 
-export const PrimaryImagePicker = ({ images, setImages }: PrimaryImagePickerProps) => {
+export const PrimaryImagePicker = ({ images, setImages, buttonText }: PrimaryImagePickerProps) => {
   const { getRootProps, getInputProps } = useDropzone({
     accept: {
       'image/*': []
@@ -27,7 +27,7 @@ export const PrimaryImagePicker = ({ images, setImages }: PrimaryImagePickerProp
             })}
           >
             <input {...getInputProps()} />
-            Browse
+            {buttonText}
           </Button>
 
           <Box sx={{ marginLeft: '13px' }}>

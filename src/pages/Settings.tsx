@@ -8,10 +8,8 @@ export const Settings = () => {
       <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
         Account Setting
       </Typography>
-      <Typography variant="h2" sx={{ marginTop: '65px' }}>
-        Change password
-      </Typography>
-      <Box sx={{ marginTop: '62px' }}>
+
+      <Box sx={{ marginTop: '80px' }}>
         <SettingsForm />
       </Box>
     </Box>

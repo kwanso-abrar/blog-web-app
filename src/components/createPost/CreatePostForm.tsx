@@ -116,7 +116,7 @@ export const CreatePostForm = () => {
         </Box>
 
         <Box sx={{ marginTop: '40px' }}>
-          <PrimaryImagePicker images={images} setImages={setImages} />
+          <PrimaryImagePicker images={images} setImages={setImages} buttonText="Browse" />
         </Box>
 
         <Box sx={{ width: '356px', marginTop: '40px' }}>
