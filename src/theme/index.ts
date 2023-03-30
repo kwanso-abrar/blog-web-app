@@ -38,6 +38,10 @@ const theme = createTheme({
             top: '0'
           },
 
+          '& .css-1uv55yn-MuiInputBase-root-MuiOutlinedInput-root': {
+            paddingRight: '0px'
+          },
+
           '& legend': {
             display: 'none'
           },
