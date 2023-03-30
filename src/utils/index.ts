@@ -44,3 +44,9 @@ export const uploadImage = async (image: File): Promise<AxiosResponse<any, any> 
 export const getTimeFromNow = (date: string): string => {
   return dayjs(new Date(date)).fromNow().toString();
 };
+
+export const getFormatDateInDDMMYYYY = (date: string): string => {
+  return dayjs(new Date(parseInt(date)).toDateString())
+    .format('DD MMMM YYYY')
+    .toString();
+};

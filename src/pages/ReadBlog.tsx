@@ -27,10 +27,11 @@ export const ReadBlog = () => {
     <Box sx={{ maxWidth: '856px' }}>
       <PrimaryLoader isLoading={loading} />
       <BlogContent
+        date={post?.findPostById.post?.createdAt || ''}
         text={post?.findPostById.post?.text || ''}
+        image={post?.findPostById.post?.image || BlogThumbnail1}
         title={post?.findPostById.post?.title || ''}
         authorName={post?.findPostById.post?.user.name || ''}
-        image={post?.findPostById.post?.image || BlogThumbnail1}
       />
       <Box sx={{ marginTop: '60px', minWidth: '100%' }}>
         <BlogCommentSection

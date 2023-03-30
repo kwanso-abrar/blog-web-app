@@ -33,6 +33,7 @@ query findAllPosts($skip: Int!, $take: Int!) {
       text
       image
       userId
+      createdAt
       user {
         name
         email
@@ -71,6 +72,7 @@ query findPostById($id: Float!) {
       text
       image
       userId
+      createdAt
       user {
         name
         email
