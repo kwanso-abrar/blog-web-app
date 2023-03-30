@@ -75,6 +75,43 @@ query findAllPosts($skip: Int!, $take: Int!) {
   }
 }
 
+query myPosts($skip: Int!, $take: Int!) {
+  myPosts(paginationInput: { skip: $skip, take: $take }) {
+    total
+    items {
+      id
+      title
+      text
+      image
+      tag
+      minutesToRead
+      userId
+      createdAt
+      user {
+        name
+        email
+      }
+      comments {
+        id
+        text
+        userId
+        postsId
+        parentId
+        replyCount
+        user {
+          name
+          email
+        }
+        createdAt
+      }
+      user {
+        name
+        email
+      }
+    }
+  }
+}
+
 query findPostById($id: Float!) {
   findPostById(id: $id) {
     response {

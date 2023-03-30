@@ -1,8 +1,8 @@
 import { toast } from 'react-hot-toast';
 import { BLOGS_PER_PAGE } from '../constants';
 import { Box, Typography } from '@mui/material';
+import { Posts, useMyPostsQuery } from 'generated';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
-import { Posts, useFindAllPostsQuery } from 'generated';
 import { BlogCardsList, PrimaryLoader } from 'components';
 
 export const MyArticles = () => {
@@ -10,7 +10,7 @@ export const MyArticles = () => {
     data: allPosts,
     loading,
     refetch
-  } = useFindAllPostsQuery({
+  } = useMyPostsQuery({
     variables: {
       skip: 0,
       take: BLOGS_PER_PAGE
@@ -32,7 +32,7 @@ export const MyArticles = () => {
       </Typography>
 
       <Typography sx={{ marginTop: '20px' }}>
-        Results: <b>{allPosts?.findAllPosts.total}</b>
+        Results: <b>{allPosts?.myPosts.total}</b>
       </Typography>
 
       <Box sx={{ marginTop: '48px' }}>
@@ -40,8 +40,8 @@ export const MyArticles = () => {
           paginate
           onRefetch={onRefetch}
           perPage={BLOGS_PER_PAGE}
-          total={allPosts?.findAllPosts.total || 0}
-          data={(allPosts?.findAllPosts.items as Posts[]) || []}
+          total={allPosts?.myPosts.total || 0}
+          data={(allPosts?.myPosts.items as Posts[]) || []}
         />
       </Box>
     </Box>

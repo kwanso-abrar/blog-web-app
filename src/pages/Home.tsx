@@ -1,28 +1,42 @@
-import { BlogCard } from 'components';
+import toast from 'react-hot-toast';
+import { BLOGS_PER_PAGE } from '../constants';
 import { Box, Typography } from '@mui/material';
-import { HOME_PAGE_BLOGS } from 'stub';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
+import { Posts, useFindAllPostsQuery } from 'generated';
+import { BlogCardsList, PrimaryLoader } from 'components';
 
-export const Home = () => (
-  <Box>
-    <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
-      Recent Posts
-    </Typography>
-    <Box marginTop="60px">
-      {HOME_PAGE_BLOGS.map((blog, index) => (
-        <BlogCard
-          styles={{ marginTop: index > 0 ? '64px' : '0px' }}
-          key={blog.id}
-          tag={blog.tag}
-          date={blog.date}
-          text={blog.text}
-          title={blog.title}
-          author={blog.author}
-          duration={blog.duration}
-          thumbnail={blog.thumbnail}
-          authorAvatar={blog.authorAvatar}
+export const Home = () => {
+  const {
+    data: allPosts,
+    loading,
+    refetch
+  } = useFindAllPostsQuery({
+    variables: {
+      skip: 0,
+      take: BLOGS_PER_PAGE
+    },
+    onError: (error) => toast.error(error.message),
+    fetchPolicy: 'cache-and-network'
+  });
+
+  const onRefetch = (page: number) => {
+    refetch({ skip: BLOGS_PER_PAGE * (page - 1), take: BLOGS_PER_PAGE });
+  };
+  return (
+    <Box>
+      <PrimaryLoader isLoading={loading} />
+      <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
+        Recent Posts
+      </Typography>
+      <Box sx={{ marginTop: '48px' }}>
+        <BlogCardsList
+          paginate
+          onRefetch={onRefetch}
+          perPage={BLOGS_PER_PAGE}
+          total={allPosts?.findAllPosts.total || 0}
+          data={(allPosts?.findAllPosts.items as Posts[]) || []}
         />
-      ))}
+      </Box>
     </Box>
-  </Box>
-);
+  );
+};
