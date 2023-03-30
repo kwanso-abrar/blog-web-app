@@ -31,7 +31,7 @@ export const CommentCard = ({
 
   const [fetchReplies, { data, loading }] = useRepliesLazyQuery({
     onError: (error) => toast.error(error.message),
-    fetchPolicy: 'no-cache'
+    fetchPolicy: 'cache-and-network'
   });
 
   const onRetchRepliesData = () => {

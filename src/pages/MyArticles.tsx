@@ -16,7 +16,7 @@ export const MyArticles = () => {
       take: BLOGS_PER_PAGE
     },
     onError: (error) => toast.error(error.message),
-    fetchPolicy: 'no-cache'
+    fetchPolicy: 'cache-and-network'
   });
 
   const onRefetch = (page: number) => {
