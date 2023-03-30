@@ -14,6 +14,7 @@ import {
   COMMENT_CARD_USER_NAME,
   COMMENT_CARD_AVATAR_CONTAINER
 } from 'styles/constants';
+import { getTimeFromNow } from 'utils';
 
 export const CommentCard = ({
   id,
@@ -22,7 +23,8 @@ export const CommentCard = ({
   postId,
   userName,
   isParent = false,
-  totallReplies
+  totallReplies,
+  timeFromNow
 }: CommentCardProps) => {
   const [showReplies, setShowReplies] = useState(false);
   const { isLoggedIn } = useContextApi();
@@ -45,7 +47,7 @@ export const CommentCard = ({
       <Box sx={{ marginLeft: '16px', flexGrow: '1' }}>
         <Stack direction="row">
           <Typography sx={COMMENT_CARD_USER_NAME}>{userName}</Typography>
-          <Typography sx={COMMENT_CARD_TIME}>3 mins ago</Typography>
+          <Typography sx={COMMENT_CARD_TIME}>{timeFromNow}</Typography>
         </Stack>
         <Typography sx={COMMENT_CARD_TEXT}>{text}</Typography>
         {!showReplies && totallReplies > 0 ? (
@@ -79,6 +81,7 @@ export const CommentCard = ({
                     isParent={false}
                     userName={reply.user.name}
                     totallReplies={reply.replyCount || 0}
+                    timeFromNow={getTimeFromNow(reply.createdAt)}
                   />
                 </Box>
               ))}

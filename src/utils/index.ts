@@ -1,5 +1,9 @@
+import dayjs from 'dayjs';
+import relativeTime from 'dayjs/plugin/relativeTime';
 import axios, { AxiosResponse } from 'axios';
 import { BLOGII_AUTH_TOKEN_KEY } from '../constants';
+
+dayjs.extend(relativeTime);
 
 export function saveToken(token: string) {
   localStorage.setItem(BLOGII_AUTH_TOKEN_KEY, token);
@@ -35,4 +39,8 @@ export const uploadImage = async (image: File): Promise<AxiosResponse<any, any> 
   } catch (error) {
     return undefined;
   }
+};
+
+export const getTimeFromNow = (date: string): string => {
+  return dayjs(new Date(date)).fromNow().toString();
 };

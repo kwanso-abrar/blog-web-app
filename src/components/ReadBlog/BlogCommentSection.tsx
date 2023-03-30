@@ -1,5 +1,6 @@
 import { useContextApi } from 'AppContext';
 import { UserDummyImage } from 'assets';
+import { getTimeFromNow } from 'utils';
 import { CommentCardContainer } from 'styles';
 import { Box, Stack, Typography } from '@mui/material';
 import { AddComment, CommentCard } from 'components';
@@ -39,6 +40,7 @@ export const BlogCommentSection = ({ postId, comments, onRefetch }: BlogCommentS
               isParent={true}
               userName={comment.user.name}
               totallReplies={comment.replyCount || 0}
+              timeFromNow={getTimeFromNow(comment.createdAt)}
             />
           </CommentCardContainer>
         ))}

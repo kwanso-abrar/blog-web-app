@@ -48,6 +48,7 @@ query findAllPosts($skip: Int!, $take: Int!) {
           name
           email
         }
+        createdAt
       }
       user {
         name
@@ -85,6 +86,7 @@ query findPostById($id: Float!) {
           name
           email
         }
+        createdAt
       }
     }
   }
@@ -102,6 +104,7 @@ query replies($commentId: Float!) {
       name
       email
     }
+    createdAt
   }
 }
 
@@ -116,5 +119,6 @@ query getPosts($search: String!) {
       name
       email
     }
+    createdAt
   }
 }

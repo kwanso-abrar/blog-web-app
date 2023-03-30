@@ -88,6 +88,7 @@ export type CommentCardProps = {
   userName: string;
   isParent?: boolean;
   totallReplies: number;
+  timeFromNow: string;
 };
 
 export type BlogContentProps = {
