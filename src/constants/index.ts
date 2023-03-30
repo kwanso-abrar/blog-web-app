@@ -17,16 +17,24 @@ export const ROUTES_PATH = {
 
 export const CREATE_POST_MIN_TO_READ_SELECT_OPTIONS = [
   {
-    value: 1,
+    value: '1 Min. To Read',
     label: '1 Min. To Read'
   },
   {
-    value: 2,
-    label: '2 Min. To Read'
+    value: '2 Mins. To Read',
+    label: '2 Mins. To Read'
   },
   {
-    value: 3,
-    label: '3 Min. To Read'
+    value: '3 Mins. To Read',
+    label: '3 Mins. To Read'
+  },
+  {
+    value: '4 Mins. To Read',
+    label: '4 Mins. To Read'
+  },
+  {
+    value: '5 Mins. To Read',
+    label: '5 Mins. To Read'
   }
 ];
 

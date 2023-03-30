@@ -29,13 +29,13 @@ export const BlogCardsList = ({
           }
         >
           <BlogCard
-            tag={index % 2 === 0 ? 'Dummy' : 'Fashion'}
+            tag={post.tag ? post.tag : 'miscellaneous'}
             date={getFormatDateInDDMMYYYY(post.createdAt)}
             text={post.text}
             title={post.title}
             author={post.user.name}
             styles={{ marginTop: index > 0 ? '64px' : '0px' }}
-            duration={index % 2 === 0 ? '3 min. to read' : '5 min. to read'}
+            duration={post.minutesToRead ? post.minutesToRead : '1 Min. To Read'}
             thumbnail={post.image ? post.image : BlogImage1}
             authorAvatar={UserDummyImage}
           />

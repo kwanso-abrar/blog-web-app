@@ -27,10 +27,12 @@ export const ReadBlog = () => {
     <Box sx={{ maxWidth: '856px' }}>
       <PrimaryLoader isLoading={loading} />
       <BlogContent
+        tag={post?.findPostById.post?.tag || 'miscellaneous'}
         date={post?.findPostById.post?.createdAt || ''}
         text={post?.findPostById.post?.text || ''}
         image={post?.findPostById.post?.image || BlogThumbnail1}
         title={post?.findPostById.post?.title || ''}
+        duration={post?.findPostById.post?.minutesToRead || '1 Min. To Read'}
         authorName={post?.findPostById.post?.user.name || ''}
       />
       <Box sx={{ marginTop: '60px', minWidth: '100%' }}>

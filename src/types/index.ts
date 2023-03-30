@@ -92,10 +92,12 @@ export type CommentCardProps = {
 };
 
 export type BlogContentProps = {
+  tag: string;
   date: string;
   text: string;
   image: string;
   title: string;
+  duration: string;
   authorName: string;
 };
 

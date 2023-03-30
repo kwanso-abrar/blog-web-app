@@ -6,11 +6,19 @@ import { Box, Stack, Typography } from '@mui/material';
 import { getFormatDateInDDMMYYYY } from 'utils';
 import { BLOG_TEXT, READ_BLOG_TIME_TO_READ_TAG_CHIP } from 'styles/constants';
 
-export const BlogContent = ({ text, title, authorName, image, date }: BlogContentProps) => (
+export const BlogContent = ({
+  tag,
+  date,
+  text,
+  image,
+  title,
+  duration,
+  authorName
+}: BlogContentProps) => (
   <>
     <Stack direction="row">
-      <BlogTagChip sx={{ background: '#F2F8F7', color: '#666666' }}>Travel</BlogTagChip>
-      <BlogTagChip sx={READ_BLOG_TIME_TO_READ_TAG_CHIP}>3 mins. to read</BlogTagChip>
+      <BlogTagChip sx={{ background: '#F2F8F7', color: '#666666' }}>{tag}</BlogTagChip>
+      <BlogTagChip sx={READ_BLOG_TIME_TO_READ_TAG_CHIP}>{duration}</BlogTagChip>
     </Stack>
     <Typography variant="h1" sx={{ marginTop: '20px' }}>
       {title}

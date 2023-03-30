@@ -20,13 +20,15 @@ const password = yup
 
 const text = yup.string().default('').required('Text is required');
 
+const tag = yup.string().default('').required('Tag is required ');
+
 const title = yup
   .string()
   .default('')
   .required('Title is required')
   .min(6, 'title should be of minimum 6 words');
 
-const minToRead = yup.number().default(1).required('Minutes to read is required');
+const minToRead = yup.string().required('Minutes to read is required');
 
 const signUp = yup.object({
   name,
@@ -40,6 +42,7 @@ const signIn = yup.object({
 });
 
 const createPost = yup.object({
+  tag,
   text,
   title,
   minToRead

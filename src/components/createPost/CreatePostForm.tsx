@@ -30,7 +30,8 @@ export const CreatePostForm = () => {
   } = useForm({
     resolver: yupResolver(schema),
     defaultValues: {
-      ...schema.getDefault()
+      ...schema.getDefault(),
+      minToRead: CREATE_POST_MIN_TO_READ_SELECT_OPTIONS[0].value
     }
   });
 
@@ -43,6 +44,7 @@ export const CreatePostForm = () => {
       }
     },
     onError: (error) => {
+      setLoading(false);
       if (error.message.includes('Forbidden resource')) {
         toast.error('user is not logged in!');
       }
@@ -58,10 +60,14 @@ export const CreatePostForm = () => {
         createPost({
           variables: {
             text: values.text.replace(/(\r\n|\r|\n)/g, '\n'),
+            tag: values.tag,
+            image: response.data.url,
             title: values.title,
-            image: response.data.url
+            minutesToRead: values.minToRead
           }
         });
+      } else {
+        setLoading(false);
       }
     }
   };
@@ -72,6 +78,10 @@ export const CreatePostForm = () => {
       <form onSubmit={handleSubmit(onFormSubmit)}>
         <Box sx={{ width: '715px' }}>
           <PrimaryInputField name="title" control={control} label="Give it a title" />
+        </Box>
+
+        <Box sx={{ width: '715px', marginTop: '60px' }}>
+          <PrimaryInputField name="tag" control={control} label="Give it a tag" />
         </Box>
 
         <Box sx={{ width: '715px', marginTop: '60px' }}>
@@ -111,7 +121,10 @@ export const CreatePostForm = () => {
 
         <Box sx={{ width: '356px', marginTop: '40px' }}>
           <PrimaryButton
-            disabled={!(dirtyFields.text && dirtyFields.title) || typeof images == 'undefined'}
+            disabled={
+              !(dirtyFields.text && dirtyFields.title && dirtyFields.tag) ||
+              typeof images == 'undefined'
+            }
             variant="contained"
             fullWidth
             type="submit"
