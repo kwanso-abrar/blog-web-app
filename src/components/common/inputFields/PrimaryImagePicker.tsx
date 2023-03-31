@@ -1,5 +1,5 @@
 import { useDropzone } from 'react-dropzone';
-import { SelectedImageCard } from '../cards';
+import { SelectedImageCard } from 'components';
 import { PrimaryImagePickerProps } from 'types';
 import { Box, Button, Stack, Typography } from '@mui/material';
 import { IMAGE_PICKER_BUTTON, IMAGE_PICKET_LABEL } from 'styles/constants';
