@@ -48,7 +48,7 @@ export const SigninForm = () => {
         saveToken(response.data.signIn.accesstoken);
       }
       setIsLoggedIn(true);
-      navigate(ROUTES_PATH.home.path);
+      navigate(ROUTES_PATH.home);
     }
   };
 
@@ -100,7 +100,7 @@ export const SigninForm = () => {
         <PrimaryButton
           variant="outlined"
           fullWidth
-          onClick={() => navigate(ROUTES_PATH.signup.path)}
+          onClick={() => navigate(ROUTES_PATH.signup)}
           sx={{ marginTop: '20px' }}
         >
           Sign up

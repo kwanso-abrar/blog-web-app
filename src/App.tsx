@@ -1,3 +1,4 @@
+import { theme } from 'theme';
 import { Toaster } from 'react-hot-toast';
 import { isToken } from 'utils';
 import { useState } from 'react';
@@ -8,7 +9,6 @@ import { ApolloProvider } from '@apollo/client';
 import { Signin, Signup } from 'pages';
 import { AuthLayout, MainLayout } from 'layouts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
-import theme from 'theme';
 import client from 'graphql/client';
 import AppContext from 'AppContext';
 

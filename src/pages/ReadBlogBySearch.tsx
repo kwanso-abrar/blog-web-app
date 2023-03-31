@@ -20,7 +20,7 @@ export const ReadBlogBySearch = () => {
     if (search) {
       getPosts({ variables: { search } });
     } else {
-      navigate(ROUTES_PATH.home.path);
+      navigate(ROUTES_PATH.home);
     }
   }, [search]);
 

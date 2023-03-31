@@ -40,7 +40,7 @@ export const CreatePostForm = () => {
       setLoading(false);
       if (data.createPosts.response?.status === 201) {
         toast.success('Post created successfully');
-        navigate(ROUTES_PATH.myArticles.path);
+        navigate(ROUTES_PATH.myArticles);
       }
     },
     onError: (error) => {

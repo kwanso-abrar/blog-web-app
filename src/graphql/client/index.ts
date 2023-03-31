@@ -20,7 +20,7 @@ const logoutOnTokenExpire = new ApolloLink((operation, forward) => {
   return forward(operation).map((response) => {
     if (response && response.errors && response.errors[0].message.includes('Forbidden')) {
       removeToken();
-      window.location.replace(ROUTES_PATH.signin.path);
+      window.location.replace(ROUTES_PATH.signin);
     }
     return response;
   });

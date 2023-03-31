@@ -5,14 +5,14 @@ export const BLOGII_AUTH_TOKEN_KEY = 'auth_token';
 export const BLOGS_PER_PAGE = 3;
 
 export const ROUTES_PATH = {
-  home: { path: '/' },
-  signin: { path: '/signin' },
-  signup: { path: '/signup' },
-  readBlog: { path: '/read/:id', params: { first: 'id' } },
-  settings: { path: '/settings' },
-  createPost: { path: '/create' },
-  myArticles: { path: '/my-articles' },
-  readBlogBySearch: { path: '/read-by-search/:search', params: { first: 'search' } }
+  home: '/',
+  signin: '/signin',
+  signup: '/signup',
+  readBlog: '/read',
+  settings: '/settings',
+  createPost: '/create',
+  myArticles: '/my-articles',
+  readBlogBySearch: '/read-by-search'
 };
 
 export const CREATE_POST_MIN_TO_READ_SELECT_OPTIONS = [
@@ -41,13 +41,13 @@ export const CREATE_POST_MIN_TO_READ_SELECT_OPTIONS = [
 export const HEADER_NAV_LINKS: HeaderNavLinkType[] = [
   {
     id: 1,
-    to: ROUTES_PATH.home.path,
+    to: ROUTES_PATH.home,
     text: 'Home',
     isProtected: false
   },
   {
     id: 2,
-    to: ROUTES_PATH.myArticles.path,
+    to: ROUTES_PATH.myArticles,
     text: 'My Articles',
     isProtected: true
   }

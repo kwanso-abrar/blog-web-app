@@ -1,31 +1,36 @@
 import { red } from '@mui/material/colors';
 import { createTheme } from '@mui/material/styles';
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: '#111111'
     },
+
     secondary: {
       main: '#E5E5E5'
     },
+
     error: {
       main: red.A400
     }
   },
+
   typography: {
+    fontFamily: 'Poppins, sans-serif',
+
     h1: {
       fontSize: '27px',
       fontWeight: '600',
       lineHeight: '140%',
       textTransform: 'capitalize'
     },
+
     h2: {
       fontSize: '24px',
       fontWeight: '600',
       lineHeight: '140%'
-    },
-    fontFamily: 'Poppins, sans-serif'
+    }
   },
 
   components: {
@@ -70,6 +75,7 @@ const theme = createTheme({
         }
       }
     },
+
     MuiInputLabel: {
       styleOverrides: {
         root: {
@@ -82,5 +88,3 @@ const theme = createTheme({
     }
   }
 });
-
-export default theme;

@@ -17,17 +17,7 @@ export const BlogCardsList = ({
   return (
     <>
       {data.map((post, index) => (
-        <Box
-          key={post.id}
-          onClick={() =>
-            navigate(
-              `${ROUTES_PATH.readBlog.path.replace(
-                `:${ROUTES_PATH.readBlog.params.first}`,
-                post.id.toString()
-              )}`
-            )
-          }
-        >
+        <Box key={post.id} onClick={() => navigate(`${ROUTES_PATH.readBlog}/${post.id}`)}>
           <BlogCard
             tag={post.tag ? post.tag : 'miscellaneous'}
             date={getFormatDateInDDMMYYYY(post.createdAt)}

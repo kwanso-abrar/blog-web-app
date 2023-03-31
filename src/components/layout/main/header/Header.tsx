@@ -38,10 +38,7 @@ export const Header = () => {
           {isLoggedIn ? (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton
-                  variant="contained"
-                  onClick={() => navigate(ROUTES_PATH.createPost.path)}
-                >
+                <HeaderButton variant="contained" onClick={() => navigate(ROUTES_PATH.createPost)}>
                   Create Article
                 </HeaderButton>
               </Box>
@@ -65,7 +62,7 @@ export const Header = () => {
                 >
                   <MenuItem
                     onClick={() => {
-                      navigate(ROUTES_PATH.settings.path);
+                      navigate(ROUTES_PATH.settings);
                       handleClose();
                     }}
                   >
@@ -91,13 +88,13 @@ export const Header = () => {
           ) : (
             <>
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton variant="outlined" onClick={() => navigate(ROUTES_PATH.signin.path)}>
+                <HeaderButton variant="outlined" onClick={() => navigate(ROUTES_PATH.signin)}>
                   Log in
                 </HeaderButton>
               </Box>
 
               <Box sx={{ marginLeft: '20px' }}>
-                <HeaderButton variant="contained" onClick={() => navigate(ROUTES_PATH.signup.path)}>
+                <HeaderButton variant="contained" onClick={() => navigate(ROUTES_PATH.signup)}>
                   Sign up
                 </HeaderButton>
               </Box>
