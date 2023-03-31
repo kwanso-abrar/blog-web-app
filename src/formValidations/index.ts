@@ -26,7 +26,8 @@ const title = yup
   .string()
   .default('')
   .required('Title is required')
-  .min(6, 'title should be of minimum 6 words');
+  .min(6, 'title should be of minimum 6 words')
+  .max(120, 'title should be of maximum of 120 words');
 
 const minToRead = yup.string().required('Minutes to read is required');
 
