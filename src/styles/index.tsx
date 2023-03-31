@@ -1,6 +1,15 @@
 import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
-import { Avatar, Box, Button, TextField, Typography } from '@mui/material';
+import {
+  Box,
+  Avatar,
+  Button,
+  TextField,
+  Typography,
+  inputBaseClasses,
+  outlinedInputClasses,
+  inputAdornmentClasses
+} from '@mui/material';
 
 export const InputField = styled(TextField)(() => ({
   width: '100%'
@@ -68,19 +77,24 @@ export const HeaderNavLink = styled(Link)(() => ({
 
 export const SearchBar = styled(TextField)(() => ({
   width: '100%',
-  '& .MuiOutlinedInput-notchedOutline': {
-    zIndex: '-1'
+
+  [`& .${inputBaseClasses.root}`]: {
+    padding: '11px 24px'
   },
-  '& .css-3cruzw-MuiInputBase-root-MuiOutlinedInput-root': {
+
+  [`& .${outlinedInputClasses.notchedOutline}`]: {
     border: '1px solid rgba(102, 102, 102, 0.35)',
-    fontSize: '14px',
-    paddingLeft: '18px',
-    borderRadius: '16px',
+    padding: '11px 24px',
+    borderRadius: '25px',
     backgroundColor: '#F7F7F7'
   },
 
-  '& .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: '11px 11px 11px 4px'
+  [`& .${inputAdornmentClasses.root}`]: {
+    zIndex: '1'
+  },
+
+  [`& .${inputBaseClasses.input}`]: {
+    zIndex: '1'
   }
 }));
 

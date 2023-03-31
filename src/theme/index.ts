@@ -37,41 +37,28 @@ export const theme = createTheme({
     MuiTextField: {
       styleOverrides: {
         root: {
-          '& .MuiOutlinedInput-notchedOutline': {
-            top: '0',
-            border: '1px solid #E5E5E5 ',
-            outline: 'none',
-            borderRadius: '20px'
-          },
-
-          '& .css-190sko5-MuiInputBase-root-MuiOutlinedInput-root': {
-            paddingRight: '0px'
-          },
-
           '& legend': {
             display: 'none'
-          },
+          }
+        }
+      }
+    },
 
-          '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-            paddingLeft: '24px'
-          },
+    MuiOutlinedInput: {
+      styleOverrides: {
+        root: {
+          padding: '16.5px 24px'
+        },
 
-          '& .css-nxo287-MuiInputBase-input-MuiOutlinedInput-input': {
-            paddingLeft: '24px'
-          },
+        notchedOutline: {
+          top: '0',
+          border: '1px solid #E5E5E5',
+          outline: 'none',
+          borderRadius: '20px'
+        },
 
-          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:after': {
-            border: 'none'
-          },
-
-          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:before': {
-            border: 'none'
-          },
-
-          '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root:hover:not(.Mui-disabled, .Mui-error):before':
-            {
-              border: 'none'
-            }
+        input: {
+          padding: '0px'
         }
       }
     },
@@ -80,9 +67,9 @@ export const theme = createTheme({
       styleOverrides: {
         root: {
           top: '-20px',
+          color: '#666666',
           fontSize: '20px',
-          lineHeight: '24px',
-          color: '#666666'
+          lineHeight: '24px'
         }
       }
     }
