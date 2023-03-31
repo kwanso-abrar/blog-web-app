@@ -67,6 +67,8 @@ export const CreatePostForm = () => {
           }
         });
       } else {
+        toast.error('Unable to create article');
+        toast.error(response.response.data.error.message);
         setLoading(false);
       }
     }
