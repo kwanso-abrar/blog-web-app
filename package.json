@@ -39,7 +39,7 @@
     "lint": "eslint src/**/*.{js,jsx,ts,tsx,json}",
     "lint:fix": "eslint --fix 'src/**/*.{js,jsx,ts,tsx,json}'",
     "format": "prettier --write 'src/**/*.{js,jsx,ts,tsx,css,md,json}' --config ./.prettierrc",
-    "codegen": "graphql-codegen --config graphql.config.yml"
+    "codegen": "graphql-codegen --config graphql.config.yml -r dotenv/config"
   },
   "eslintConfig": {
     "extends": [
