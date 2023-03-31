@@ -39,7 +39,7 @@ export const HeaderSearchBar = () => {
           <SearchBar
             {...field}
             placeholder="Search"
-            variant="filled"
+            variant="outlined"
             InputProps={{
               startAdornment: (
                 <InputAdornment position="start">

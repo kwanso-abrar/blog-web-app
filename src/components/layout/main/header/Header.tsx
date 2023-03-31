@@ -25,7 +25,7 @@ export const Header = () => {
   return (
     <HeaderWrapper>
       <Stack direction="row">
-        <Stack direction="row">
+        <Stack direction="row" alignItems="center">
           <GreyBox />
           <NavLinksList isLoggedIn={isLoggedIn} data={HEADER_NAV_LINKS} />
         </Stack>

@@ -25,11 +25,13 @@ export const SettingsForm = () => {
   return (
     <Box>
       <form onSubmit={handleSubmit(onFormSubmit)}>
-        <Typography variant="h2">Change Username</Typography>
+        <Typography variant="h2" sx={{ fontWeight: '500' }}>
+          Change Username
+        </Typography>
         <Box sx={{ marginTop: '45px', width: '715px' }}>
           <PrimaryInputField name="name" control={control} label="Username" />
         </Box>
-        <Typography variant="h2" sx={{ marginTop: '50px' }}>
+        <Typography variant="h2" sx={{ marginTop: '50px', fontWeight: '500' }}>
           Change password
         </Typography>
         <Box sx={{ marginTop: '45px', width: '712px' }}>
@@ -39,7 +41,7 @@ export const SettingsForm = () => {
         <Box sx={{ marginTop: '45px', width: '712px' }}>
           <PrimaryPasswordField control={control} label="Confirm Password" name="confirmPassword" />
         </Box>
-        <Typography variant="h2" sx={{ marginTop: '50px' }}>
+        <Typography variant="h2" sx={{ marginTop: '50px', fontWeight: '500' }}>
           Change Avatar
         </Typography>
         <Box sx={{ marginTop: '20px' }}>

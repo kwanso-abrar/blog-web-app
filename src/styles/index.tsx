@@ -68,20 +68,19 @@ export const HeaderNavLink = styled(Link)(() => ({
 
 export const SearchBar = styled(TextField)(() => ({
   width: '100%',
-
-  '& .css-1t8l2tu-MuiInputBase-input-MuiOutlinedInput-input': {
-    padding: '8px',
-    paddingLeft: '25px'
+  '& .MuiOutlinedInput-notchedOutline': {
+    zIndex: '-1'
   },
-
-  '& .css-1vbc0rj-MuiInputBase-input-MuiFilledInput-input': {
-    padding: '8px'
-  },
-
-  '& .css-7fbxqv-MuiInputBase-root-MuiFilledInput-root': {
+  '& .css-3cruzw-MuiInputBase-root-MuiOutlinedInput-root': {
     border: '1px solid rgba(102, 102, 102, 0.35)',
+    fontSize: '14px',
+    paddingLeft: '18px',
     borderRadius: '16px',
-    alignItems: 'baseline'
+    backgroundColor: '#F7F7F7'
+  },
+
+  '& .css-1o9s3wi-MuiInputBase-input-MuiOutlinedInput-input': {
+    padding: '11px 11px 11px 4px'
   }
 }));
 

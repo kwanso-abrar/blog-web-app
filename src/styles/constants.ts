@@ -121,14 +121,14 @@ export const COMMENT_CARD_TIME = {
   fontWeight: '500',
   lineHeight: '150%',
   marginLeft: '8px',
-  textTransform: 'capitalize'
+  textTransform: 'none'
 };
 
 export const COMMENT_CARD_TEXT = {
   color: '#666666',
   fontSize: '15px',
   marginTop: '5px',
-  fontWeight: '500',
+  fontWeight: '400',
   lineHeight: '150%',
   textTransform: 'none'
 };

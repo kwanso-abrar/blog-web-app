@@ -24,7 +24,8 @@ const theme = createTheme({
       fontSize: '24px',
       fontWeight: '600',
       lineHeight: '140%'
-    }
+    },
+    fontFamily: 'Poppins, sans-serif'
   },
 
   components: {
@@ -32,13 +33,13 @@ const theme = createTheme({
       styleOverrides: {
         root: {
           '& .MuiOutlinedInput-notchedOutline': {
+            top: '0',
             border: '1px solid #E5E5E5 ',
-            borderRadius: '20px',
             outline: 'none',
-            top: '0'
+            borderRadius: '20px'
           },
 
-          '& .css-1uv55yn-MuiInputBase-root-MuiOutlinedInput-root': {
+          '& .css-190sko5-MuiInputBase-root-MuiOutlinedInput-root': {
             paddingRight: '0px'
           },
 
