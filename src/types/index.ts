@@ -1,6 +1,6 @@
-import { Accept } from 'react-dropzone';
 import { ReactNode } from 'react';
 import { Comments, Posts } from 'generated';
+import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
 
 export type NavigationButtonProps = {
@@ -141,7 +141,6 @@ export type SelectedImageCardProps = {
 export type PrimaryFilePickerProps = {
   label: string;
   buttonText: string;
-  accept?: Accept;
-  multiple?: boolean;
   setFiles: React.Dispatch<React.SetStateAction<File[] | undefined>>;
+  options?: DropzoneOptions;
 };

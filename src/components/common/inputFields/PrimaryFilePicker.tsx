@@ -1,3 +1,4 @@
+import { toast } from 'react-hot-toast';
 import { useDropzone } from 'react-dropzone';
 import { PrimaryFilePickerProps } from 'types';
 import { Box, Button, Stack, Typography } from '@mui/material';
@@ -5,16 +6,20 @@ import { FILE_PICKER_BUTTON, FILE_PICKER_LABEL } from 'styles/constants';
 
 export const PrimaryFilePicker = ({
   label,
-  accept,
+  options,
   setFiles,
-  buttonText,
-  multiple = false
+  buttonText
 }: PrimaryFilePickerProps) => {
   const { getRootProps, getInputProps } = useDropzone({
-    accept,
-    multiple,
+    ...options,
     onDrop: (acceptedFiles) => {
-      setFiles(acceptedFiles);
+      if (acceptedFiles.length > 0) setFiles(acceptedFiles);
+    },
+    onDropRejected: (frObject) => {
+      toast.error(frObject[0].errors[0].message);
+    },
+    onError: (error) => {
+      toast.error(error.message);
     }
   });
 

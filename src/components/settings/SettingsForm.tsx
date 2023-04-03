@@ -60,8 +60,10 @@ export const SettingsForm = () => {
               label="Supports: JPG, JPEG2000, PNG"
               setFiles={setImages}
               buttonText="Browse"
-              accept={{
-                'image/*': []
+              options={{
+                accept: {
+                  'image/*': []
+                }
               }}
             />
           )}

@@ -112,8 +112,12 @@ export const CreatePostForm = () => {
               label="Supports: JPG, JPEG2000, PNG"
               setFiles={setImages}
               buttonText="Browse"
-              accept={{
-                'image/*': []
+              options={{
+                accept: {
+                  'image/jpg': [],
+                  'image/png': [],
+                  'image/jpeg': []
+                }
               }}
             />
           )}
