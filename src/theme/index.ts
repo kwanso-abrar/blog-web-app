@@ -52,7 +52,7 @@ export const theme = createTheme({
 
         notchedOutline: {
           top: '0',
-          border: '1px solid #E5E5E5',
+          border: '1px solid #E5E5E5 !important',
           outline: 'none',
           borderRadius: '20px'
         },
