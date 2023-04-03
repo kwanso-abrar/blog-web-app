@@ -1,4 +1,5 @@
 import toast from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
 import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
 import { ROUTES_PATH } from '../../../constants';
@@ -6,11 +7,15 @@ import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
-import { Controller, useForm } from 'react-hook-form';
 import { DONT_HAVE_ACCOUNT_SX } from 'styles/constants';
+import { Box, Divider, Typography } from '@mui/material';
 import { PrimaryButton, ForgetPasswordLink, InputFieldWrapper } from 'styles';
-import { PrimaryInputField, PrimaryLoader, PrimaryPasswordField } from 'components';
-import { Box, Divider, Checkbox, FormGroup, Typography, FormControlLabel } from '@mui/material';
+import {
+  PrimaryLoader,
+  PrimaryCheckbox,
+  PrimaryInputField,
+  PrimaryPasswordField
+} from 'components';
 
 const schema = yupSchema.signIn;
 
@@ -66,19 +71,7 @@ export const SigninForm = () => {
             <ForgetPasswordLink to="#">Forget your password</ForgetPasswordLink>
           </InputFieldWrapper>
 
-          <Controller
-            control={control}
-            name="rememberMe"
-            render={({ field }) => (
-              <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox {...field} />}
-                  checked={field.value}
-                  label="Remember me"
-                />
-              </FormGroup>
-            )}
-          />
+          <PrimaryCheckbox control={control} name="rememberMe" label="Remember me" />
 
           <Box sx={{ marginTop: '40px' }}>
             <PrimaryButton

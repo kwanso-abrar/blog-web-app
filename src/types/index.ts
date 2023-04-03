@@ -36,6 +36,12 @@ export type PrimaryInputFieldProps = {
   props?: BaseTextFieldProps;
 };
 
+export type PrimaryCheckboxProps = {
+  name: string;
+  label: string;
+  control: any;
+};
+
 export type ProtectedProps = {
   children: JSX.Element;
 };
