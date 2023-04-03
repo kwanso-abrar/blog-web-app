@@ -1,3 +1,4 @@
+import { Accept } from 'react-dropzone';
 import { ReactNode } from 'react';
 import { Comments, Posts } from 'generated';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
@@ -131,8 +132,10 @@ export type SelectedImageCardProps = {
   onClickCloseButton: () => void;
 };
 
-export type PrimaryImagePickerProps = {
-  images: File[] | undefined;
-  setImages: React.Dispatch<React.SetStateAction<File[] | undefined>>;
+export type PrimaryFilePickerProps = {
+  label: string;
   buttonText: string;
+  accept?: Accept;
+  multiple?: boolean;
+  setFiles: React.Dispatch<React.SetStateAction<File[] | undefined>>;
 };

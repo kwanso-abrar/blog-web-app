@@ -11,8 +11,9 @@ import { useCreatePostMutation } from 'generated';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS, ROUTES_PATH } from '../../constants';
 import {
   PrimaryLoader,
+  PrimaryFilePicker,
   PrimaryInputField,
-  PrimaryImagePicker,
+  SelectedImageCard,
   PrimarySelectField
 } from 'components';
 
@@ -118,7 +119,23 @@ export const CreatePostForm = () => {
         </Box>
 
         <Box sx={{ marginTop: '40px' }}>
-          <PrimaryImagePicker images={images} setImages={setImages} buttonText="Browse" />
+          {!images && (
+            <PrimaryFilePicker
+              label="Supports: JPG, JPEG2000, PNG"
+              setFiles={setImages}
+              buttonText="Browse"
+              accept={{
+                'image/*': []
+              }}
+            />
+          )}
+
+          {images && (
+            <SelectedImageCard
+              fileName={images[0].name}
+              onClickCloseButton={() => setImages(undefined)}
+            />
+          )}
         </Box>
 
         <Box sx={{ width: '356px', marginTop: '40px' }}>

@@ -2,7 +2,12 @@ import { useForm } from 'react-hook-form';
 import { useState } from 'react';
 import { PrimaryButton } from 'styles';
 import { Box, Typography } from '@mui/material';
-import { PrimaryImagePicker, PrimaryInputField, PrimaryPasswordField } from 'components';
+import {
+  PrimaryFilePicker,
+  PrimaryInputField,
+  SelectedImageCard,
+  PrimaryPasswordField
+} from 'components';
 
 export const SettingsForm = () => {
   const [images, setImages] = useState<File[]>();
@@ -45,7 +50,22 @@ export const SettingsForm = () => {
           Change Avatar
         </Typography>
         <Box sx={{ marginTop: '20px' }}>
-          <PrimaryImagePicker images={images} setImages={setImages} buttonText="Browse" />
+          {!images && (
+            <PrimaryFilePicker
+              label="Supports: JPG, JPEG2000, PNG"
+              setFiles={setImages}
+              buttonText="Browse"
+              accept={{
+                'image/*': []
+              }}
+            />
+          )}
+          {images && (
+            <SelectedImageCard
+              fileName={images[0].name}
+              onClickCloseButton={() => setImages(undefined)}
+            />
+          )}
         </Box>
 
         <Box sx={{ width: '356px', marginTop: '55px' }}>

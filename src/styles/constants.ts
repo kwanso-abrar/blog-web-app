@@ -158,7 +158,7 @@ export const COMMENT_CARD_AVATAR_CONTAINER = {
   minHeight: '32px'
 };
 
-export const IMAGE_PICKER_BUTTON = {
+export const FILE_PICKER_BUTTON = {
   padding: '11px 26px',
   fontSize: '16px',
   lineHeight: '24px',
@@ -166,7 +166,7 @@ export const IMAGE_PICKER_BUTTON = {
   textTransform: 'none'
 };
 
-export const IMAGE_PICKET_LABEL = {
+export const FILE_PICKER_LABEL = {
   color: '#666666',
   fontSize: '16px',
   lineHeight: '24px'
