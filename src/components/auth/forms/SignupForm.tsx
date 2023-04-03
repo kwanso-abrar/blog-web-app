@@ -6,9 +6,9 @@ import { yupSchema } from 'formValidations';
 import { ROUTES_PATH } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { PrimaryButton } from 'styles';
 import { useContextApi } from 'AppContext';
 import { PrimaryPasswordField } from 'components/common/inputFields/PrimaryPasswordField';
+import { InputFieldWrapper, PrimaryButton } from 'styles';
 import { PrimaryInputField, PrimaryLoader } from 'components/common';
 import { useSignInMutation, useSignUpMutation } from 'generated';
 
@@ -74,23 +74,25 @@ export const SignupForm = () => {
       <PrimaryLoader isLoading={signupLoading || signInLoading} />
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
-          <Box sx={{ width: '712px' }}>
+          <InputFieldWrapper sx={{ marginTop: '0px' }}>
             <PrimaryInputField
               name="name"
               label="What’s your full name?"
               control={control}
               placeholder="Enter your full name"
             />
-          </Box>
-          <Box sx={{ marginTop: '50px', width: '712px' }}>
+          </InputFieldWrapper>
+
+          <InputFieldWrapper sx={{ marginTop: '50px' }}>
             <PrimaryInputField
               name="email"
               label="What’s your email?"
               control={control}
               placeholder="Enter your email address"
             />
-          </Box>
-          <Box sx={{ marginTop: '50px', width: '712px' }}>
+          </InputFieldWrapper>
+
+          <InputFieldWrapper sx={{ marginTop: '50px' }}>
             <PrimaryPasswordField
               name="password"
               label="Create a password"
@@ -98,7 +100,7 @@ export const SignupForm = () => {
               placeholder="Enter your password"
               helperText="Use 8 or more characters with a mix of letters, numbers & symbols"
             />
-          </Box>
+          </InputFieldWrapper>
 
           <Box sx={{ marginTop: '40px' }}>
             <PrimaryButton

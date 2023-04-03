@@ -6,8 +6,8 @@ import { uploadImage } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { Box, MenuItem } from '@mui/material';
-import { PrimaryButton } from 'styles';
 import { useCreatePostMutation } from 'generated';
+import { InputFieldWrapper, PrimaryButton } from 'styles';
 import { CREATE_POST_MIN_TO_READ_SELECT_OPTIONS, ROUTES_PATH } from '../../constants';
 import {
   PrimaryLoader,
@@ -79,44 +79,32 @@ export const CreatePostForm = () => {
     <Box>
       <PrimaryLoader isLoading={loading} />
       <form onSubmit={handleSubmit(onFormSubmit)}>
-        <Box sx={{ width: '715px' }}>
+        <InputFieldWrapper sx={{ marginTop: '0px' }}>
           <PrimaryInputField name="title" control={control} label="Give it a title" />
-        </Box>
+        </InputFieldWrapper>
 
-        <Box sx={{ width: '715px', marginTop: '60px' }}>
+        <InputFieldWrapper>
           <PrimaryInputField name="tag" control={control} label="Give it a tag" />
-        </Box>
+        </InputFieldWrapper>
 
-        <Box sx={{ width: '715px', marginTop: '60px' }}>
-          <PrimarySelectField
-            name="minToRead"
-            label="Min. to read"
-            control={control}
-            props={{
-              sx: {
-                '& .css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input.css-11u53oe-MuiSelect-select-MuiInputBase-input-MuiOutlinedInput-input':
-                  {
-                    paddingLeft: '24px'
-                  }
-              }
-            }}
-          >
+        <InputFieldWrapper>
+          <PrimarySelectField name="minToRead" label="Min. to read" control={control}>
             {CREATE_POST_MIN_TO_READ_SELECT_OPTIONS.map((options, index) => (
               <MenuItem value={options.value} key={index + options.value}>
                 {options.label}
               </MenuItem>
             ))}
           </PrimarySelectField>
-        </Box>
+        </InputFieldWrapper>
 
-        <Box sx={{ width: '715px', marginTop: '60px' }}>
+        <InputFieldWrapper>
           <PrimaryInputField
             name="text"
             control={control}
             label="Write something about it"
             props={{ multiline: true, rows: 6 }}
           />
-        </Box>
+        </InputFieldWrapper>
 
         <Box sx={{ marginTop: '40px' }}>
           {!images && (

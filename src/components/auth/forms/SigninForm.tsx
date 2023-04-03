@@ -8,7 +8,7 @@ import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
 import { Controller, useForm } from 'react-hook-form';
 import { DONT_HAVE_ACCOUNT_SX } from 'styles/constants';
-import { PrimaryButton, ForgetPasswordLink } from 'styles';
+import { PrimaryButton, ForgetPasswordLink, InputFieldWrapper } from 'styles';
 import { PrimaryInputField, PrimaryLoader, PrimaryPasswordField } from 'components';
 import { Box, Divider, Checkbox, FormGroup, Typography, FormControlLabel } from '@mui/material';
 
@@ -57,14 +57,14 @@ export const SigninForm = () => {
       <PrimaryLoader isLoading={signInLoading} />
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
-          <Box sx={{ width: '712px' }}>
+          <InputFieldWrapper sx={{ marginTop: '0px' }}>
             <PrimaryInputField name="email" control={control} label="Email address or user name" />
-          </Box>
+          </InputFieldWrapper>
 
-          <Box sx={{ marginTop: '50px', width: '712px' }}>
+          <InputFieldWrapper sx={{ marginTop: '50px' }}>
             <PrimaryPasswordField control={control} label="Password" name="password" />
             <ForgetPasswordLink to="#">Forget your password</ForgetPasswordLink>
-          </Box>
+          </InputFieldWrapper>
 
           <Controller
             control={control}

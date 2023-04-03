@@ -194,3 +194,8 @@ export const CANCEL_SELECTED_IMAGE_BUTTON_CONTAINER = styled(Box)({
   height: '24px',
   marginLeft: '18px'
 });
+
+export const InputFieldWrapper = styled(Box)({
+  width: '715px',
+  marginTop: '60px'
+});
