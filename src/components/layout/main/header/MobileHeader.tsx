@@ -32,7 +32,7 @@ export const MobileHeader = ({ isLoggedIn, setIsLoggedIn }: MobileHeaderProps) =
         onClose={() => setOpenDrawer(!openDrawer)}
       >
         <Stack
-          sx={{ width: 200, alignItems: 'center', padding: '35px 0px' }}
+          sx={{ width: 200, alignItems: 'center', padding: '150px 0px' }}
           role="presentation"
           onClick={() => setOpenDrawer(!openDrawer)}
         >

@@ -82,7 +82,7 @@ export const HeaderNavLink = styled(Link)(({ theme }) => ({
     color: '#111111',
     fontWeight: '600',
     marginLeft: '0px',
-    marginBottom: '5px'
+    marginBottom: '15px'
   }
 }));
 
