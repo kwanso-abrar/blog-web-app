@@ -31,7 +31,7 @@ export const BlogCardsList = ({
           />
         </Box>
       ))}
-      <Box sx={{ marginTop: '96px', marginLeft: '120px' }}>
+      <Box sx={{ marginTop: { xs: '40px', md: '96px' }, marginLeft: { xs: '0px', md: '120px' } }}>
         {paginate && onRefetch && total > perPage && (
           <PrimaryPagination count={Math.ceil(total / perPage)} onReftech={onRefetch} />
         )}
