@@ -1,6 +1,6 @@
 # Getting Started with Blogii web app
 
-This project is a part of kwanso onboard training
+This project is a part of my onboard training at kwanso  
 
 # Tools
 
