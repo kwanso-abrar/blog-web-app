@@ -1,14 +1,16 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
 import { removeToken } from 'utils';
-import { useContextApi } from 'AppContext';
+import { NavLinksList } from 'components';
 import { HeaderSearchBar } from './HeaderSearchBar';
+import { MobileHeaderProps } from 'types';
+import { MOBILE_HEADER_NAV_LINKS } from '../../../../constants';
 import { Box, Drawer, IconButton, Stack } from '@mui/material';
 import { GreyBox, HeaderNavLink, HeaderWrapper } from 'styles';
 
-export const MobileHeader = () => {
+export const MobileHeader = ({ isLoggedIn, setIsLoggedIn }: MobileHeaderProps) => {
   const [openDrawer, setOpenDrawer] = useState(false);
-  const { isLoggedIn, setIsLoggedIn } = useContextApi();
+
   return (
     <HeaderWrapper>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
@@ -34,27 +36,21 @@ export const MobileHeader = () => {
           role="presentation"
           onClick={() => setOpenDrawer(!openDrawer)}
         >
-          <HeaderNavLink to="/">Home</HeaderNavLink>
-          {isLoggedIn && (
-            <>
-              <HeaderNavLink to="/my-articles">My Articles</HeaderNavLink>
-              <HeaderNavLink to="/create">Create Article</HeaderNavLink>
-              <HeaderNavLink to="/settings">Account Settings</HeaderNavLink>
-              <HeaderNavLink
-                to="#"
-                onClick={() => {
-                  removeToken();
-                  setIsLoggedIn(false);
-                }}
-              >
-                Logout
-              </HeaderNavLink>
-            </>
-          )}
+          <NavLinksList isLoggedIn={isLoggedIn} data={MOBILE_HEADER_NAV_LINKS} />
 
-          {!isLoggedIn && (
+          {isLoggedIn ? (
+            <HeaderNavLink
+              to=""
+              onClick={() => {
+                removeToken();
+                setIsLoggedIn(false);
+              }}
+            >
+              Logout
+            </HeaderNavLink>
+          ) : (
             <>
-              <HeaderNavLink to="/signin">Log in</HeaderNavLink>
+              <HeaderNavLink to="/signin">Sign in</HeaderNavLink>
               <HeaderNavLink to="/signup">Sign up</HeaderNavLink>
             </>
           )}

@@ -144,3 +144,13 @@ export type PrimaryFilePickerProps = {
   setFiles: React.Dispatch<React.SetStateAction<File[] | undefined>>;
   options?: DropzoneOptions;
 };
+
+export type MobileHeaderProps = {
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+};
+
+export type DesktopHeaderProps = {
+  isLoggedIn: boolean;
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+};

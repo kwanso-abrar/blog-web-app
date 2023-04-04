@@ -1,4 +1,4 @@
-import { Box } from '@mui/material';
+import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { HeaderNavLink } from 'styles';
 import { NavLinksListProps } from 'types';
@@ -8,7 +8,7 @@ export const NavLinksList = ({ data, isLoggedIn }: NavLinksListProps) => {
   return (
     <>
       {data.map((link) => (
-        <Box key={link.id}>
+        <React.Fragment key={link.id}>
           {link.isProtected ? (
             isLoggedIn && (
               <HeaderNavLink
@@ -30,7 +30,7 @@ export const NavLinksList = ({ data, isLoggedIn }: NavLinksListProps) => {
               {link.text}
             </HeaderNavLink>
           )}
-        </Box>
+        </React.Fragment>
       ))}
     </>
   );
