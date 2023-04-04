@@ -19,8 +19,8 @@ export const ReadBlog = () => {
       id: parseFloat(id || '0')
     },
     onError: (error) => {
-      toast.error(error.message);
       navigate(ROUTES_PATH.home);
+      toast.error(error.message);
     }
   });
 

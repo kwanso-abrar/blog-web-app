@@ -14,8 +14,8 @@ export const ReadBlogBySearch = () => {
   const [getPosts, { data: allPosts, loading }] = useGetPostsLazyQuery({
     variables: { search: search || '' },
     onError: (error) => {
-      toast.error(error.message);
       navigate(ROUTES_PATH.home);
+      toast.error(error.message);
     }
   });
 
