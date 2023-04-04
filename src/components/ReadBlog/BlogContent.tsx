@@ -20,7 +20,7 @@ export const BlogContent = ({
       <BlogTagChip sx={{ background: '#F2F8F7', color: '#666666' }}>{tag}</BlogTagChip>
       <BlogTagChip sx={READ_BLOG_TIME_TO_READ_TAG_CHIP}>{duration}</BlogTagChip>
     </Stack>
-    <Typography variant="h1" sx={{ marginTop: '20px' }}>
+    <Typography variant="h1" sx={{ marginTop: '20px', fontSize: { xs: '20px', md: 'revert' } }}>
       {title}
     </Typography>
     <Box marginTop="19px">
@@ -30,7 +30,13 @@ export const BlogContent = ({
         date={getFormatDateInDDMMYYYY(date)}
       />
     </Box>
-    <Box sx={{ width: '856px', height: '432px', marginTop: '35px' }}>
+    <Box
+      sx={{
+        width: { xs: '100%', md: '856px' },
+        height: { xs: '250px', md: '432px' },
+        marginTop: '35px'
+      }}
+    >
       <img
         src={image}
         width="100%"
