@@ -40,8 +40,8 @@ export const TITLE_WITH_BORDER_BOTTOM = {
 };
 
 export const PRIMARY_BLOG_CARD_IMAGE_CONTAINER = {
-  width: '266px',
-  height: '180px',
+  width: { xs: '100%', md: '266px' },
+  height: { xs: '250px', md: '180px' },
   borderRadius: '5px'
 };
 
