@@ -144,7 +144,7 @@ export const SHOW_REPLIES_BUTTON = {
 
 export const SIGN_IN_TO_COMMENT = {
   color: '#00A1E7',
-  fontSize: '27px',
+  fontSize: { xs: '18px', md: '27px' },
   fontWeight: '600',
   lineHeight: '140%',
   marginLeft: '40px',

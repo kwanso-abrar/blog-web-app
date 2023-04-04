@@ -12,7 +12,10 @@ export const BlogCommentSection = ({ postId, comments, onRefetch }: BlogCommentS
   return (
     <Box sx={{ minWidth: '100%' }}>
       <Stack direction="row" sx={TITLE_WITH_BORDER_BOTTOM}>
-        <Typography variant="h1" sx={{ textTransform: 'none' }}>
+        <Typography
+          variant="h1"
+          sx={{ textTransform: 'none', fontSize: { xs: '18px', md: '27px' } }}
+        >
           {comments.length > 1 ? `${comments.length} comments` : `${comments.length} comment`}
         </Typography>
         {!isLoggedIn && <Typography sx={SIGN_IN_TO_COMMENT}>Sign in to comment</Typography>}
