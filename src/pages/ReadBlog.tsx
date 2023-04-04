@@ -1,12 +1,14 @@
 import toast from 'react-hot-toast';
 import { Box } from '@mui/material';
-import { useParams } from 'react-router-dom';
+import { ROUTES_PATH } from '../constants';
 import { BlogThumbnail1 } from 'assets';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Comments, useFindPostByIdQuery } from 'generated';
 import { BlogCommentSection, BlogContent, PrimaryLoader } from 'components';
 
 export const ReadBlog = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const {
     data: post,
@@ -16,7 +18,10 @@ export const ReadBlog = () => {
     variables: {
       id: parseFloat(id || '0')
     },
-    onError: (error) => toast.error(error.message)
+    onError: (error) => {
+      toast.error(error.message);
+      navigate(ROUTES_PATH.home);
+    }
   });
 
   const onRefetchBlogData = () => {
