@@ -61,25 +61,40 @@ export const AuthPageFormContainer = styled(Box)(() => ({
   justifyContent: 'center'
 }));
 
-export const HeaderWrapper = styled(Box)(() => ({
+export const HeaderWrapper = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
   borderBottom: '1.5px solid rgba(102, 102, 102, 0.25)',
-  padding: '16px 40px'
+  padding: '16px 40px',
+
+  [theme.breakpoints.down('md')]: {
+    padding: '10px 12px'
+  }
 }));
 
-export const HeaderNavLink = styled(Link)(() => ({
+export const HeaderNavLink = styled(Link)(({ theme }) => ({
   fontSize: '16px',
   alignSelf: 'center',
   lineHeight: '24px',
   marginLeft: '40px',
-  textDecoration: 'none'
+  textDecoration: 'none',
+
+  [theme.breakpoints.down('md')]: {
+    color: '#111111',
+    fontWeight: '600',
+    marginLeft: '0px',
+    marginBottom: '5px'
+  }
 }));
 
-export const SearchBar = styled(TextField)(() => ({
+export const SearchBar = styled(TextField)(({ theme }) => ({
   width: '100%',
 
   [`& .${inputBaseClasses.root}`]: {
-    padding: '11px 24px'
+    padding: '11px 24px',
+
+    [theme.breakpoints.down('md')]: {
+      padding: '5px 12px'
+    }
   },
 
   [`& .${outlinedInputClasses.notchedOutline}`]: {
@@ -98,12 +113,17 @@ export const SearchBar = styled(TextField)(() => ({
   }
 }));
 
-export const GreyBox = styled(Box)(() => ({
+export const GreyBox = styled(Box)(({ theme }) => ({
   width: '40px',
   height: '40px',
   justifySelf: 'center',
   borderRadius: '50%',
-  backgroundColor: '#C4C4C4'
+  backgroundColor: '#C4C4C4',
+
+  [theme.breakpoints.down('md')]: {
+    width: '40px',
+    height: '30px'
+  }
 }));
 
 export const CustomAvatar = styled(Avatar)(() => ({
