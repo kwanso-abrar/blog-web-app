@@ -114,9 +114,7 @@ export const CreatePostForm = () => {
               buttonText="Browse"
               options={{
                 accept: {
-                  'image/jpg': [],
-                  'image/png': [],
-                  'image/jpeg': []
+                  'image/*': []
                 }
               }}
             />
