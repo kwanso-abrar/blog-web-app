@@ -168,7 +168,7 @@ export const FILE_PICKER_BUTTON = {
 
 export const FILE_PICKER_LABEL = {
   color: '#666666',
-  fontSize: '16px',
+  fontSize: { xs: '12px', md: '16px' },
   lineHeight: '24px'
 };
 

@@ -136,13 +136,18 @@ export const CustomAvatar = styled(Avatar)(() => ({
   }
 }));
 
-export const PrimaryButton = styled(Button)(() => ({
+export const PrimaryButton = styled(Button)(({ theme }) => ({
   padding: '17px 0px',
   fontSize: '21px',
   fontWeight: '600',
   lineHeight: '140%',
   borderRadius: '40px',
-  textTransform: 'capitalize'
+  textTransform: 'capitalize',
+
+  [theme.breakpoints.down('md')]: {
+    padding: '12px',
+    fontSize: '18px'
+  }
 }));
 
 export const HeaderButton = styled(Button)(() => ({
@@ -215,7 +220,11 @@ export const CANCEL_SELECTED_IMAGE_BUTTON_CONTAINER = styled(Box)({
   marginLeft: '18px'
 });
 
-export const InputFieldWrapper = styled(Box)({
+export const InputFieldWrapper = styled(Box)(({ theme }) => ({
   width: '715px',
-  marginTop: '60px'
-});
+  marginTop: '60px',
+
+  [theme.breakpoints.down('md')]: {
+    width: '100%'
+  }
+}));

@@ -75,7 +75,7 @@ export const SettingsForm = () => {
           )}
         </Box>
 
-        <Box sx={{ width: '356px', marginTop: '55px' }}>
+        <Box sx={{ width: { xs: '250px', md: '356px' }, marginTop: '55px' }}>
           <PrimaryButton
             disabled={
               !(dirtyFields.password && dirtyFields.confirmPassword) &&

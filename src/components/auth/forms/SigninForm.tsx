@@ -58,7 +58,7 @@ export const SigninForm = () => {
   };
 
   return (
-    <Box sx={{ marginTop: '74px' }}>
+    <Box sx={{ marginTop: { xs: '35px', md: '74px' } }}>
       <PrimaryLoader isLoading={signInLoading} />
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
@@ -73,7 +73,7 @@ export const SigninForm = () => {
 
           <PrimaryCheckbox control={control} name="rememberMe" label="Remember me" />
 
-          <Box sx={{ marginTop: '40px' }}>
+          <Box sx={{ marginTop: { xs: '20px', md: '40px' } }}>
             <PrimaryButton
               variant="contained"
               fullWidth
@@ -88,7 +88,7 @@ export const SigninForm = () => {
 
       <Divider sx={{ marginTop: '40px', borderBottom: '2px solid #E5E5E5' }} />
 
-      <Box sx={{ marginTop: '40px' }}>
+      <Box sx={{ marginTop: { xs: '20px', md: '40px' } }}>
         <Typography sx={DONT_HAVE_ACCOUNT_SX}>Don’t have an account?</Typography>
         <PrimaryButton
           variant="outlined"

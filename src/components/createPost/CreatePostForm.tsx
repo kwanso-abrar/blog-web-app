@@ -130,7 +130,7 @@ export const CreatePostForm = () => {
           )}
         </Box>
 
-        <Box sx={{ width: '356px', marginTop: '40px' }}>
+        <Box sx={{ width: { xs: '250px', md: '356px' }, marginTop: '40px' }}>
           <PrimaryButton
             disabled={
               !(dirtyFields.text && dirtyFields.title && dirtyFields.tag) ||

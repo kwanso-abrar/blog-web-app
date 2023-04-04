@@ -28,7 +28,7 @@ export const MyArticles = () => {
       <PrimaryLoader isLoading={loading} />
 
       <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
-        Recent Posts
+        My Articles
       </Typography>
 
       <Typography sx={{ marginTop: '20px' }}>

@@ -70,7 +70,7 @@ export const SignupForm = () => {
   };
 
   return (
-    <Box sx={{ marginTop: '74px' }}>
+    <Box sx={{ marginTop: { xs: '35px', md: '74px' } }}>
       <PrimaryLoader isLoading={signupLoading || signInLoading} />
       <Box>
         <form onSubmit={handleSubmit(onFormSubmit)}>
