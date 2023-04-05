@@ -3,7 +3,7 @@ import { BLOGS_PER_PAGE } from '../constants';
 import { Box, Typography } from '@mui/material';
 import { Posts, useMyPostsQuery } from 'generated';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
-import { BlogCardsList, PrimaryLoader } from 'components';
+import { BlogCardSkeleton, BlogCardsList } from 'components';
 
 export const MyArticles = () => {
   const {
@@ -25,8 +25,6 @@ export const MyArticles = () => {
 
   return (
     <Box>
-      <PrimaryLoader isLoading={loading} />
-
       <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
         My Articles
       </Typography>
@@ -43,6 +41,15 @@ export const MyArticles = () => {
           total={allPosts?.myPosts.total || 0}
           data={(allPosts?.myPosts.items as Posts[]) || []}
         />
+
+        {loading &&
+          [...Array(BLOGS_PER_PAGE)].map((_, index) => {
+            return (
+              <Box sx={{ marginTop: index === 0 ? '0px' : '48px' }} key={index}>
+                <BlogCardSkeleton />
+              </Box>
+            );
+          })}
       </Box>
     </Box>
   );
