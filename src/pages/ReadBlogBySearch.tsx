@@ -1,11 +1,11 @@
 import toast from 'react-hot-toast';
 import { useEffect } from 'react';
-import { ROUTES_PATH } from '../constants';
 import { Box, Typography } from '@mui/material';
 import { useNavigate, useParams } from 'react-router-dom';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
+import { BLOGS_PER_PAGE, ROUTES_PATH } from '../constants';
 import { Posts, useGetPostsLazyQuery } from 'generated';
-import { BlogCardsList, PrimaryLoader } from 'components';
+import { BlogCardSkeleton, BlogCardsList } from 'components';
 
 export const ReadBlogBySearch = () => {
   const navigate = useNavigate();
@@ -29,7 +29,6 @@ export const ReadBlogBySearch = () => {
 
   return (
     <Box>
-      <PrimaryLoader isLoading={loading} />
       <Typography
         variant="h1"
         sx={{
@@ -52,6 +51,15 @@ export const ReadBlogBySearch = () => {
           total={allPosts?.getPosts.length || 0}
           paginate={false}
         />
+
+        {loading &&
+          [...Array(BLOGS_PER_PAGE)].map((_, index) => {
+            return (
+              <Box sx={{ marginTop: index === 0 ? '0px' : '48px' }} key={index}>
+                <BlogCardSkeleton />
+              </Box>
+            );
+          })}
       </Box>
     </Box>
   );
