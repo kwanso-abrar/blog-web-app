@@ -1,12 +1,11 @@
 import toast from 'react-hot-toast';
 import { Box } from '@mui/material';
+import { useAuth } from 'customHooks';
 import { useForm } from 'react-hook-form';
-import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
 import { ROUTES_PATH } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContextApi } from 'AppContext';
 import { PrimaryPasswordField } from 'components/common/inputFields/PrimaryPasswordField';
 import { InputFieldWrapper, PrimaryButton } from 'styles';
 import { PrimaryInputField, PrimaryLoader } from 'components/common';
@@ -16,7 +15,7 @@ const schema = yupSchema.signUp;
 
 export const SignupForm = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContextApi();
+  const { login } = useAuth();
   const {
     control,
     handleSubmit,
@@ -40,8 +39,7 @@ export const SignupForm = () => {
   const [signIn, { loading: signInLoading }] = useSignInMutation({
     onCompleted: (data) => {
       if (data.signIn.accesstoken) {
-        saveToken(data.signIn.accesstoken);
-        setIsLoggedIn(true);
+        login(data.signIn.accesstoken);
         navigate(ROUTES_PATH.home);
       }
     },
