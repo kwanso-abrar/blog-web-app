@@ -62,14 +62,15 @@ export const AuthPageFormContainer = styled(Box)(() => ({
 }));
 
 export const HeaderWrapper = styled(Box)(({ theme }) => ({
-  backgroundColor: 'white',
-  borderBottom: '1.5px solid rgba(102, 102, 102, 0.25)',
-  padding: '16px 40px',
+  top: '-1px',
   left: '0',
   right: '0',
-  top: '-1px',
-
-  transition: 'top 0.5s linear',
+  padding: '16px 40px',
+  boxShadow: 'none',
+  position: 'static',
+  transition: 'top 0.5s linear, box-shadow 0.3s linear',
+  borderBottom: '1.5px solid rgba(102, 102, 102, 0.25)',
+  backgroundColor: 'white',
 
   [theme.breakpoints.down('md')]: {
     padding: '10px 12px'
