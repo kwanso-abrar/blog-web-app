@@ -65,6 +65,11 @@ export const HeaderWrapper = styled(Box)(({ theme }) => ({
   backgroundColor: 'white',
   borderBottom: '1.5px solid rgba(102, 102, 102, 0.25)',
   padding: '16px 40px',
+  left: '0',
+  right: '0',
+  top: '-1px',
+
+  transition: 'top 0.5s linear',
 
   [theme.breakpoints.down('md')]: {
     padding: '10px 12px'

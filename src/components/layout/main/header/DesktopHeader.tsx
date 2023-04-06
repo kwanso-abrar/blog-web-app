@@ -6,8 +6,8 @@ import { HeaderSearchBar } from 'components';
 import { Logout, Settings } from '@mui/icons-material';
 import { DesktopHeaderProps } from 'types';
 import { HEADER_NAV_LINKS, ROUTES_PATH } from '../../../../constants';
+import { CustomAvatar, GreyBox, HeaderButton } from 'styles';
 import { Box, ListItemIcon, Menu, MenuItem, Stack } from '@mui/material';
-import { CustomAvatar, GreyBox, HeaderButton, HeaderWrapper } from 'styles';
 
 export const DesktopHeader = ({ isLoggedIn, logout }: DesktopHeaderProps) => {
   const navigate = useNavigate();
@@ -22,7 +22,7 @@ export const DesktopHeader = ({ isLoggedIn, logout }: DesktopHeaderProps) => {
   };
 
   return (
-    <HeaderWrapper>
+    <>
       <Stack direction="row">
         <Stack direction="row" alignItems="center">
           <GreyBox />
@@ -100,6 +100,6 @@ export const DesktopHeader = ({ isLoggedIn, logout }: DesktopHeaderProps) => {
           )}
         </Stack>
       </Stack>
-    </HeaderWrapper>
+    </>
   );
 };

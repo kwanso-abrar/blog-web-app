@@ -3,15 +3,15 @@ import { useState } from 'react';
 import { NavLinksList } from 'components';
 import { HeaderSearchBar } from './HeaderSearchBar';
 import { MobileHeaderProps } from 'types';
+import { GreyBox, HeaderNavLink } from 'styles';
 import { MOBILE_HEADER_NAV_LINKS } from '../../../../constants';
 import { Box, Drawer, IconButton, Stack } from '@mui/material';
-import { GreyBox, HeaderNavLink, HeaderWrapper } from 'styles';
 
 export const MobileHeader = ({ isLoggedIn, logout }: MobileHeaderProps) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
-    <HeaderWrapper>
+    <>
       <Stack direction="row" alignItems="center" justifyContent="space-between">
         <GreyBox />
 
@@ -54,6 +54,6 @@ export const MobileHeader = ({ isLoggedIn, logout }: MobileHeaderProps) => {
           )}
         </Stack>
       </Drawer>
-    </HeaderWrapper>
+    </>
   );
 };
