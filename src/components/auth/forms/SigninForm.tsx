@@ -1,11 +1,10 @@
 import toast from 'react-hot-toast';
+import { useAuth } from 'customHooks';
 import { useForm } from 'react-hook-form';
-import { saveToken } from 'utils';
 import { yupSchema } from 'formValidations';
 import { ROUTES_PATH } from '../../../constants';
 import { useNavigate } from 'react-router-dom';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { useContextApi } from 'AppContext';
 import { useSignInMutation } from 'generated';
 import { DONT_HAVE_ACCOUNT_SX } from 'styles/constants';
 import { Box, Divider, Typography } from '@mui/material';
@@ -21,7 +20,7 @@ const schema = yupSchema.signIn;
 
 export const SigninForm = () => {
   const navigate = useNavigate();
-  const { setIsLoggedIn } = useContextApi();
+  const { login } = useAuth();
 
   const {
     handleSubmit,
@@ -49,10 +48,7 @@ export const SigninForm = () => {
       }
     });
     if (response.data?.signIn) {
-      if (values.rememberMe) {
-        saveToken(response.data.signIn.accesstoken);
-      }
-      setIsLoggedIn(true);
+      login(values.rememberMe && response.data.signIn.accesstoken);
       navigate(ROUTES_PATH.home);
     }
   };
