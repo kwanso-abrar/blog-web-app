@@ -16,7 +16,7 @@ export const Header = () => {
   const onHeaderScroll = useCallback(() => {
     if (headerRef.current) {
       if (window.scrollY > headerRef.current?.offsetHeight) {
-        headerRef.current.style.position = 'fixed';
+        headerRef.current.style.position = 'sticky';
         headerRef.current.style.top = '0px';
         headerRef.current.style.boxShadow = '0 3px 5px rgba(57, 63, 72, 0.3)';
       } else if (window.scrollY === 0) {
