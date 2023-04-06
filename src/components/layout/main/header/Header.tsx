@@ -14,7 +14,7 @@ export const Header = () => {
   const { isLoggedIn } = useContextApi();
   const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
 
-  const onHeaderScroll = useCallback(() => {
+  const onScrollHeaderBehaviour = useCallback(() => {
     if (headerRef.current) {
       if (window.scrollY > headerRef.current?.offsetHeight)
         headerRef.current.style.cssText += HEADER_SCROLL_BEHAVIOUR.sticky;
@@ -26,9 +26,9 @@ export const Header = () => {
   }, []);
 
   useEffect(() => {
-    window.addEventListener('scroll', onHeaderScroll);
+    window.addEventListener('scroll', onScrollHeaderBehaviour);
     return () => {
-      window.removeEventListener('scroll', onHeaderScroll);
+      window.removeEventListener('scroll', onScrollHeaderBehaviour);
     };
   }, []);
 
