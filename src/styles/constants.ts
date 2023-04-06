@@ -178,3 +178,8 @@ export const SELECTED_IMAGE_NAME = {
   lineHeight: '24px',
   marginLeft: '15px'
 };
+
+export const HEADER_SCROLL_BEHAVIOUR = {
+  sticky: 'position:sticky; top:0; box-shadow:0 3px 5px rgba(57, 63, 72, 0.3);',
+  nonSticky: 'position: static; box-shadow:none'
+};

@@ -3,6 +3,7 @@ import { MobileHeader } from './MobileHeader';
 import { DesktopHeader } from './DesktopHeader';
 import { HeaderWrapper } from 'styles';
 import { useContextApi } from 'AppContext';
+import { HEADER_SCROLL_BEHAVIOUR } from 'styles/constants';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useCallback, useEffect, useRef } from 'react';
 
@@ -15,21 +16,17 @@ export const Header = () => {
 
   const onHeaderScroll = useCallback(() => {
     if (headerRef.current) {
-      if (window.scrollY > headerRef.current?.offsetHeight) {
-        headerRef.current.style.position = 'sticky';
-        headerRef.current.style.top = '0px';
-        headerRef.current.style.boxShadow = '0 3px 5px rgba(57, 63, 72, 0.3)';
-      } else if (window.scrollY === 0) {
-        headerRef.current.style.position = 'static';
+      if (window.scrollY > headerRef.current?.offsetHeight)
+        headerRef.current.style.cssText += HEADER_SCROLL_BEHAVIOUR.sticky;
+      else if (window.scrollY === 0) {
+        headerRef.current.style.cssText += HEADER_SCROLL_BEHAVIOUR.nonSticky;
         headerRef.current.style.top = `-${headerRef.current?.offsetHeight - 10}px`;
-        headerRef.current.style.boxShadow = 'none';
       }
     }
   }, []);
 
   useEffect(() => {
     window.addEventListener('scroll', onHeaderScroll);
-
     return () => {
       window.removeEventListener('scroll', onHeaderScroll);
     };
