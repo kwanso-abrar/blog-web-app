@@ -147,10 +147,10 @@ export type PrimaryFilePickerProps = {
 
 export type MobileHeaderProps = {
   isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  logout: () => void;
 };
 
 export type DesktopHeaderProps = {
   isLoggedIn: boolean;
-  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  logout: () => void;
 };

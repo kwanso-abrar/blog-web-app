@@ -1,6 +1,5 @@
 import MenuIcon from '@mui/icons-material/Menu';
 import { useState } from 'react';
-import { removeToken } from 'utils';
 import { NavLinksList } from 'components';
 import { HeaderSearchBar } from './HeaderSearchBar';
 import { MobileHeaderProps } from 'types';
@@ -8,7 +7,7 @@ import { MOBILE_HEADER_NAV_LINKS } from '../../../../constants';
 import { Box, Drawer, IconButton, Stack } from '@mui/material';
 import { GreyBox, HeaderNavLink, HeaderWrapper } from 'styles';
 
-export const MobileHeader = ({ isLoggedIn, setIsLoggedIn }: MobileHeaderProps) => {
+export const MobileHeader = ({ isLoggedIn, logout }: MobileHeaderProps) => {
   const [openDrawer, setOpenDrawer] = useState(false);
 
   return (
@@ -42,8 +41,7 @@ export const MobileHeader = ({ isLoggedIn, setIsLoggedIn }: MobileHeaderProps) =
             <HeaderNavLink
               to=""
               onClick={() => {
-                removeToken();
-                setIsLoggedIn(false);
+                logout();
               }}
             >
               Logout

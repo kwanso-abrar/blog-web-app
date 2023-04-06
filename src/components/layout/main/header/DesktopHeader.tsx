@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { removeToken } from 'utils';
 import { useNavigate } from 'react-router-dom';
 import { NavLinksList } from './NavLinksList';
 import { paperPropsSx } from 'styles/constants';
@@ -10,7 +9,7 @@ import { HEADER_NAV_LINKS, ROUTES_PATH } from '../../../../constants';
 import { Box, ListItemIcon, Menu, MenuItem, Stack } from '@mui/material';
 import { CustomAvatar, GreyBox, HeaderButton, HeaderWrapper } from 'styles';
 
-export const DesktopHeader = ({ isLoggedIn, setIsLoggedIn }: DesktopHeaderProps) => {
+export const DesktopHeader = ({ isLoggedIn, logout }: DesktopHeaderProps) => {
   const navigate = useNavigate();
   const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -73,8 +72,7 @@ export const DesktopHeader = ({ isLoggedIn, setIsLoggedIn }: DesktopHeaderProps)
                   </MenuItem>
                   <MenuItem
                     onClick={() => {
-                      removeToken();
-                      setIsLoggedIn(false);
+                      logout();
                     }}
                   >
                     <ListItemIcon>
