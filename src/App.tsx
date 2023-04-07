@@ -1,6 +1,6 @@
-import client from 'graphql/client';
 import { theme } from 'theme';
 import { Socket } from 'socket.io-client';
+import { client } from 'graphql/client';
 import { Toaster } from 'react-hot-toast';
 import { AppContext } from 'contexts';
 import { mainRoutes } from 'routes';

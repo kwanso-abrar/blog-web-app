@@ -26,9 +26,7 @@ const logoutOnTokenExpire = new ApolloLink((operation, forward) => {
   });
 });
 
-const client = new ApolloClient({
+export const client = new ApolloClient({
   link: authLink.concat(logoutOnTokenExpire).concat(httpLink),
   cache: new InMemoryCache()
 });
-
-export default client;
