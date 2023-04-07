@@ -2,7 +2,7 @@ import { useAuth } from 'customHooks';
 import { MobileHeader } from './MobileHeader';
 import { DesktopHeader } from './DesktopHeader';
 import { HeaderWrapper } from 'styles';
-import { useContextApi } from 'AppContext';
+import { useAppContext } from 'AppContext';
 import { HEADER_SCROLL_BEHAVIOUR } from 'styles/constants';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useCallback, useEffect, useRef } from 'react';
@@ -11,7 +11,7 @@ export const Header = () => {
   const theme = useTheme();
   const headerRef = useRef<HTMLDivElement>();
   const { logout } = useAuth();
-  const { isLoggedIn } = useContextApi();
+  const { isLoggedIn } = useAppContext();
   const isMobileView = useMediaQuery(theme.breakpoints.down('md'));
 
   const onScrollHeaderBehaviour = useCallback(() => {

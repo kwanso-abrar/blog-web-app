@@ -1,6 +1,6 @@
 import toast from 'react-hot-toast';
 import { useState } from 'react';
-import { useContextApi } from 'AppContext';
+import { useAppContext } from 'AppContext';
 import { UserDummyImage } from 'assets';
 import { CommentCardProps } from 'types';
 import { useRepliesLazyQuery } from 'generated';
@@ -27,7 +27,7 @@ export const CommentCard = ({
   timeFromNow
 }: CommentCardProps) => {
   const [showReplies, setShowReplies] = useState(false);
-  const { isLoggedIn } = useContextApi();
+  const { isLoggedIn } = useAppContext();
 
   const [fetchReplies, { data, loading }] = useRepliesLazyQuery({
     onError: (error) => toast.error(error.message),

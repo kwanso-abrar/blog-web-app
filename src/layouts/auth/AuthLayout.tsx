@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-import { useContextApi } from 'AppContext';
+import { useAppContext } from 'AppContext';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Wrapper = styled(Box)(({ theme }) => ({
@@ -11,7 +11,7 @@ const Wrapper = styled(Box)(({ theme }) => ({
 }));
 
 export const AuthLayout = () => {
-  const { isLoggedIn } = useContextApi();
+  const { isLoggedIn } = useAppContext();
   if (isLoggedIn) {
     return <Navigate to="" replace />;
   }

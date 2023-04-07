@@ -23,10 +23,21 @@ const App = () => {
       const socket = createSocketConnection(getToken() || '');
       setSocketConnection(socket);
     }
+    return () => {
+      socketConnection?.disconnect();
+    };
   }, []);
 
   useEffect(() => {
     console.log('socketConnection: ', socketConnection);
+
+    socketConnection?.on('onlineUsers', (data: any) => {
+      console.log('data', data);
+    });
+
+    return () => {
+      socketConnection?.off('onlineUsers');
+    };
   }, [socketConnection]);
 
   return (

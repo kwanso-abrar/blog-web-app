@@ -1,9 +1,9 @@
 import { Navigate } from 'react-router-dom';
-import { useContextApi } from 'AppContext';
+import { useAppContext } from 'AppContext';
 import { ProtectedProps } from 'types';
 
 export const Protected = ({ children }: ProtectedProps) => {
-  const { isLoggedIn } = useContextApi();
+  const { isLoggedIn } = useAppContext();
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
   }

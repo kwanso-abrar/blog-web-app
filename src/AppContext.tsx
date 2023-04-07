@@ -15,5 +15,5 @@ const AppContext = createContext<ContextType>({
   setSocketConnection: () => {}
 });
 
-export const useContextApi = () => useContext(AppContext);
+export const useAppContext = () => useContext(AppContext);
 export default AppContext;
