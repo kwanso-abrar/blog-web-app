@@ -1,7 +1,15 @@
 import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
 import { ROUTES_PATH } from '../constants';
-import { CreatePost, Home, MyArticles, ReadBlog, ReadBlogBySearch, Settings } from 'pages';
+import {
+  Home,
+  ReadBlog,
+  Settings,
+  CreatePost,
+  MyArticles,
+  ChatPlayground,
+  ReadBlogBySearch
+} from 'pages';
 
 export const mainRoutes: RouteProps[] = [
   {
@@ -29,6 +37,14 @@ export const mainRoutes: RouteProps[] = [
     element: (
       <Protected>
         <Settings />
+      </Protected>
+    )
+  },
+  {
+    path: ROUTES_PATH.chatPlayground,
+    element: (
+      <Protected>
+        <ChatPlayground />
       </Protected>
     )
   },

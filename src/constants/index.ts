@@ -12,6 +12,7 @@ export const ROUTES_PATH = {
   settings: '/settings',
   createPost: '/create',
   myArticles: '/my-articles',
+  chatPlayground: '/chat-playground',
   readBlogBySearch: '/read-by-search'
 };
 
@@ -49,6 +50,12 @@ export const HEADER_NAV_LINKS: HeaderNavLinkType[] = [
     id: 2,
     to: ROUTES_PATH.myArticles,
     text: 'My Articles',
+    isProtected: true
+  },
+  {
+    id: 3,
+    to: ROUTES_PATH.chatPlayground,
+    text: 'Chat Playground',
     isProtected: true
   }
 ];
