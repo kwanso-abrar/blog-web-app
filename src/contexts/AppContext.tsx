@@ -1,14 +1,7 @@
-import { Socket } from 'socket.io-client';
-import { createContext, Dispatch, SetStateAction, useContext } from 'react';
+import { AppContextType } from 'types';
+import { createContext, useContext } from 'react';
 
-type ContextType = {
-  isLoggedIn: boolean;
-  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
-  socketConnection: Socket | undefined;
-  setSocketConnection: Dispatch<SetStateAction<Socket | undefined>>;
-};
-
-export const AppContext = createContext<ContextType>({
+export const AppContext = createContext<AppContextType>({
   isLoggedIn: false,
   setIsLoggedIn: () => {},
   socketConnection: undefined,

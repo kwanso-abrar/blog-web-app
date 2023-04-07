@@ -1,7 +1,8 @@
-import { ReactNode } from 'react';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 import { Comments, Posts } from 'generated';
 import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
+import { Socket } from 'socket.io-client';
 
 export type NavigationButtonProps = {
   id: number;
@@ -153,4 +154,11 @@ export type MobileHeaderProps = {
 export type DesktopHeaderProps = {
   isLoggedIn: boolean;
   logout: () => void;
+};
+
+export type AppContextType = {
+  isLoggedIn: boolean;
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  socketConnection: Socket | undefined;
+  setSocketConnection: Dispatch<SetStateAction<Socket | undefined>>;
 };
