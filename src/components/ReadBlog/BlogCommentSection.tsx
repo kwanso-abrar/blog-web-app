@@ -1,4 +1,4 @@
-import { useAppContext } from 'AppContext';
+import { useAppContext } from 'contexts';
 import { UserDummyImage } from 'assets';
 import { getTimeFromNow } from 'utils';
 import { CommentCardContainer } from 'styles';

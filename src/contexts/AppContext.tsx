@@ -8,7 +8,7 @@ type ContextType = {
   setSocketConnection: Dispatch<SetStateAction<Socket | undefined>>;
 };
 
-const AppContext = createContext<ContextType>({
+export const AppContext = createContext<ContextType>({
   isLoggedIn: false,
   setIsLoggedIn: () => {},
   socketConnection: undefined,
@@ -16,4 +16,3 @@ const AppContext = createContext<ContextType>({
 });
 
 export const useAppContext = () => useContext(AppContext);
-export default AppContext;

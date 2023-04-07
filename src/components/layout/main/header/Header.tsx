@@ -2,7 +2,7 @@ import { useAuth } from 'customHooks';
 import { MobileHeader } from './MobileHeader';
 import { DesktopHeader } from './DesktopHeader';
 import { HeaderWrapper } from 'styles';
-import { useAppContext } from 'AppContext';
+import { useAppContext } from 'contexts';
 import { HEADER_SCROLL_BEHAVIOUR } from 'styles/constants';
 import { useMediaQuery, useTheme } from '@mui/material';
 import { useCallback, useEffect, useRef } from 'react';

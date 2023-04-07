@@ -1,5 +1,5 @@
 import { Box, styled } from '@mui/material';
-import { useAppContext } from 'AppContext';
+import { useAppContext } from 'contexts';
 import { Navigate, Outlet } from 'react-router-dom';
 
 const Wrapper = styled(Box)(({ theme }) => ({

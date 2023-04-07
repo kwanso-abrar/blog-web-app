@@ -1,8 +1,8 @@
 import client from 'graphql/client';
-import AppContext from 'AppContext';
 import { theme } from 'theme';
 import { Socket } from 'socket.io-client';
 import { Toaster } from 'react-hot-toast';
+import { AppContext } from 'contexts';
 import { mainRoutes } from 'routes';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';

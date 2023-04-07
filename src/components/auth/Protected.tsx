@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom';
-import { useAppContext } from 'AppContext';
+import { useAppContext } from 'contexts';
 import { ProtectedProps } from 'types';
 
 export const Protected = ({ children }: ProtectedProps) => {
