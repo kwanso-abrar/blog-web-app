@@ -1,24 +1,40 @@
+import client from 'graphql/client';
+import AppContext from 'AppContext';
 import { theme } from 'theme';
+import { Socket } from 'socket.io-client';
 import { Toaster } from 'react-hot-toast';
-import { isToken } from 'utils';
-import { useState } from 'react';
 import { mainRoutes } from 'routes';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { Signin, Signup } from 'pages';
+import { getToken, isToken } from 'utils';
+import { useEffect, useState } from 'react';
 import { AuthLayout, MainLayout } from 'layouts';
+import { createSocketConnection } from 'socket';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
-import client from 'graphql/client';
-import AppContext from 'AppContext';
 
 const App = () => {
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
+  const [socketConnection, setSocketConnection] = useState<Socket | undefined>();
+
+  useEffect(() => {
+    if (isLoggedIn && typeof socketConnection === 'undefined' && isToken()) {
+      const socket = createSocketConnection(getToken() || '');
+      setSocketConnection(socket);
+    }
+  }, []);
+
+  useEffect(() => {
+    console.log('socketConnection: ', socketConnection);
+  }, [socketConnection]);
 
   return (
     <div>
       <ApolloProvider client={client}>
-        <AppContext.Provider value={{ isLoggedIn, setIsLoggedIn }}>
+        <AppContext.Provider
+          value={{ isLoggedIn, setIsLoggedIn, socketConnection, setSocketConnection }}
+        >
           <Toaster />
           <ThemeProvider theme={theme}>
             <StyledEngineProvider injectFirst>
