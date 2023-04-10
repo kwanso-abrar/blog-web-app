@@ -90,3 +90,7 @@ export const MOBILE_HEADER_NAV_LINKS: HeaderNavLinkType[] = [
 export const CLOUDINARY_IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
 
 export const SOCKET_URL = 'http://localhost:8000';
+
+export enum SOCKET_EVENT_LISTENER {
+  onlineUsers = 'onlineUsers'
+}

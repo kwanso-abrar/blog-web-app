@@ -1,8 +1,8 @@
-import { Dispatch, ReactNode, SetStateAction } from 'react';
+import { Socket } from 'socket.io-client';
 import { Comments, Posts } from 'generated';
 import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
-import { Socket } from 'socket.io-client';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
 
 export type NavigationButtonProps = {
   id: number;
@@ -161,4 +161,15 @@ export type AppContextType = {
   setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
   socketConnection: Socket | undefined;
   setSocketConnection: Dispatch<SetStateAction<Socket | undefined>>;
+};
+
+export type OnlineUser = {
+  name: string;
+  userId: string;
+  socketId: string;
+};
+
+export type ChatContextType = {
+  onlineUsers: OnlineUser[];
+  setOnlineUsers: Dispatch<SetStateAction<OnlineUser[]>>;
 };
