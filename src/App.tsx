@@ -18,14 +18,19 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
 const App = () => {
-  const hasRun = useRef<boolean>(false);
+  const isSocketConnectionAlreadyEstablished = useRef<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
   const [onlineUsers, setOnlineUsers] = useState<OnlineUser[]>([]);
   const [socketConnection, setSocketConnection] = useState<Socket | undefined>();
 
   useEffect(() => {
-    if (isLoggedIn && typeof socketConnection === 'undefined' && isToken() && !hasRun.current) {
-      hasRun.current = true;
+    if (
+      isToken() &&
+      isLoggedIn &&
+      typeof socketConnection === 'undefined' &&
+      !isSocketConnectionAlreadyEstablished.current
+    ) {
+      isSocketConnectionAlreadyEstablished.current = true;
       const socket = createSocketConnection(getToken() || '');
       setSocketConnection(socket);
     }
