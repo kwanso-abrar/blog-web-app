@@ -10,20 +10,22 @@ import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { Signin, Signup } from 'pages';
 import { getToken, isToken } from 'utils';
-import { useEffect, useState } from 'react';
 import { SOCKET_EVENT_LISTENER } from './constants';
 import { AuthLayout, MainLayout } from 'layouts';
 import { createSocketConnection } from 'socket';
+import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
 const App = () => {
+  const hasRun = useRef<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
   const [onlineUsers, setOnlineUsers] = useState<OnlineUser[]>([]);
   const [socketConnection, setSocketConnection] = useState<Socket | undefined>();
 
   useEffect(() => {
-    if (isLoggedIn && typeof socketConnection === 'undefined' && isToken()) {
+    if (isLoggedIn && typeof socketConnection === 'undefined' && isToken() && !hasRun.current) {
+      hasRun.current = true;
       const socket = createSocketConnection(getToken() || '');
       setSocketConnection(socket);
     }
