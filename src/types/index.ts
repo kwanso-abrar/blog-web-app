@@ -182,3 +182,7 @@ export type ChatProviderProps = {
   children: ReactNode;
   socketConnection: Socket | undefined;
 };
+
+export type OnlineUserCardProps = {
+  userName: string;
+};
