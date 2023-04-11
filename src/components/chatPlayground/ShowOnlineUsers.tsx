@@ -1,20 +1,22 @@
+import { Box, Divider } from '@mui/material';
 import { OnlineUserCard } from 'components';
-import { Box, Typography } from '@mui/material';
 import { ShowOnlineUsersProps } from 'types';
 
 export const ShowOnlineUsers = ({ onlineUsers }: ShowOnlineUsersProps) => (
-  <>
-    <Typography variant="h2">Your Chats:</Typography>
-
-    <Box sx={{ marginTop: '30px' }}>
-      {onlineUsers.map((onlineUser, index) => (
+  <Box>
+    {onlineUsers.map((onlineUser) => (
+      <>
         <Box
           key={onlineUser.socketId + onlineUser.userId}
-          sx={{ marginTop: index === 0 ? '0px' : '15px' }}
+          sx={{
+            ':hover': { backgroundColor: '#E5E5E5', cursor: 'pointer' },
+            padding: '20px 10px 10px 10px'
+          }}
         >
           <OnlineUserCard userName={onlineUser.name} />
         </Box>
-      ))}
-    </Box>
-  </>
+        <Divider />
+      </>
+    ))}
+  </Box>
 );

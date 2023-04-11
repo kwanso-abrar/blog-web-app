@@ -9,14 +9,13 @@ export const OnlineUserCard = ({ userName }: OnlineUserCardProps) => (
     direction="row"
     sx={{
       ':hover': { cursor: 'pointer' },
-      width: '100%',
       maxWidth: '220px'
     }}
   >
     <StyledBadge
       overlap="circular"
-      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
       variant="dot"
+      anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
     >
       <Avatar alt={userName} src={UserDummyImage} />
     </StyledBadge>

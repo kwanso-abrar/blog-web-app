@@ -262,3 +262,25 @@ export const StyledBadge = styled(Badge)(({ theme }) => ({
     }
   }
 }));
+
+export const ShowOnlineUsersContainer = styled(Box)(() => ({
+  width: '20%',
+  height: '500px',
+  marginTop: '50px',
+  maxHeight: '500px',
+  border: '1px solid #E5E5E5'
+}));
+
+export const ChatBoxContainer = styled(Box)(() => ({
+  width: '70%',
+  marginTop: '50px'
+}));
+
+export const ChatBoxMessageArea = styled(Box)(() => ({
+  height: '500px',
+  padding: '12px',
+  maxHeight: '500px',
+  overflowY: 'scroll',
+  borderRadius: '5px',
+  backgroundColor: '#E5E5E5'
+}));
