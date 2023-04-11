@@ -268,11 +268,12 @@ export const ShowOnlineUsersContainer = styled(Box)(() => ({
   height: '500px',
   marginTop: '50px',
   maxHeight: '500px',
-  border: '1px solid #E5E5E5'
+  border: '1px solid #E5E5E5',
+  borderRight: '2px solid #a3a3a3'
 }));
 
 export const ChatBoxContainer = styled(Box)(() => ({
-  width: '70%',
+  width: '80%',
   marginTop: '50px'
 }));
 
@@ -281,6 +282,5 @@ export const ChatBoxMessageArea = styled(Box)(() => ({
   padding: '12px',
   maxHeight: '500px',
   overflowY: 'scroll',
-  borderRadius: '5px',
   backgroundColor: '#E5E5E5'
 }));
