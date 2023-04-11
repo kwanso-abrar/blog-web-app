@@ -2,8 +2,7 @@ import { ChatContextType } from 'types';
 import { createContext, useContext } from 'react';
 
 export const ChatContext = createContext<ChatContextType>({
-  onlineUsers: [],
-  setOnlineUsers: () => {}
+  onlineUsers: []
 });
 
 export const useChatContext = () => useContext(ChatContext);

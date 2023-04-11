@@ -3,25 +3,25 @@ import { Socket } from 'socket.io-client';
 import { client } from 'graphql/client';
 import { Toaster } from 'react-hot-toast';
 import { AppContext } from 'contexts';
-import { OnlineUser } from 'types';
 import { mainRoutes } from 'routes';
 import { ChatContext } from 'contexts/ChatContext';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { Signin, Signup } from 'pages';
 import { getToken, isToken } from 'utils';
+import { onlineUsersReducer } from 'reducers';
 import { SOCKET_EVENT_LISTENER } from './constants';
 import { AuthLayout, MainLayout } from 'layouts';
 import { createSocketConnection } from 'socket';
-import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
+import { useEffect, useReducer, useRef, useState } from 'react';
 
 const App = () => {
-  const isSocketConnectionAlreadyEstablished = useRef<boolean>(false);
   const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
-  const [onlineUsers, setOnlineUsers] = useState<OnlineUser[]>([]);
+  const isSocketConnectionAlreadyEstablished = useRef<boolean>(false);
   const [socketConnection, setSocketConnection] = useState<Socket | undefined>();
+  const [onlineUsers, dispatchOnlineUsersAction] = useReducer(onlineUsersReducer, []);
 
   useEffect(() => {
     if (
@@ -38,21 +38,16 @@ const App = () => {
 
   useEffect(() => {
     socketConnection?.on(SOCKET_EVENT_LISTENER.onlineUsers, (data: any) => {
-      const { users } = data;
-      const onlineUsers: OnlineUser[] = users.map((user: any) => {
-        return {
-          name: user.data.name,
-          socketId: user.data.socketId,
-          userId: user.userId
-        };
+      dispatchOnlineUsersAction({
+        type: 'update',
+        payload: { onlineUsers: data.users, mySocketId: socketConnection.id }
       });
-      setOnlineUsers(() => onlineUsers.filter((data) => data.socketId !== socketConnection.id));
-
-      return () => {
-        socketConnection?.off(SOCKET_EVENT_LISTENER.onlineUsers);
-        socketConnection?.disconnect();
-      };
     });
+
+    return () => {
+      socketConnection?.off(SOCKET_EVENT_LISTENER.onlineUsers);
+      socketConnection?.disconnect();
+    };
   }, [socketConnection]);
 
   return (
@@ -61,7 +56,7 @@ const App = () => {
         <AppContext.Provider
           value={{ isLoggedIn, setIsLoggedIn, socketConnection, setSocketConnection }}
         >
-          <ChatContext.Provider value={{ onlineUsers, setOnlineUsers }}>
+          <ChatContext.Provider value={{ onlineUsers }}>
             <Toaster />
             <ThemeProvider theme={theme}>
               <StyledEngineProvider injectFirst>

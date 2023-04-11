@@ -169,7 +169,11 @@ export type OnlineUser = {
   socketId: string;
 };
 
+export type OnlineUserAction = {
+  type: 'update';
+  payload: { onlineUsers: OnlineUser[]; mySocketId: string };
+};
+
 export type ChatContextType = {
   onlineUsers: OnlineUser[];
-  setOnlineUsers: Dispatch<SetStateAction<OnlineUser[]>>;
 };
