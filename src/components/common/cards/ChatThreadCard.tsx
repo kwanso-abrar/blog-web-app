@@ -1,12 +1,13 @@
 import { Stack, Typography } from '@mui/material';
+import { ChatThreadCardProps } from 'types';
 
-export const ChatThreadCard = () => {
+export const ChatThreadCard = ({ message, userName }: ChatThreadCardProps) => {
   return (
     <Stack direction="row">
       <Typography>
-        <b>Abrar:</b> &nbsp;
+        <b>{userName}:</b> &nbsp;
       </Typography>
-      <Typography>Hi! this is abrar</Typography>
+      <Typography>{message}</Typography>
     </Stack>
   );
 };

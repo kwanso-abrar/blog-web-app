@@ -5,9 +5,9 @@ import {
   Home,
   ReadBlog,
   Settings,
+  Messenger,
   CreatePost,
   MyArticles,
-  ChatPlayground,
   ReadBlogBySearch
 } from 'pages';
 
@@ -41,10 +41,10 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
-    path: ROUTES_PATH.chatPlayground,
+    path: ROUTES_PATH.messenger,
     element: (
       <Protected>
-        <ChatPlayground />
+        <Messenger />
       </Protected>
     )
   },

@@ -4,13 +4,13 @@ import { ChatBox, ShowOnlineUsers } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 import { ChatBoxContainer, ShowOnlineUsersContainer } from 'styles';
 
-export const ChatPlayground = () => {
+export const Messenger = () => {
   const { onlineUsers } = useChatContext();
 
   return (
     <Box>
       <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
-        Chat Playground
+        Messenger
       </Typography>
 
       <Stack direction="row" justifyContent="space-between">

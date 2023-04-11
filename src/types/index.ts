@@ -190,3 +190,8 @@ export type OnlineUserCardProps = {
 export type ShowOnlineUsersProps = {
   onlineUsers: OnlineUser[];
 };
+
+export type ChatThreadCardProps = {
+  message: string;
+  userName: string;
+};

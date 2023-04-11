@@ -10,9 +10,9 @@ export const ROUTES_PATH = {
   signup: '/signup',
   readBlog: '/read',
   settings: '/settings',
+  messenger: '/messenger',
   createPost: '/create',
   myArticles: '/my-articles',
-  chatPlayground: '/chat-playground',
   readBlogBySearch: '/read-by-search'
 };
 
@@ -54,8 +54,8 @@ export const HEADER_NAV_LINKS: HeaderNavLinkType[] = [
   },
   {
     id: 3,
-    to: ROUTES_PATH.chatPlayground,
-    text: 'Chat Playground',
+    to: ROUTES_PATH.messenger,
+    text: 'Messenger',
     isProtected: true
   }
 ];
