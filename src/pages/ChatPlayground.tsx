@@ -1,6 +1,6 @@
-import { OnlineUserCard } from 'components';
 import { useChatContext } from 'contexts/ChatContext';
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+import { ChatBox, ShowOnlineUsers } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 
 export const ChatPlayground = () => {
@@ -12,20 +12,15 @@ export const ChatPlayground = () => {
         Chat Playground - Experiments with Socket io library
       </Typography>
 
-      <Box marginTop={'50px'}>
-        <Typography variant="h2">Online Users:</Typography>
-
-        <Box sx={{ marginTop: '30px' }}>
-          {onlineUsers.map((onlineUser, index) => (
-            <Box
-              key={onlineUser.socketId + onlineUser.userId}
-              sx={{ marginTop: index === 0 ? '0px' : '15px' }}
-            >
-              <OnlineUserCard userName={onlineUser.name} />
-            </Box>
-          ))}
+      <Stack direction="row">
+        <Box marginTop={'50px'} sx={{ width: '30%' }}>
+          <ShowOnlineUsers onlineUsers={onlineUsers} />
         </Box>
-      </Box>
+
+        <Box sx={{ flexGrow: '1', marginTop: '50px', border: '1px solid red' }}>
+          <ChatBox />
+        </Box>
+      </Stack>
     </Box>
   );
 };

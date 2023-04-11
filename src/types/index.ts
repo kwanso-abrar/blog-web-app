@@ -186,3 +186,7 @@ export type ChatProviderProps = {
 export type OnlineUserCardProps = {
   userName: string;
 };
+
+export type ShowOnlineUsersProps = {
+  onlineUsers: OnlineUser[];
+};
