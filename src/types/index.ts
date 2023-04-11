@@ -177,3 +177,8 @@ export type OnlineUserAction = {
 export type ChatContextType = {
   onlineUsers: OnlineUser[];
 };
+
+export type ChatProviderProps = {
+  children: ReactNode;
+  socketConnection: Socket | undefined;
+};

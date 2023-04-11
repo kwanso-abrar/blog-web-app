@@ -4,24 +4,21 @@ import { client } from 'graphql/client';
 import { Toaster } from 'react-hot-toast';
 import { AppContext } from 'contexts';
 import { mainRoutes } from 'routes';
-import { ChatContext } from 'contexts/ChatContext';
+import { ChatProvider } from 'components';
 import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { Signin, Signup } from 'pages';
 import { getToken, isToken } from 'utils';
-import { onlineUsersReducer } from 'reducers';
-import { SOCKET_EVENT_LISTENER } from './constants';
 import { AuthLayout, MainLayout } from 'layouts';
 import { createSocketConnection } from 'socket';
+import { useEffect, useRef, useState } from 'react';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
-import { useEffect, useReducer, useRef, useState } from 'react';
 
 const App = () => {
-  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
   const isSocketConnectionAlreadyEstablished = useRef<boolean>(false);
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(isToken());
   const [socketConnection, setSocketConnection] = useState<Socket | undefined>();
-  const [onlineUsers, dispatchOnlineUsersAction] = useReducer(onlineUsersReducer, []);
 
   useEffect(() => {
     if (
@@ -36,27 +33,13 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    socketConnection?.on(SOCKET_EVENT_LISTENER.onlineUsers, (data: any) => {
-      dispatchOnlineUsersAction({
-        type: 'update',
-        payload: { onlineUsers: data.users, mySocketId: socketConnection.id }
-      });
-    });
-
-    return () => {
-      socketConnection?.off(SOCKET_EVENT_LISTENER.onlineUsers);
-      socketConnection?.disconnect();
-    };
-  }, [socketConnection]);
-
   return (
     <div>
       <ApolloProvider client={client}>
         <AppContext.Provider
           value={{ isLoggedIn, setIsLoggedIn, socketConnection, setSocketConnection }}
         >
-          <ChatContext.Provider value={{ onlineUsers }}>
+          <ChatProvider socketConnection={socketConnection}>
             <Toaster />
             <ThemeProvider theme={theme}>
               <StyledEngineProvider injectFirst>
@@ -76,7 +59,7 @@ const App = () => {
                 </BrowserRouter>
               </StyledEngineProvider>
             </ThemeProvider>
-          </ChatContext.Provider>
+          </ChatProvider>
         </AppContext.Provider>
       </ApolloProvider>
     </div>
