@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+import { Chat_Action } from '../constants';
 import { Comments, Posts } from 'generated';
 import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
@@ -185,9 +186,18 @@ export type UserAction = {
   payload: { onlineUsers: OnlineUser[]; mySocketId: string };
 };
 
-export type ChatContextType = {
-  currentUser: User;
+export type ChatInfo = {
   onlineUsers: OnlineUser[];
+  currentOnlineUser: User | null;
+};
+
+export type ChatAction = {
+  type: Chat_Action;
+  payload: { chatRelatedInfo: ChatInfo; mySocketId: string };
+};
+
+export type ChatContextType = {
+  chatRelatedInfo: ChatInfo | null;
 };
 
 export type ChatProviderProps = {

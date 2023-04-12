@@ -5,7 +5,9 @@ import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 import { ChatBoxContainer, ShowOnlineUsersContainer } from 'styles';
 
 export const Messenger = () => {
-  const { onlineUsers } = useChatContext();
+  const { chatRelatedInfo } = useChatContext();
+
+  console.log('chatRelatedInfo', chatRelatedInfo);
 
   return (
     <Box>
@@ -15,7 +17,7 @@ export const Messenger = () => {
 
       <Stack direction="row" justifyContent="space-between">
         <ShowOnlineUsersContainer>
-          <ShowOnlineUsers onlineUsers={onlineUsers} />
+          <ShowOnlineUsers onlineUsers={chatRelatedInfo?.onlineUsers || []} />
         </ShowOnlineUsersContainer>
 
         <ChatBoxContainer>

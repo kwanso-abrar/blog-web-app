@@ -1,9 +1,9 @@
-import { ChatContextType, User } from 'types';
+import { ChatContextType } from 'types';
+import { initChatRelatedState } from 'reducers';
 import { createContext, useContext } from 'react';
 
 export const ChatContext = createContext<ChatContextType>({
-  currentUser: {} as User,
-  onlineUsers: []
+  chatRelatedInfo: initChatRelatedState()
 });
 
 export const useChatContext = () => useContext(ChatContext);

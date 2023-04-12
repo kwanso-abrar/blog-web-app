@@ -1,22 +1,31 @@
 import { ChatContext } from 'contexts/ChatContext';
-import { SOCKET_EVENT_LISTENER } from '../../../constants';
+import { ChatProviderProps } from 'types';
 import { useEffect, useReducer } from 'react';
-import { ChatProviderProps, User } from 'types';
-import { onlineUsersReducer, UserReducer } from 'reducers';
+import { chatReducer, initChatRelatedState } from 'reducers';
+import { Chat_Action, SOCKET_EVENT_LISTENER } from '../../../constants';
 
 export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) => {
-  const [currentUser, dispatchCurrentUserAction] = useReducer(UserReducer, {} as User);
-  const [onlineUsers, dispatchOnlineUsersAction] = useReducer(onlineUsersReducer, []);
+  const [chatRelatedInfo, dispatchChatRelatedInfoAction] = useReducer(
+    chatReducer,
+    initChatRelatedState()
+  );
 
   useEffect(() => {
     socketConnection?.on(SOCKET_EVENT_LISTENER.onlineUsers, (data: any) => {
-      dispatchCurrentUserAction({
-        type: 'save',
-        payload: { onlineUsers: data.users, mySocketId: socketConnection.id }
+      dispatchChatRelatedInfoAction({
+        type: Chat_Action.UPDATE_ONLINE_USERS,
+        payload: {
+          chatRelatedInfo: { onlineUsers: data.users, currentOnlineUser: null },
+          mySocketId: socketConnection.id
+        }
       });
-      dispatchOnlineUsersAction({
-        type: 'update',
-        payload: { onlineUsers: data.users, mySocketId: socketConnection.id }
+
+      dispatchChatRelatedInfoAction({
+        type: Chat_Action.UPDATE_CURRENT_USER,
+        payload: {
+          chatRelatedInfo: { onlineUsers: data.users, currentOnlineUser: null },
+          mySocketId: socketConnection.id
+        }
       });
     });
 
@@ -26,7 +35,5 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
     };
   }, [socketConnection]);
 
-  return (
-    <ChatContext.Provider value={{ onlineUsers, currentUser }}>{children}</ChatContext.Provider>
-  );
+  return <ChatContext.Provider value={{ chatRelatedInfo }}>{children}</ChatContext.Provider>;
 };

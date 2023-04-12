@@ -1,2 +1,1 @@
-export * from './user';
-export * from './onlineUsers';
+export { chatReducer, initChatRelatedState } from './chatReducer';
