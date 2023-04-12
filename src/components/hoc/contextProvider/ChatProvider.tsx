@@ -1,8 +1,8 @@
 import { ChatContext } from 'contexts/ChatContext';
 import { ChatProviderProps } from 'types';
+import { SOCKET_EVENT_LISTENER } from '../../../constants';
 import { useEffect, useReducer } from 'react';
-import { chatReducer, initChatRelatedState } from 'reducers';
-import { Chat_Action, SOCKET_EVENT_LISTENER } from '../../../constants';
+import { chatReducer, Chat_Action, initChatRelatedState } from 'reducers';
 
 export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) => {
   const [chatRelatedInfo, dispatchChatRelatedInfoAction] = useReducer(
@@ -15,7 +15,7 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
       dispatchChatRelatedInfoAction({
         type: Chat_Action.UPDATE_ONLINE_USERS,
         payload: {
-          chatRelatedInfo: { onlineUsers: data.users, currentOnlineUser: null },
+          onlineUsers: data.users,
           mySocketId: socketConnection.id
         }
       });
@@ -23,7 +23,7 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
       dispatchChatRelatedInfoAction({
         type: Chat_Action.UPDATE_CURRENT_USER,
         payload: {
-          chatRelatedInfo: { onlineUsers: data.users, currentOnlineUser: null },
+          onlineUsers: data.users,
           mySocketId: socketConnection.id
         }
       });

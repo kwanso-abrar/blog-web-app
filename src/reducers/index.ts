@@ -1,1 +1,1 @@
-export { chatReducer, initChatRelatedState } from './chatReducer';
+export * from './chatReducer';

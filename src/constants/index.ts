@@ -94,8 +94,3 @@ export const SOCKET_URL = 'http://localhost:8000';
 export enum SOCKET_EVENT_LISTENER {
   onlineUsers = 'onlineUsers'
 }
-
-export enum Chat_Action {
-  UPDATE_ONLINE_USERS = 'updateOnlineUsers',
-  UPDATE_CURRENT_USER = 'updateCurrentUser'
-}
