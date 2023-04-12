@@ -29,8 +29,13 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
       });
     });
 
+    socketConnection?.on(SOCKET_EVENT_LISTENER.groupChat, (data) => {
+      console.log('data', data);
+    });
+
     return () => {
       socketConnection?.off(SOCKET_EVENT_LISTENER.onlineUsers);
+      socketConnection?.off(SOCKET_EVENT_LISTENER.groupChat);
       socketConnection?.disconnect();
     };
   }, [socketConnection]);
