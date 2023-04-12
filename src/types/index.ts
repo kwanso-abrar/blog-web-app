@@ -4,6 +4,12 @@ import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
 import { Dispatch, ReactNode, SetStateAction } from 'react';
 
+export type User = {
+  name: string;
+  userId: string;
+  socketId: string;
+};
+
 export type NavigationButtonProps = {
   id: number;
   text: string;
@@ -174,7 +180,13 @@ export type OnlineUserAction = {
   payload: { onlineUsers: OnlineUser[]; mySocketId: string };
 };
 
+export type UserAction = {
+  type: 'save';
+  payload: { onlineUsers: OnlineUser[]; mySocketId: string };
+};
+
 export type ChatContextType = {
+  currentUser: User;
   onlineUsers: OnlineUser[];
 };
 
