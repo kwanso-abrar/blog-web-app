@@ -32,6 +32,8 @@ export const Messenger = () => {
     });
   }, []);
 
+  console.log('rooms: ', chatRelatedInfo?.chats);
+
   return (
     <Box>
       <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>

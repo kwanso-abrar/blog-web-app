@@ -30,7 +30,12 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
     });
 
     socketConnection?.on(SOCKET_EVENT_LISTENER.groupChat, (data) => {
-      console.log('data', data);
+      dispatchChatRelatedInfoAction({
+        type: Chat_Action.ADD_CHAT,
+        payload: {
+          chat: data
+        }
+      });
     });
 
     return () => {

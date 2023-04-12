@@ -176,7 +176,20 @@ export type OnlineUser = {
   socketId: string;
 };
 
+type Message = {
+  time: string;
+  message: string;
+  senderId: string;
+  receiverId: string;
+};
+
+export type Chat = {
+  roomName: string;
+  messages: Message[];
+};
+
 export type ChatInfo = {
+  chats: Chat[];
   onlineUsers: OnlineUser[];
   currentOnlineUser: User | null;
   selectedChatThread: string;
