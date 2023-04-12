@@ -35,5 +35,9 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
     };
   }, [socketConnection]);
 
-  return <ChatContext.Provider value={{ chatRelatedInfo }}>{children}</ChatContext.Provider>;
+  return (
+    <ChatContext.Provider value={{ chatRelatedInfo, dispatchChatRelatedInfoAction }}>
+      {children}
+    </ChatContext.Provider>
+  );
 };

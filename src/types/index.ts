@@ -1,4 +1,5 @@
 import { Socket } from 'socket.io-client';
+import { ChatAction } from 'reducers';
 import { Comments, Posts } from 'generated';
 import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
@@ -178,10 +179,12 @@ export type OnlineUser = {
 export type ChatInfo = {
   onlineUsers: OnlineUser[];
   currentOnlineUser: User | null;
+  selectedChatThread: string;
 };
 
 export type ChatContextType = {
   chatRelatedInfo: ChatInfo | null;
+  dispatchChatRelatedInfoAction: React.Dispatch<ChatAction>;
 };
 
 export type ChatProviderProps = {
@@ -195,6 +198,8 @@ export type OnlineUserCardProps = {
 
 export type ShowOnlineUsersProps = {
   onlineUsers: OnlineUser[];
+  selectedChatThread: string;
+  onSelectChatThread: (onlineUser: OnlineUser) => void;
 };
 
 export type ChatThreadCardProps = {

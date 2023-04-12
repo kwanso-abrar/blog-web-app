@@ -2,8 +2,9 @@ import { ChatInfo, OnlineUser } from 'types';
 import { getCurrentUser, updateOnlineUsers } from 'utils';
 
 export enum Chat_Action {
+  UPDATE_CURRENT_USER = 'updateCurrentUser',
   UPDATE_ONLINE_USERS = 'updateOnlineUsers',
-  UPDATE_CURRENT_USER = 'updateCurrentUser'
+  UPDATE_SELECTED_CHAT_THREAD = 'updateSelectedChatThread'
 }
 
 type UpdateOnlineUserAction = {
@@ -22,12 +23,23 @@ type UpdateCurrentOnlineUserAction = {
   };
 };
 
-export type ChatAction = UpdateOnlineUserAction | UpdateCurrentOnlineUserAction;
+type UpdateSelectedChatThreadAction = {
+  type: Chat_Action.UPDATE_SELECTED_CHAT_THREAD;
+  payload: {
+    userId: string;
+  };
+};
+
+export type ChatAction =
+  | UpdateOnlineUserAction
+  | UpdateCurrentOnlineUserAction
+  | UpdateSelectedChatThreadAction;
 
 export const initChatRelatedState = (): ChatInfo => {
   return {
     onlineUsers: [],
-    currentOnlineUser: null
+    currentOnlineUser: null,
+    selectedChatThread: ''
   };
 };
 
@@ -42,6 +54,10 @@ export const chatReducer = (state: ChatInfo, action: ChatAction): ChatInfo => {
     case Chat_Action.UPDATE_CURRENT_USER: {
       const { onlineUsers, mySocketId } = payload;
       return { ...state, currentOnlineUser: getCurrentUser(onlineUsers, mySocketId) };
+    }
+    case Chat_Action.UPDATE_SELECTED_CHAT_THREAD: {
+      const { userId } = payload;
+      return { ...state, selectedChatThread: userId };
     }
     default:
       return state;
