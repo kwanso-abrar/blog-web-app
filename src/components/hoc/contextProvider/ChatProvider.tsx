@@ -27,8 +27,6 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
   }, [socketConnection]);
 
   return (
-    <ChatContext.Provider value={{ onlineUsers, currentUser }}>
-      <>{children}</>
-    </ChatContext.Provider>
+    <ChatContext.Provider value={{ onlineUsers, currentUser }}>{children}</ChatContext.Provider>
   );
 };
