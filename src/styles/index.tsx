@@ -279,7 +279,7 @@ export const ChatBoxContainer = styled(Box)(() => ({
 
 export const ChatBoxMessageArea = styled(Box)(() => ({
   height: '500px',
-  padding: '12px',
+  padding: '12px 28px',
   maxHeight: '500px',
   overflowY: 'scroll',
   backgroundColor: '#E5E5E5'

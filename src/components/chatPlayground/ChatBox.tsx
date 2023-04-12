@@ -18,10 +18,10 @@ export const ChatBox = () => {
   return (
     <Stack sx={{ width: '80%' }}>
       <ChatBoxMessageArea>
-        <ChatThreadCard userName="Abrar" message="Hi there!" />
+        <ChatThreadCard userName="me" message="Hi there!" />
         <ChatThreadCard userName="ShahZaib" message="Hi there! How are you?" />
-        <ChatThreadCard userName="Abrar" message="Doing good" />
-        <ChatThreadCard userName="Abrar" message="Tell me about you" />
+        <ChatThreadCard userName="me" message="Doing good" />
+        <ChatThreadCard userName="me" message="Tell me about you" />
         <ChatThreadCard userName="ShahZaib" message="Same here" />
       </ChatBoxMessageArea>
 
