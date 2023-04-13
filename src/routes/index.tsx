@@ -3,6 +3,8 @@ import { RouteProps } from 'react-router-dom';
 import { ROUTES_PATH } from '../constants';
 import {
   Home,
+  Signin,
+  Signup,
   ReadBlog,
   Settings,
   Messenger,
@@ -55,5 +57,16 @@ export const mainRoutes: RouteProps[] = [
   {
     path: `${ROUTES_PATH.readBlogBySearch}/:search`,
     element: <ReadBlogBySearch />
+  }
+];
+
+export const authRoutes: RouteProps[] = [
+  {
+    path: ROUTES_PATH.signin,
+    element: <Signin />
+  },
+  {
+    path: ROUTES_PATH.signup,
+    element: <Signup />
   }
 ];

@@ -202,7 +202,10 @@ export type ChatContextType = {
 
 export type ChatProviderProps = {
   children: ReactNode;
-  socketConnection: Socket | undefined;
+};
+
+export type AppProviderProps = {
+  children: ReactNode;
 };
 
 export type OnlineUserCardProps = {
