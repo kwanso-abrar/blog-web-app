@@ -38,9 +38,19 @@ export const ChatProvider = ({ children, socketConnection }: ChatProviderProps) 
       });
     });
 
+    socketConnection?.on(SOCKET_EVENT_LISTENER.chat, (data) => {
+      dispatchChatRelatedInfoAction({
+        type: Chat_Action.ADD_NEW_MESSAGE_IN_CHAT,
+        payload: {
+          chat: data
+        }
+      });
+    });
+
     return () => {
-      socketConnection?.off(SOCKET_EVENT_LISTENER.onlineUsers);
+      socketConnection?.off(SOCKET_EVENT_LISTENER.chat);
       socketConnection?.off(SOCKET_EVENT_LISTENER.groupChat);
+      socketConnection?.off(SOCKET_EVENT_LISTENER.onlineUsers);
       socketConnection?.disconnect();
     };
   }, [socketConnection]);

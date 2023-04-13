@@ -92,10 +92,12 @@ export const CLOUDINARY_IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${pr
 export const SOCKET_URL = 'http://localhost:8000';
 
 export enum SOCKET_EVENT_LISTENER {
+  chat = 'chat',
   groupChat = 'groupChat',
   onlineUsers = 'onlineUsers'
 }
 
 export enum SOCKET_EVENT_EMITTER {
-  joinRoom = 'joinRoom'
+  joinRoom = 'joinRoom',
+  sendMessage = 'sendMessage'
 }

@@ -2,47 +2,53 @@ import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useForm } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
 import { ChatBoxProps } from 'types';
+import { useAppContext } from 'contexts';
+import { SOCKET_EVENT_EMITTER } from '../../constants';
 import { ChatThreadCard, PrimaryInputField } from 'components';
 import { ChatBoxMessageArea, SecondaryButton } from 'styles';
 
 export const ChatBox = ({ data }: ChatBoxProps) => {
-  const { control, handleSubmit } = useForm({
+  const { socketConnection } = useAppContext();
+  const {
+    reset,
+    control,
+    handleSubmit,
+    formState: { isDirty }
+  } = useForm({
     defaultValues: {
       message: ''
     }
   });
 
   const onFormSubmit = async (values: any) => {
-    console.log('values', values);
+    if (isDirty && data && data.chat.roomName) {
+      socketConnection?.emit(SOCKET_EVENT_EMITTER.sendMessage, {
+        roomName: data.chat.roomName,
+        senderId: data.currentUser.userId,
+        receiverId: data.otherUser.userId,
+        message: values.message,
+        timeSent: new Date().getTime()
+      });
+      reset();
+    }
   };
-
-  console.log('Chat Box', data);
 
   return (
     <Stack sx={{ width: '80%' }}>
       <ChatBoxMessageArea>
         {data?.chat.messages.map((messageObj) => (
           <ChatThreadCard
-            userName={
-              messageObj.senderId === data.currentUser.userId
-                ? data.currentUser.name
-                : data.otherUser.name
-            }
+            userName={messageObj.senderId === data.currentUser.userId ? 'Me' : data.otherUser.name}
             message={messageObj.message}
             key={messageObj.time}
           />
         ))}
-        {/* <ChatThreadCard userName="me" message="Hi there!" />
-        <ChatThreadCard userName="ShahZaib" message="Hi there! How are you?" />
-        <ChatThreadCard userName="me" message="Doing good" />
-        <ChatThreadCard userName="me" message="Tell me about you" />
-        <ChatThreadCard userName="ShahZaib" message="Same here" /> */}
       </ChatBoxMessageArea>
 
       <Box sx={{ width: '100%', marginTop: '10px' }}>
         <form onSubmit={handleSubmit(onFormSubmit)}>
           <Stack direction="row">
-            <PrimaryInputField name="text" control={control} label="" />
+            <PrimaryInputField name="message" control={control} label="" />
             <SecondaryButton
               sx={{ marginLeft: '10px' }}
               type="submit"

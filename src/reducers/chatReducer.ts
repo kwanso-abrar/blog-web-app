@@ -5,6 +5,7 @@ export enum Chat_Action {
   ADD_CHAT = 'addChat',
   UPDATE_CURRENT_USER = 'updateCurrentUser',
   UPDATE_ONLINE_USERS = 'updateOnlineUsers',
+  ADD_NEW_MESSAGE_IN_CHAT = 'ADD_NEW_MESSAGE_IN_CHAT',
   UPDATE_SELECTED_CHAT_THREAD = 'updateSelectedChatThread'
 }
 
@@ -38,9 +39,17 @@ type AddChatAction = {
   };
 };
 
+type AddNeWMessageInChaTAction = {
+  type: Chat_Action.ADD_NEW_MESSAGE_IN_CHAT;
+  payload: {
+    chat: Chat;
+  };
+};
+
 export type ChatAction =
   | AddChatAction
   | UpdateOnlineUserAction
+  | AddNeWMessageInChaTAction
   | UpdateCurrentOnlineUserAction
   | UpdateSelectedChatThreadAction;
 
@@ -69,13 +78,15 @@ export const chatReducer = (state: ChatInfo, action: ChatAction): ChatInfo => {
       const { userId } = payload;
       return { ...state, selectedChatThread: userId };
     }
-    case Chat_Action.ADD_CHAT: {
+    case Chat_Action.ADD_CHAT:
+    case Chat_Action.ADD_NEW_MESSAGE_IN_CHAT: {
       const { chat } = payload;
       const filteredChats = state.chats.filter(
         (existedChat) => existedChat.roomName !== chat.roomName
       );
       return { ...state, chats: [...filteredChats, chat] };
     }
+
     default:
       return state;
   }
