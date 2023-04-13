@@ -34,10 +34,6 @@ export const ShowOnlineUsers = ({
                   ? 'translate(2px, -1px)'
                   : 'translateX(0,0)',
               borderRight: selectedChatThread === onlineUser.userId ? '2px solid #E5E5E5' : ''
-              // ':hover': {
-              //   transform: 'translate(2px, -1px)',
-              //   borderRight: '2px solid #E5E5E5'
-              // }
             }}
           />
           <OnlineUserCard userName={onlineUser.name} />

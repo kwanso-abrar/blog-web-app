@@ -9,35 +9,31 @@ import { AppProvider, ChatProvider } from 'components';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 
-const App = () => {
-  return (
-    <ApolloProvider client={client}>
-      <AppProvider>
-        <ChatProvider>
-          <Toaster />
-          <ThemeProvider theme={theme}>
-            <StyledEngineProvider injectFirst>
-              <CssBaseline />
-              <BrowserRouter>
-                <Routes>
-                  <Route element={<AuthLayout />}>
-                    {authRoutes.map((route, index) => (
-                      <Route path={route.path} element={route.element} key={index} />
-                    ))}
-                  </Route>
-                  <Route element={<MainLayout />}>
-                    {mainRoutes.map((route, index) => (
-                      <Route path={route.path} element={route.element} key={index} />
-                    ))}
-                  </Route>
-                </Routes>
-              </BrowserRouter>
-            </StyledEngineProvider>
-          </ThemeProvider>
-        </ChatProvider>
-      </AppProvider>
-    </ApolloProvider>
-  );
-};
-
-export default App;
+export const App = () => (
+  <ApolloProvider client={client}>
+    <AppProvider>
+      <ChatProvider>
+        <Toaster />
+        <ThemeProvider theme={theme}>
+          <StyledEngineProvider injectFirst>
+            <CssBaseline />
+            <BrowserRouter>
+              <Routes>
+                <Route element={<AuthLayout />}>
+                  {authRoutes.map((route, index) => (
+                    <Route path={route.path} element={route.element} key={index} />
+                  ))}
+                </Route>
+                <Route element={<MainLayout />}>
+                  {mainRoutes.map((route, index) => (
+                    <Route path={route.path} element={route.element} key={index} />
+                  ))}
+                </Route>
+              </Routes>
+            </BrowserRouter>
+          </StyledEngineProvider>
+        </ThemeProvider>
+      </ChatProvider>
+    </AppProvider>
+  </ApolloProvider>
+);

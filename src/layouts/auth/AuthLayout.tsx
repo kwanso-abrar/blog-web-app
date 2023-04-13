@@ -1,14 +1,6 @@
-import { Box, styled } from '@mui/material';
 import { useAppContext } from 'contexts';
 import { Navigate, Outlet } from 'react-router-dom';
-
-const Wrapper = styled(Box)(({ theme }) => ({
-  paddingTop: '93px',
-
-  [theme.breakpoints.down('md')]: {
-    padding: '40px 20px'
-  }
-}));
+import { AuthLayoutWrapper } from 'styles';
 
 export const AuthLayout = () => {
   const { isLoggedIn } = useAppContext();
@@ -17,8 +9,8 @@ export const AuthLayout = () => {
   }
 
   return (
-    <Wrapper>
+    <AuthLayoutWrapper>
       <Outlet />
-    </Wrapper>
+    </AuthLayoutWrapper>
   );
 };

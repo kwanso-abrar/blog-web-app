@@ -16,6 +16,14 @@ export const InputField = styled(TextField)(() => ({
   width: '100%'
 }));
 
+export const AuthLayoutWrapper = styled(Box)(({ theme }) => ({
+  paddingTop: '93px',
+
+  [theme.breakpoints.down('md')]: {
+    padding: '40px 20px'
+  }
+}));
+
 export const VisibilityIconText = styled(Typography)(() => ({
   fontWeight: '400',
   fontSize: '15px',
