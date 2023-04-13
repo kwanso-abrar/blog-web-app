@@ -12,8 +12,6 @@ export const Messenger = () => {
   const { socketConnection } = useAppContext();
   const { chatRelatedInfo, dispatchChatRelatedInfoAction } = useChatContext();
 
-  console.log('chatRelatedInfo', chatRelatedInfo);
-
   const onSelectChatThread = useCallback(
     (onlineUser: OnlineUser) => {
       if (chatRelatedInfo && chatRelatedInfo.currentOnlineUser) {
@@ -33,9 +31,10 @@ export const Messenger = () => {
         }
       });
     },
-    [socketConnection, chatRelatedInfo]
+    [socketConnection]
   );
 
+  // try to memoize these values by using useMemo hook
   const getChatBoxProps = () => {
     if (chatRelatedInfo && chatRelatedInfo.chats && chatRelatedInfo.onlineUsers) {
       const { selectedChatThread, chats, onlineUsers, currentOnlineUser } = chatRelatedInfo;

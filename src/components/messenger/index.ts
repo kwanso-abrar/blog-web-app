@@ -1,2 +1,2 @@
 export { ChatBox } from './ChatBox';
-export { ShowOnlineUsers } from './ShowOnlineUsers';
+export { default as ShowOnlineUsers } from './ShowOnlineUsers';

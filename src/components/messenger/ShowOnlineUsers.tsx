@@ -1,9 +1,9 @@
-import { Fragment } from 'react';
 import { Box, Divider } from '@mui/material';
+import { Fragment, memo } from 'react';
 import { OnlineUserCard } from 'components';
 import { ShowOnlineUsersProps } from 'types';
 
-export const ShowOnlineUsers = ({
+const ShowOnlineUsers = ({
   onlineUsers,
   onSelectChatThread,
   selectedChatThread
@@ -43,3 +43,5 @@ export const ShowOnlineUsers = ({
     ))}
   </Box>
 );
+
+export default memo(ShowOnlineUsers);
