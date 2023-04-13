@@ -1,12 +1,11 @@
 import { OnlineUser } from 'types';
 import { Chat_Action } from 'reducers';
 import { useCallback } from 'react';
-import { useAppContext } from 'contexts';
-import { useChatContext } from 'contexts/ChatContext';
 import { SOCKET_EVENT_EMITTER } from '../constants';
 import { Box, Stack, Typography } from '@mui/material';
 import { ChatBox, ShowOnlineUsers } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
+import { useAppContext, useChatContext } from 'contexts';
 import { ChatBoxContainer, ShowOnlineUsersContainer } from 'styles';
 
 export const Messenger = () => {

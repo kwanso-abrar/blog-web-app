@@ -1,9 +1,8 @@
 import { Chat_Action } from 'reducers';
 import { useCallback } from 'react';
-import { useAppContext } from 'contexts';
-import { useChatContext } from 'contexts/ChatContext';
 import { createSocketConnection } from 'socket';
 import { removeToken, saveToken } from 'utils';
+import { useAppContext, useChatContext } from 'contexts';
 
 export const useAuth = () => {
   const { dispatchChatRelatedInfoAction } = useChatContext();
