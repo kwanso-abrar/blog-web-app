@@ -3,6 +3,7 @@ import { getCurrentUser, updateOnlineUsers } from 'utils';
 
 export enum Chat_Action {
   ADD_CHAT = 'addChat',
+  ON_LOGOUT = 'onLogout',
   UPDATE_CURRENT_USER = 'updateCurrentUser',
   UPDATE_ONLINE_USERS = 'updateOnlineUsers',
   ADD_NEW_MESSAGE_IN_CHAT = 'ADD_NEW_MESSAGE_IN_CHAT',
@@ -46,8 +47,14 @@ type AddNeWMessageInChaTAction = {
   };
 };
 
+type OnLogoutChatAction = {
+  type: Chat_Action.ON_LOGOUT;
+  payload?: undefined;
+};
+
 export type ChatAction =
   | AddChatAction
+  | OnLogoutChatAction
   | UpdateOnlineUserAction
   | AddNeWMessageInChaTAction
   | UpdateCurrentOnlineUserAction
@@ -85,6 +92,9 @@ export const chatReducer = (state: ChatInfo, action: ChatAction): ChatInfo => {
         (existedChat) => existedChat.roomName !== chat.roomName
       );
       return { ...state, chats: [...filteredChats, chat] };
+    }
+    case Chat_Action.ON_LOGOUT: {
+      return { chats: [], onlineUsers: [], currentOnlineUser: null, selectedChatThread: '' };
     }
 
     default:
