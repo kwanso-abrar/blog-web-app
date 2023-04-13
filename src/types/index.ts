@@ -219,3 +219,7 @@ export type ChatThreadCardProps = {
   message: string;
   userName: string;
 };
+
+export type ChatBoxProps = {
+  data: { chat: Chat; otherUser: OnlineUser; currentUser: User } | undefined;
+};

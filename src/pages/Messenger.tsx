@@ -32,7 +32,24 @@ export const Messenger = () => {
     });
   }, []);
 
-  console.log('rooms: ', chatRelatedInfo?.chats);
+  const getChatBoxProps = () => {
+    if (
+      chatRelatedInfo &&
+      chatRelatedInfo.chats &&
+      chatRelatedInfo.onlineUsers &&
+      chatRelatedInfo.onlineUsers.length > 0 &&
+      chatRelatedInfo.chats.length > 0 &&
+      chatRelatedInfo.selectedChatThread
+    ) {
+      const { selectedChatThread, chats, onlineUsers, currentOnlineUser } = chatRelatedInfo;
+      const chat = chats.find((chat) => chat.roomName.includes(selectedChatThread));
+      const otherUser = onlineUsers.find((onlineUser) => onlineUser.userId === selectedChatThread);
+      const currentUser = currentOnlineUser;
+      return chat && otherUser && currentUser ? { chat, otherUser, currentUser } : undefined;
+    } else {
+      return undefined;
+    }
+  };
 
   return (
     <Box>
@@ -50,7 +67,7 @@ export const Messenger = () => {
         </ShowOnlineUsersContainer>
 
         <ChatBoxContainer>
-          <ChatBox />
+          <ChatBox data={getChatBoxProps()} />
         </ChatBoxContainer>
       </Stack>
     </Box>

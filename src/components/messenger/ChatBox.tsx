@@ -1,10 +1,11 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { useForm } from 'react-hook-form';
 import { Box, Stack } from '@mui/material';
+import { ChatBoxProps } from 'types';
 import { ChatThreadCard, PrimaryInputField } from 'components';
 import { ChatBoxMessageArea, SecondaryButton } from 'styles';
 
-export const ChatBox = () => {
+export const ChatBox = ({ data }: ChatBoxProps) => {
   const { control, handleSubmit } = useForm({
     defaultValues: {
       message: ''
@@ -15,14 +16,27 @@ export const ChatBox = () => {
     console.log('values', values);
   };
 
+  console.log('Chat Box', data);
+
   return (
     <Stack sx={{ width: '80%' }}>
       <ChatBoxMessageArea>
-        <ChatThreadCard userName="me" message="Hi there!" />
+        {data?.chat.messages.map((messageObj) => (
+          <ChatThreadCard
+            userName={
+              messageObj.senderId === data.currentUser.userId
+                ? data.currentUser.name
+                : data.otherUser.name
+            }
+            message={messageObj.message}
+            key={messageObj.time}
+          />
+        ))}
+        {/* <ChatThreadCard userName="me" message="Hi there!" />
         <ChatThreadCard userName="ShahZaib" message="Hi there! How are you?" />
         <ChatThreadCard userName="me" message="Doing good" />
         <ChatThreadCard userName="me" message="Tell me about you" />
-        <ChatThreadCard userName="ShahZaib" message="Same here" />
+        <ChatThreadCard userName="ShahZaib" message="Same here" /> */}
       </ChatBoxMessageArea>
 
       <Box sx={{ width: '100%', marginTop: '10px' }}>
