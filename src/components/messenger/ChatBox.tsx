@@ -1,9 +1,10 @@
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
+import { toast } from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
-import { Box, Stack } from '@mui/material';
 import { ChatBoxProps } from 'types';
 import { useAppContext } from 'contexts';
 import { SOCKET_EVENT_EMITTER } from '../../constants';
+import { Box, Stack, Typography } from '@mui/material';
 import { ChatThreadCard, PrimaryInputField } from 'components';
 import { ChatBoxMessageArea, SecondaryButton } from 'styles';
 
@@ -30,6 +31,8 @@ export const ChatBox = ({ data }: ChatBoxProps) => {
         timeSent: new Date().getTime()
       });
       reset();
+    } else {
+      toast.error('Something went wrong');
     }
   };
 
@@ -43,6 +46,9 @@ export const ChatBox = ({ data }: ChatBoxProps) => {
             key={messageObj.time}
           />
         ))}
+        {data?.chat.messages.length === 0 && (
+          <Typography sx={{ textAlign: 'center' }}>Start New Conversation!</Typography>
+        )}
       </ChatBoxMessageArea>
 
       <Box sx={{ width: '100%', marginTop: '10px' }}>
