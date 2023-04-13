@@ -5,7 +5,7 @@ import { ThemeProvider } from '@mui/material/styles';
 import { ApolloProvider } from '@apollo/client';
 import { AuthLayout, MainLayout } from 'layouts';
 import { authRoutes, mainRoutes } from 'routes';
-import { AppProvider, ChatProvider } from 'components';
+import { AppProvider, ChatProvider } from 'contexts';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { CssBaseline, StyledEngineProvider } from '@mui/material';
 

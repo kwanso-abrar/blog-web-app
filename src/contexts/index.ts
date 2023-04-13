@@ -1,2 +1,2 @@
-export * from './AppContext';
-export * from './ChatContext';
+export * from './appContext';
+export * from './chatContext';

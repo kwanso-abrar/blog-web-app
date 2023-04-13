@@ -1,5 +1,5 @@
 import { ChatProviderProps } from 'types';
-import { SOCKET_EVENT_LISTENER } from '../../../constants';
+import { SOCKET_EVENT_LISTENER } from '../../constants';
 import { useEffect, useReducer } from 'react';
 import { ChatContext, useAppContext } from 'contexts';
 import { chatReducer, Chat_Action, initChatRelatedState } from 'reducers';
