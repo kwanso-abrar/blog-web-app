@@ -12,6 +12,8 @@ export const Messenger = () => {
   const { socketConnection } = useAppContext();
   const { chatRelatedInfo, dispatchChatRelatedInfoAction } = useChatContext();
 
+  console.log('chatRelatedInfo', chatRelatedInfo);
+
   const onSelectChatThread = useCallback(
     (onlineUser: OnlineUser) => {
       if (chatRelatedInfo && chatRelatedInfo.currentOnlineUser) {
