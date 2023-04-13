@@ -35,7 +35,7 @@ export const Messenger = () => {
     [socketConnection, chatRelatedInfo]
   );
 
-  const getChatBoxProps = useCallback(() => {
+  const getChatBoxProps = () => {
     if (chatRelatedInfo && chatRelatedInfo.chats && chatRelatedInfo.onlineUsers) {
       const { selectedChatThread, chats, onlineUsers, currentOnlineUser } = chatRelatedInfo;
       const chat = chats.find((chat) => chat.roomName.includes(selectedChatThread));
@@ -45,7 +45,7 @@ export const Messenger = () => {
     } else {
       return undefined;
     }
-  }, [chatRelatedInfo]);
+  };
 
   return (
     <Box>
