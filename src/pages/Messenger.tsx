@@ -63,7 +63,7 @@ export const Messenger = () => {
             />
           </ShowOnlineUsersContainer>
 
-          {chatRelatedInfo?.selectedChatThread && (
+          {chatRelatedInfo?.selectedChatThread !== ' ' && (
             <ChatBoxContainer>
               <ChatBox data={getChatBoxProps()} />
             </ChatBoxContainer>

@@ -183,3 +183,12 @@ export const HEADER_SCROLL_BEHAVIOUR = {
   sticky: 'position:sticky; top:0; box-shadow:0 3px 5px rgba(57, 63, 72, 0.3);',
   nonSticky: 'position: static; box-shadow:none'
 };
+
+export const CHAT_NOTIFICATION = {
+  color: 'white',
+  padding: '3px 9px',
+  fontSize: '11px',
+  background: 'rgb(213 48 48)',
+  marginLeft: '15px',
+  borderRadius: '50%'
+};

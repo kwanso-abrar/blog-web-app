@@ -292,3 +292,19 @@ export const ChatBoxMessageArea = styled(Box)(() => ({
   overflowY: 'scroll',
   backgroundColor: '#E5E5E5'
 }));
+
+export const ShowOnlineUserCardMask = styled(Box)(() => ({
+  top: '0',
+  left: '0',
+  right: '0',
+  width: '100%',
+  height: '101%',
+  zIndex: '1000',
+  position: 'absolute'
+}));
+
+export const ShowOnlineUserCardContainer = styled(Box)(() => ({
+  ':hover': { backgroundColor: '#E5E5E5', cursor: 'pointer' },
+  padding: '20px 10px 10px 10px',
+  position: 'relative'
+}));

@@ -2,13 +2,13 @@ import { StyledBadge } from 'styles';
 import { UserDummyImage } from 'assets';
 import { useChatContext } from 'contexts';
 import { OnlineUserCardProps } from 'types';
-import { COMMENT_CARD_USER_NAME } from 'styles/constants';
 import { Stack, Typography, Avatar } from '@mui/material';
+import { CHAT_NOTIFICATION, COMMENT_CARD_USER_NAME } from 'styles/constants';
 
 export const OnlineUserCard = ({ onlineUser }: OnlineUserCardProps) => {
   const { chatRelatedInfo } = useChatContext();
 
-  const getUserChatNotification = () =>
+  const notifications =
     chatRelatedInfo?.chats.find((chat) => chat.roomName.includes(onlineUser.userId))
       ?.notifications || 0;
 
@@ -16,8 +16,7 @@ export const OnlineUserCard = ({ onlineUser }: OnlineUserCardProps) => {
     <Stack
       direction="row"
       sx={{
-        ':hover': { cursor: 'pointer' },
-        maxWidth: '220px'
+        ':hover': { cursor: 'pointer' }
       }}
     >
       <StyledBadge
@@ -30,8 +29,10 @@ export const OnlineUserCard = ({ onlineUser }: OnlineUserCardProps) => {
 
       <Stack sx={{ marginLeft: '10px' }}>
         <Typography sx={COMMENT_CARD_USER_NAME}>
-          {onlineUser.name} &nbsp; {getUserChatNotification()}
+          {onlineUser.name}
+          {notifications > 0 && <span style={CHAT_NOTIFICATION}>{`${notifications}`}</span>}
         </Typography>
+
         <Typography
           sx={{
             ...COMMENT_CARD_USER_NAME,
