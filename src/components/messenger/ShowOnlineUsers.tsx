@@ -36,7 +36,7 @@ const ShowOnlineUsers = ({
               borderRight: selectedChatThread === onlineUser.userId ? '2px solid #E5E5E5' : ''
             }}
           />
-          <OnlineUserCard userName={onlineUser.name} />
+          <OnlineUserCard onlineUser={onlineUser} />
         </Box>
         <Divider />
       </Fragment>

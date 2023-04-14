@@ -25,7 +25,7 @@ export const Messenger = () => {
       }
 
       dispatchChatRelatedInfoAction({
-        type: Chat_Action.UPDATE_SELECTED_CHAT_THREAD,
+        type: Chat_Action.ON_UPDATE_SELECTED_CHAT_THREAD,
         payload: {
           userId: onlineUser.userId
         }
@@ -59,7 +59,7 @@ export const Messenger = () => {
             <ShowOnlineUsers
               onlineUsers={chatRelatedInfo?.onlineUsers || []}
               onSelectChatThread={onSelectChatThread}
-              selectedChatThread={chatRelatedInfo?.selectedChatThread || ''}
+              selectedChatThread={chatRelatedInfo?.selectedChatThread || ' '}
             />
           </ShowOnlineUsersContainer>
 

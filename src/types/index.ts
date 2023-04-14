@@ -184,8 +184,9 @@ type Message = {
 };
 
 export type Chat = {
-  roomName: string;
   messages: Message[];
+  roomName: string;
+  notifications: number;
 };
 
 export type ChatInfo = {
@@ -209,7 +210,7 @@ export type AppProviderProps = {
 };
 
 export type OnlineUserCardProps = {
-  userName: string;
+  onlineUser: OnlineUser;
 };
 
 export type ShowOnlineUsersProps = {
