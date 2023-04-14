@@ -1,4 +1,4 @@
-import { Chat, ChatInfo, OnlineUser } from 'types';
+import { Chat, ChatStore, OnlineUser } from 'types';
 import { getCurrentUser, updateOnlineUsers } from 'utils';
 
 export enum Chat_Action {
@@ -58,7 +58,7 @@ export type ChatAction =
   | UpdateCurrentOnlineUserAction
   | OnUpdateSelectedChatThreadAction;
 
-export const initChatRelatedState = (): ChatInfo => {
+export const initChatRelatedState = (): ChatStore => {
   return {
     chats: [],
     onlineUsers: [],
@@ -67,7 +67,7 @@ export const initChatRelatedState = (): ChatInfo => {
   };
 };
 
-export const chatReducer = (state: ChatInfo, action: ChatAction): ChatInfo => {
+export const chatReducer = (state: ChatStore, action: ChatAction): ChatStore => {
   const { type, payload } = action;
 
   switch (type) {

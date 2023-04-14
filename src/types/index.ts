@@ -189,16 +189,19 @@ export type Chat = {
   notifications: number;
 };
 
-export type ChatInfo = {
+export type ChatContextType = {
   chats: Chat[];
   onlineUsers: OnlineUser[];
   currentOnlineUser: User | null;
   selectedChatThread: string;
+  dispatchChatRelatedInfoAction: React.Dispatch<ChatAction>;
 };
 
-export type ChatContextType = {
-  chatRelatedInfo: ChatInfo | null;
-  dispatchChatRelatedInfoAction: React.Dispatch<ChatAction>;
+export type ChatStore = {
+  chats: Chat[];
+  onlineUsers: OnlineUser[];
+  currentOnlineUser: User | null;
+  selectedChatThread: string;
 };
 
 export type ChatProviderProps = {

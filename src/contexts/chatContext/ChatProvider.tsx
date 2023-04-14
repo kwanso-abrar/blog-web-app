@@ -1,15 +1,19 @@
 import { ChatProviderProps } from 'types';
 import { SOCKET_EVENT_LISTENER } from '../../constants';
-import { useEffect, useReducer } from 'react';
 import { ChatContext, useAppContext } from 'contexts';
+import { useEffect, useMemo, useReducer } from 'react';
 import { chatReducer, Chat_Action, initChatRelatedState } from 'reducers';
 
 export const ChatProvider = ({ children }: ChatProviderProps) => {
   const { socketConnection } = useAppContext();
-  const [chatRelatedInfo, dispatchChatRelatedInfoAction] = useReducer(
+  const [chatStore, dispatchChatRelatedInfoAction] = useReducer(
     chatReducer,
     initChatRelatedState()
   );
+
+  const store = useMemo(() => {
+    return { ...chatStore };
+  }, [chatStore]);
 
   useEffect(() => {
     socketConnection?.on(SOCKET_EVENT_LISTENER.onlineUsers, (data: any) => {
@@ -57,7 +61,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
   }, [socketConnection]);
 
   return (
-    <ChatContext.Provider value={{ chatRelatedInfo, dispatchChatRelatedInfoAction }}>
+    <ChatContext.Provider value={{ ...store, dispatchChatRelatedInfoAction }}>
       {children}
     </ChatContext.Provider>
   );

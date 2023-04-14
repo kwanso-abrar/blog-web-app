@@ -6,11 +6,10 @@ import { Stack, Typography, Avatar } from '@mui/material';
 import { CHAT_NOTIFICATION, COMMENT_CARD_USER_NAME } from 'styles/constants';
 
 export const OnlineUserCard = ({ onlineUser }: OnlineUserCardProps) => {
-  const { chatRelatedInfo } = useChatContext();
+  const { chats } = useChatContext();
 
   const notifications =
-    chatRelatedInfo?.chats.find((chat) => chat.roomName.includes(onlineUser.userId))
-      ?.notifications || 0;
+    chats.find((chat) => chat.roomName.includes(onlineUser.userId))?.notifications || 0;
 
   return (
     <Stack

@@ -10,16 +10,22 @@ import { ChatBoxContainer, ShowOnlineUsersContainer } from 'styles';
 
 export const Messenger = () => {
   const { socketConnection } = useAppContext();
-  const { chatRelatedInfo, dispatchChatRelatedInfoAction } = useChatContext();
+  const {
+    chats,
+    onlineUsers,
+    currentOnlineUser,
+    selectedChatThread,
+    dispatchChatRelatedInfoAction
+  } = useChatContext();
 
   const onSelectChatThread = useCallback(
     (onlineUser: OnlineUser) => {
-      if (chatRelatedInfo && chatRelatedInfo.currentOnlineUser) {
+      if (currentOnlineUser) {
         socketConnection?.emit(SOCKET_EVENT_EMITTER.joinRoom, {
-          userId: chatRelatedInfo.currentOnlineUser.userId,
-          roomName: `${chatRelatedInfo.currentOnlineUser.userId}&${onlineUser.userId}`,
-          userName: chatRelatedInfo.currentOnlineUser.name,
-          senderSocketId: chatRelatedInfo.currentOnlineUser.socketId,
+          userId: currentOnlineUser.userId,
+          roomName: `${currentOnlineUser.userId}&${onlineUser.userId}`,
+          userName: currentOnlineUser.name,
+          senderSocketId: currentOnlineUser.socketId,
           receiverSocketId: onlineUser.socketId
         });
       }
@@ -35,15 +41,10 @@ export const Messenger = () => {
   );
 
   const getChatBoxProps = () => {
-    if (chatRelatedInfo && chatRelatedInfo.chats && chatRelatedInfo.onlineUsers) {
-      const { selectedChatThread, chats, onlineUsers, currentOnlineUser } = chatRelatedInfo;
-      const chat = chats.find((chat) => chat.roomName.includes(selectedChatThread));
-      const otherUser = onlineUsers.find((onlineUser) => onlineUser.userId === selectedChatThread);
-      const currentUser = currentOnlineUser;
-      return chat && otherUser && currentUser ? { chat, otherUser, currentUser } : undefined;
-    } else {
-      return undefined;
-    }
+    const chat = chats.find((chat) => chat.roomName.includes(selectedChatThread));
+    const otherUser = onlineUsers.find((onlineUser) => onlineUser.userId === selectedChatThread);
+    const currentUser = currentOnlineUser;
+    return chat && otherUser && currentUser ? { chat, otherUser, currentUser } : undefined;
   };
 
   return (
@@ -52,17 +53,17 @@ export const Messenger = () => {
         Messenger
       </Typography>
 
-      {chatRelatedInfo && chatRelatedInfo?.onlineUsers.length > 0 ? (
+      {onlineUsers.length > 0 ? (
         <Stack direction="row" justifyContent="space-between">
           <ShowOnlineUsersContainer>
             <ShowOnlineUsers
-              onlineUsers={chatRelatedInfo?.onlineUsers || []}
+              onlineUsers={onlineUsers}
               onSelectChatThread={onSelectChatThread}
-              selectedChatThread={chatRelatedInfo?.selectedChatThread || ' '}
+              selectedChatThread={selectedChatThread}
             />
           </ShowOnlineUsersContainer>
 
-          {chatRelatedInfo?.selectedChatThread !== ' ' && (
+          {selectedChatThread !== ' ' && (
             <ChatBoxContainer>
               <ChatBox data={getChatBoxProps()} />
             </ChatBoxContainer>
