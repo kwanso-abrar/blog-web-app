@@ -4,7 +4,7 @@ import { createContext, useContext } from 'react';
 
 export const ChatContext = createContext<ChatContextType>({
   ...chatStoreDefaultValue,
-  dispatchChatRelatedInfoAction: () => {}
+  dispatchChatAction: () => {}
 });
 
 export const useChatContext = () => useContext(ChatContext);

@@ -194,7 +194,7 @@ export type ChatContextType = {
   onlineUsers: OnlineUser[];
   currentOnlineUser: User | null;
   selectedChatThread: string;
-  dispatchChatRelatedInfoAction: React.Dispatch<ChatAction>;
+  dispatchChatAction: React.Dispatch<ChatAction>;
 };
 
 export type ChatStore = {

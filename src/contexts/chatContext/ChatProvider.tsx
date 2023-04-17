@@ -6,15 +6,15 @@ import { chatReducer, Chat_Action, chatStoreDefaultValue } from 'reducers';
 
 export const ChatProvider = ({ children }: ChatProviderProps) => {
   const { socketConnection } = useAppContext();
-  const [chatStore, dispatchChatRelatedInfoAction] = useReducer(chatReducer, chatStoreDefaultValue);
+  const [chatStore, dispatchChatAction] = useReducer(chatReducer, chatStoreDefaultValue);
 
   const store = useMemo(() => {
-    return { ...chatStore };
+    return { ...chatStore, dispatchChatAction };
   }, [chatStore]);
 
   useEffect(() => {
     socketConnection?.on(SOCKET_EVENT_LISTENER.onlineUsers, (data: any) => {
-      dispatchChatRelatedInfoAction({
+      dispatchChatAction({
         type: Chat_Action.UPDATE_ONLINE_USERS,
         payload: {
           onlineUsers: data.users,
@@ -22,7 +22,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
         }
       });
 
-      dispatchChatRelatedInfoAction({
+      dispatchChatAction({
         type: Chat_Action.UPDATE_CURRENT_USER,
         payload: {
           onlineUsers: data.users,
@@ -32,7 +32,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
     });
 
     socketConnection?.on(SOCKET_EVENT_LISTENER.groupChat, (data) => {
-      dispatchChatRelatedInfoAction({
+      dispatchChatAction({
         type: Chat_Action.ADD_CHAT,
         payload: {
           chat: data
@@ -41,7 +41,7 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
     });
 
     socketConnection?.on(SOCKET_EVENT_LISTENER.chat, (data) => {
-      dispatchChatRelatedInfoAction({
+      dispatchChatAction({
         type: Chat_Action.ADD_NEW_MESSAGE_IN_CHAT,
         payload: {
           chat: data
@@ -57,9 +57,5 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
     };
   }, [socketConnection]);
 
-  return (
-    <ChatContext.Provider value={{ ...store, dispatchChatRelatedInfoAction }}>
-      {children}
-    </ChatContext.Provider>
-  );
+  return <ChatContext.Provider value={{ ...store }}>{children}</ChatContext.Provider>;
 };

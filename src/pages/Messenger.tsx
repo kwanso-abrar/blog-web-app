@@ -10,13 +10,8 @@ import { ChatBoxContainer, ShowOnlineUsersContainer } from 'styles';
 
 export const Messenger = () => {
   const { socketConnection } = useAppContext();
-  const {
-    chats,
-    onlineUsers,
-    currentOnlineUser,
-    selectedChatThread,
-    dispatchChatRelatedInfoAction
-  } = useChatContext();
+  const { chats, onlineUsers, currentOnlineUser, selectedChatThread, dispatchChatAction } =
+    useChatContext();
 
   const onSelectChatThread = useCallback(
     (onlineUser: OnlineUser) => {
@@ -30,7 +25,7 @@ export const Messenger = () => {
         });
       }
 
-      dispatchChatRelatedInfoAction({
+      dispatchChatAction({
         type: Chat_Action.ON_UPDATE_SELECTED_CHAT_THREAD,
         payload: {
           userId: onlineUser.userId

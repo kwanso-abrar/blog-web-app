@@ -5,7 +5,7 @@ import { removeToken, saveToken } from 'utils';
 import { useAppContext, useChatContext } from 'contexts';
 
 export const useAuth = () => {
-  const { dispatchChatRelatedInfoAction } = useChatContext();
+  const { dispatchChatAction } = useChatContext();
   const { setIsLoggedIn, setSocketConnection, socketConnection } = useAppContext();
 
   const logout = useCallback(() => {
@@ -13,7 +13,7 @@ export const useAuth = () => {
     setIsLoggedIn(false);
     socketConnection?.disconnect();
     setSocketConnection(undefined);
-    dispatchChatRelatedInfoAction({ type: Chat_Action.ON_LOGOUT });
+    dispatchChatAction({ type: Chat_Action.ON_LOGOUT });
   }, []);
 
   const login = useCallback((token: string) => {
