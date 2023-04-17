@@ -4,7 +4,15 @@ This project is a part of my onboard training at kwanso
 
 # Demo
 
-![ezgif com-video-to-gif](https://user-images.githubusercontent.com/127109087/232432074-91ea994f-c684-40f8-a781-80d1f9d73c14.gif)
+## 1
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/127109087/232434803-e9185586-b17f-41c5-9457-7830dd168b11.gif)
+
+## 2
+![ezgif com-video-to-gif (1)](https://user-images.githubusercontent.com/127109087/232434847-b79ed627-3081-4e8f-9f76-a365e442dc5f.gif)
+
+## 3
+![ezgif com-video-to-gif (2)](https://user-images.githubusercontent.com/127109087/232434894-459e6ccd-310e-4fd8-9c89-00790d736de1.gif)
+
 
 
 # Tools
