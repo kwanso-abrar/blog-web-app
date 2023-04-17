@@ -58,13 +58,11 @@ export type ChatAction =
   | UpdateCurrentOnlineUserAction
   | OnUpdateSelectedChatThreadAction;
 
-export const initChatRelatedState = (): ChatStore => {
-  return {
-    chats: [],
-    onlineUsers: [],
-    currentOnlineUser: null,
-    selectedChatThread: ' '
-  };
+export const chatStoreDefaultValue: ChatStore = {
+  chats: [],
+  onlineUsers: [],
+  currentOnlineUser: null,
+  selectedChatThread: ' '
 };
 
 export const chatReducer = (state: ChatStore, action: ChatAction): ChatStore => {

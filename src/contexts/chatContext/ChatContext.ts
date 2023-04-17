@@ -1,11 +1,9 @@
 import { ChatContextType } from 'types';
+import { chatStoreDefaultValue } from 'reducers';
 import { createContext, useContext } from 'react';
 
 export const ChatContext = createContext<ChatContextType>({
-  chats: [],
-  onlineUsers: [],
-  currentOnlineUser: null,
-  selectedChatThread: ' ',
+  ...chatStoreDefaultValue,
   dispatchChatRelatedInfoAction: () => {}
 });
 

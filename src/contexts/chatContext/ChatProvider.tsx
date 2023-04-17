@@ -2,14 +2,11 @@ import { ChatProviderProps } from 'types';
 import { SOCKET_EVENT_LISTENER } from '../../constants';
 import { ChatContext, useAppContext } from 'contexts';
 import { useEffect, useMemo, useReducer } from 'react';
-import { chatReducer, Chat_Action, initChatRelatedState } from 'reducers';
+import { chatReducer, Chat_Action, chatStoreDefaultValue } from 'reducers';
 
 export const ChatProvider = ({ children }: ChatProviderProps) => {
   const { socketConnection } = useAppContext();
-  const [chatStore, dispatchChatRelatedInfoAction] = useReducer(
-    chatReducer,
-    initChatRelatedState()
-  );
+  const [chatStore, dispatchChatRelatedInfoAction] = useReducer(chatReducer, chatStoreDefaultValue);
 
   const store = useMemo(() => {
     return { ...chatStore };
