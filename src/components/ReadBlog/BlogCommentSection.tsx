@@ -1,4 +1,4 @@
-import { useContextApi } from 'AppContext';
+import { useAppContext } from 'contexts';
 import { UserDummyImage } from 'assets';
 import { getTimeFromNow } from 'utils';
 import { CommentCardContainer } from 'styles';
@@ -8,7 +8,7 @@ import { BlogCommentSectionProps } from 'types';
 import { SIGN_IN_TO_COMMENT, TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
 
 export const BlogCommentSection = ({ postId, comments, onRefetch }: BlogCommentSectionProps) => {
-  const { isLoggedIn } = useContextApi();
+  const { isLoggedIn } = useAppContext();
   return (
     <Box sx={{ minWidth: '100%' }}>
       <Stack direction="row" sx={TITLE_WITH_BORDER_BOTTOM}>

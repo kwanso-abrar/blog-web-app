@@ -1,7 +1,17 @@
 import { Protected } from 'components';
 import { RouteProps } from 'react-router-dom';
 import { ROUTES_PATH } from '../constants';
-import { CreatePost, Home, MyArticles, ReadBlog, ReadBlogBySearch, Settings } from 'pages';
+import {
+  Home,
+  Signin,
+  Signup,
+  ReadBlog,
+  Settings,
+  Messenger,
+  CreatePost,
+  MyArticles,
+  ReadBlogBySearch
+} from 'pages';
 
 export const mainRoutes: RouteProps[] = [
   {
@@ -33,11 +43,30 @@ export const mainRoutes: RouteProps[] = [
     )
   },
   {
+    path: ROUTES_PATH.messenger,
+    element: (
+      <Protected>
+        <Messenger />
+      </Protected>
+    )
+  },
+  {
     path: `${ROUTES_PATH.readBlog}/:id`,
     element: <ReadBlog />
   },
   {
     path: `${ROUTES_PATH.readBlogBySearch}/:search`,
     element: <ReadBlogBySearch />
+  }
+];
+
+export const authRoutes: RouteProps[] = [
+  {
+    path: ROUTES_PATH.signin,
+    element: <Signin />
+  },
+  {
+    path: ROUTES_PATH.signup,
+    element: <Signup />
   }
 ];

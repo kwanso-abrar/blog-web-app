@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import {
   Box,
+  Badge,
   Avatar,
   Button,
   TextField,
@@ -13,6 +14,14 @@ import {
 
 export const InputField = styled(TextField)(() => ({
   width: '100%'
+}));
+
+export const AuthLayoutWrapper = styled(Box)(({ theme }) => ({
+  paddingTop: '93px',
+
+  [theme.breakpoints.down('md')]: {
+    padding: '40px 20px'
+  }
 }));
 
 export const VisibilityIconText = styled(Typography)(() => ({
@@ -231,4 +240,71 @@ export const InputFieldWrapper = styled(Box)(({ theme }) => ({
   [theme.breakpoints.down('md')]: {
     width: '100%'
   }
+}));
+
+export const StyledBadge = styled(Badge)(({ theme }) => ({
+  '& .MuiBadge-badge': {
+    backgroundColor: '#44b700',
+    color: '#44b700',
+    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
+    '&::after': {
+      position: 'absolute',
+      top: 0,
+      left: 0,
+      width: '100%',
+      height: '100%',
+      borderRadius: '50%',
+      animation: 'ripple 1.2s infinite ease-in-out',
+      border: '1px solid currentColor',
+      content: '""'
+    }
+  },
+  '@keyframes ripple': {
+    '0%': {
+      transform: 'scale(.8)',
+      opacity: 1
+    },
+    '100%': {
+      transform: 'scale(2.4)',
+      opacity: 0
+    }
+  }
+}));
+
+export const ShowOnlineUsersContainer = styled(Box)(() => ({
+  width: '20%',
+  height: '500px',
+  marginTop: '50px',
+  maxHeight: '500px',
+  border: '1px solid #E5E5E5',
+  borderRight: '2px solid #a3a3a3'
+}));
+
+export const ChatBoxContainer = styled(Box)(() => ({
+  width: '80%',
+  marginTop: '50px'
+}));
+
+export const ChatBoxMessageArea = styled(Box)(() => ({
+  height: '500px',
+  padding: '12px 28px',
+  maxHeight: '500px',
+  overflowY: 'scroll',
+  backgroundColor: '#E5E5E5'
+}));
+
+export const ShowOnlineUserCardMask = styled(Box)(() => ({
+  top: '0',
+  left: '0',
+  right: '0',
+  width: '100%',
+  height: '101%',
+  zIndex: '1000',
+  position: 'absolute'
+}));
+
+export const ShowOnlineUserCardContainer = styled(Box)(() => ({
+  ':hover': { backgroundColor: '#E5E5E5', cursor: 'pointer' },
+  padding: '20px 10px 10px 10px',
+  position: 'relative'
 }));

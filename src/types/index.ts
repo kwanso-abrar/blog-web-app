@@ -1,7 +1,15 @@
-import { ReactNode } from 'react';
+import { Socket } from 'socket.io-client';
+import { ChatAction } from 'reducers';
 import { Comments, Posts } from 'generated';
 import { DropzoneOptions } from 'react-dropzone';
 import { BaseTextFieldProps, SxProps, Theme } from '@mui/material';
+import { Dispatch, ReactNode, SetStateAction } from 'react';
+
+export type User = {
+  name: string;
+  userId: string;
+  socketId: string;
+};
 
 export type NavigationButtonProps = {
   id: number;
@@ -153,4 +161,72 @@ export type MobileHeaderProps = {
 export type DesktopHeaderProps = {
   isLoggedIn: boolean;
   logout: () => void;
+};
+
+export type AppContextType = {
+  isLoggedIn: boolean;
+  setIsLoggedIn: Dispatch<SetStateAction<boolean>>;
+  socketConnection: Socket | undefined;
+  setSocketConnection: Dispatch<SetStateAction<Socket | undefined>>;
+};
+
+export type OnlineUser = {
+  name: string;
+  userId: string;
+  socketId: string;
+};
+
+type Message = {
+  time: string;
+  message: string;
+  senderId: string;
+  receiverId: string;
+};
+
+export type Chat = {
+  messages: Message[];
+  roomName: string;
+  notifications: number;
+};
+
+export type ChatContextType = {
+  chats: Chat[];
+  onlineUsers: OnlineUser[];
+  currentOnlineUser: User | null;
+  selectedChatThread: string;
+  dispatchChatAction: React.Dispatch<ChatAction>;
+};
+
+export type ChatStore = {
+  chats: Chat[];
+  onlineUsers: OnlineUser[];
+  currentOnlineUser: User | null;
+  selectedChatThread: string;
+};
+
+export type ChatProviderProps = {
+  children: ReactNode;
+};
+
+export type AppProviderProps = {
+  children: ReactNode;
+};
+
+export type OnlineUserCardProps = {
+  onlineUser: OnlineUser;
+};
+
+export type ShowOnlineUsersProps = {
+  onlineUsers: OnlineUser[];
+  selectedChatThread: string;
+  onSelectChatThread: (onlineUser: OnlineUser) => void;
+};
+
+export type ChatThreadCardProps = {
+  message: string;
+  userName: string;
+};
+
+export type ChatBoxProps = {
+  data: { chat: Chat; otherUser: OnlineUser; currentUser: User } | undefined;
 };

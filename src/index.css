@@ -13,3 +13,8 @@ input:-webkit-autofill:active {
   transition: background-color 5000s ease-in-out 0s;
   border-radius: 20px !important;
 }
+
+::-webkit-scrollbar {
+  width: 0; /* Remove scrollbar space */
+  background: transparent; /* Optional: just make scrollbar invisible */
+}

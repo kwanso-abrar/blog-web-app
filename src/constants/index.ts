@@ -10,6 +10,7 @@ export const ROUTES_PATH = {
   signup: '/signup',
   readBlog: '/read',
   settings: '/settings',
+  messenger: '/messenger',
   createPost: '/create',
   myArticles: '/my-articles',
   readBlogBySearch: '/read-by-search'
@@ -50,6 +51,12 @@ export const HEADER_NAV_LINKS: HeaderNavLinkType[] = [
     to: ROUTES_PATH.myArticles,
     text: 'My Articles',
     isProtected: true
+  },
+  {
+    id: 3,
+    to: ROUTES_PATH.messenger,
+    text: 'Messenger',
+    isProtected: true
   }
 ];
 
@@ -81,3 +88,14 @@ export const MOBILE_HEADER_NAV_LINKS: HeaderNavLinkType[] = [
 ];
 
 export const CLOUDINARY_IMAGE_UPLOAD_URL = `https://api.cloudinary.com/v1_1/${process.env.REACT_APP_CLOUDINARY_CLOUD_NAME}/image/upload`;
+
+export enum SOCKET_EVENT_LISTENER {
+  chat = 'chat',
+  groupChat = 'groupChat',
+  onlineUsers = 'onlineUsers'
+}
+
+export enum SOCKET_EVENT_EMITTER {
+  joinRoom = 'joinRoom',
+  sendMessage = 'sendMessage'
+}
