@@ -20,10 +20,14 @@ This project is a part of my onboard training at kwanso
 - React 
 - Typescript
 - Apollo Graphql
-- Socket.io
+- Socket.io (client)
 - Codegen
 - MUI5
 - Cloudinary
+- React-hook-form with Yup validations
+- Eslint
+- Prettier
+
 
 ## Available Scripts
 
