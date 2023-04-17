@@ -276,7 +276,7 @@ export const ShowOnlineUsersContainer = styled(Box)(() => ({
   height: '500px',
   marginTop: '50px',
   maxHeight: '500px',
-  border: '1px solid #E5E5E5',
+  // border: '1px solid #E5E5E5',
   borderRight: '2px solid #a3a3a3'
 }));
 
