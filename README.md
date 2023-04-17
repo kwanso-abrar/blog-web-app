@@ -2,6 +2,11 @@
 
 This project is a part of my onboard training at kwanso  
 
+# Demo
+
+![ezgif com-video-to-gif](https://user-images.githubusercontent.com/127109087/232432074-91ea994f-c684-40f8-a781-80d1f9d73c14.gif)
+
+
 # Tools
 
 - React with Typescript
