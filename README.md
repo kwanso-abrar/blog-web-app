@@ -17,8 +17,10 @@ This project is a part of my onboard training at kwanso
 
 # Tools
 
-- React with Typescript
+- React 
+- Typescript
 - Apollo Graphql
+- Socket.io
 - Codegen
 - MUI5
 - Cloudinary
