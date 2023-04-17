@@ -2,7 +2,8 @@ import { ChatProviderProps } from 'types';
 import { SOCKET_EVENT_LISTENER } from '../../constants';
 import { ChatContext, useAppContext } from 'contexts';
 import { useEffect, useMemo, useReducer } from 'react';
-import { chatReducer, Chat_Action, chatStoreDefaultValue } from 'reducers';
+import { chatReducer, chatStoreDefaultValue } from 'reducers';
+import { addChat, addNewMessageInChat, updateCurrentUser, updateOnlineUsers } from 'actions';
 
 export const ChatProvider = ({ children }: ChatProviderProps) => {
   const { socketConnection } = useAppContext();
@@ -14,39 +15,16 @@ export const ChatProvider = ({ children }: ChatProviderProps) => {
 
   useEffect(() => {
     socketConnection?.on(SOCKET_EVENT_LISTENER.onlineUsers, (data: any) => {
-      dispatchChatAction({
-        type: Chat_Action.UPDATE_ONLINE_USERS,
-        payload: {
-          onlineUsers: data.users,
-          mySocketId: socketConnection.id
-        }
-      });
-
-      dispatchChatAction({
-        type: Chat_Action.UPDATE_CURRENT_USER,
-        payload: {
-          onlineUsers: data.users,
-          mySocketId: socketConnection.id
-        }
-      });
+      dispatchChatAction(updateOnlineUsers(data, socketConnection.id));
+      dispatchChatAction(updateCurrentUser(data, socketConnection.id));
     });
 
     socketConnection?.on(SOCKET_EVENT_LISTENER.groupChat, (data) => {
-      dispatchChatAction({
-        type: Chat_Action.ADD_CHAT,
-        payload: {
-          chat: data
-        }
-      });
+      dispatchChatAction(addChat(data));
     });
 
     socketConnection?.on(SOCKET_EVENT_LISTENER.chat, (data) => {
-      dispatchChatAction({
-        type: Chat_Action.ADD_NEW_MESSAGE_IN_CHAT,
-        payload: {
-          chat: data
-        }
-      });
+      dispatchChatAction(addNewMessageInChat(data));
     });
 
     return () => {
