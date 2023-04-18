@@ -1,10 +1,11 @@
 import toast from 'react-hot-toast';
-import { useEffect, useState } from 'react';
 import { SelectBlogOption } from 'types';
+import { useEffect, useState } from 'react';
 import { useFindAllPostsLazyQuery } from 'generated';
-import { Autocomplete, Box, TextField, Typography } from '@mui/material';
+import { Autocomplete, Box, CircularProgress, TextField, Typography } from '@mui/material';
 
 export const SelectBlog = () => {
+  const [total, setTotal] = useState(0);
   const [options, setOptions] = useState<SelectBlogOption[]>([]);
 
   const [findAllPosts, { loading }] = useFindAllPostsLazyQuery({
@@ -16,8 +17,9 @@ export const SelectBlog = () => {
         }) || [];
 
       setOptions((preOptions) => [...preOptions, ...newOptions]);
+      setTotal(data.findAllPosts.total);
     },
-    fetchPolicy: 'cache-and-network'
+    fetchPolicy: 'network-only'
   });
 
   useEffect(() => {
@@ -28,6 +30,19 @@ export const SelectBlog = () => {
       }
     });
   }, []);
+
+  const onListBoxScrollHandler = (event: React.UIEvent<HTMLUListElement, UIEvent>) => {
+    const listboxNode = event.currentTarget;
+    const position = listboxNode.scrollTop + listboxNode.clientHeight;
+    if (listboxNode.scrollHeight - position <= 1 && options.length !== total) {
+      findAllPosts({
+        variables: {
+          skip: options.length,
+          take: 3
+        }
+      });
+    }
+  };
 
   return (
     <Box>
@@ -41,12 +56,29 @@ export const SelectBlog = () => {
           loading={loading}
           options={options}
           sx={{ width: 400 }}
-          renderOption={(props, option) => (
-            <Box component="li" {...props} key={option.id}>
-              <Typography sx={{ color: 'red' }}>{option.title}</Typography>
-            </Box>
+          ListboxProps={{
+            onScroll: (event) => {
+              onListBoxScrollHandler(event);
+            },
+            sx: {
+              height: '150px'
+            }
+          }}
+          renderInput={(params) => (
+            <TextField
+              {...params}
+              placeholder="Select"
+              InputProps={{
+                ...params.InputProps,
+                endAdornment: (
+                  <>
+                    {loading ? <CircularProgress color="inherit" size={20} /> : null}
+                    {params.InputProps.endAdornment}
+                  </>
+                )
+              }}
+            />
           )}
-          renderInput={(params) => <TextField {...params} placeholder="Select" />}
         />
       </Box>
     </Box>
