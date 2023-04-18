@@ -41,7 +41,7 @@ export const BlogContent = ({
         src={image}
         width="100%"
         height="100%"
-        style={{ objectFit: 'cover', borderRadius: '5px' }}
+        style={{ objectFit: 'cover', borderRadius: '5px', objectPosition: 'top' }}
       />
     </Box>
     <Typography sx={BLOG_TEXT}>{`${text}`}</Typography>
