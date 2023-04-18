@@ -230,3 +230,8 @@ export type ChatThreadCardProps = {
 export type ChatBoxProps = {
   data: { chat: Chat; otherUser: OnlineUser; currentUser: User } | undefined;
 };
+
+export type SelectBlogOption = {
+  id: number;
+  title: string;
+};

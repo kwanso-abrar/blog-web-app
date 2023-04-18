@@ -1,31 +1,33 @@
 import toast from 'react-hot-toast';
-import { useState } from 'react';
-import { useFindAllPostsQuery } from 'generated';
+import { useEffect, useState } from 'react';
+import { SelectBlogOption } from 'types';
+import { useFindAllPostsLazyQuery } from 'generated';
 import { Autocomplete, Box, TextField, Typography } from '@mui/material';
 
 export const SelectBlog = () => {
-  const [open, setOpen] = useState(false);
+  const [options, setOptions] = useState<SelectBlogOption[]>([]);
 
-  const {
-    data: allPosts,
-    loading
-    // refetch
-  } = useFindAllPostsQuery({
-    variables: {
-      skip: 0,
-      //   take: BLOGS_PER_PAGE.
-      take: 1000
-    },
+  const [findAllPosts, { loading }] = useFindAllPostsLazyQuery({
     onError: (error) => toast.error(error.message),
-    onCompleted: () => {
-      setOpen(true);
+    onCompleted: (data) => {
+      const newOptions =
+        data?.findAllPosts.items.map((item) => {
+          return { title: item.title, id: item.id };
+        }) || [];
+
+      setOptions((preOptions) => [...preOptions, ...newOptions]);
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'cache-and-network'
   });
 
-  //   const onRefetch = (page: number) => {
-  //     refetch({ skip: BLOGS_PER_PAGE * (page - 1), take: BLOGS_PER_PAGE });
-  //   };
+  useEffect(() => {
+    findAllPosts({
+      variables: {
+        skip: options.length,
+        take: 6
+      }
+    });
+  }, []);
 
   return (
     <Box>
@@ -34,22 +36,16 @@ export const SelectBlog = () => {
         <Autocomplete
           disablePortal
           id="select-blog"
-          open={open}
-          onOpen={() => {
-            setOpen(true);
-          }}
-          onClose={() => {
-            setOpen(false);
-          }}
           isOptionEqualToValue={(option, value) => option.title === value.title}
           getOptionLabel={(option) => option.title}
           loading={loading}
-          options={
-            allPosts?.findAllPosts.items.map((item) => {
-              return { title: item.title, id: item.id };
-            }) || []
-          }
+          options={options}
           sx={{ width: 400 }}
+          renderOption={(props, option) => (
+            <Box component="li" {...props} key={option.id}>
+              <Typography sx={{ color: 'red' }}>{option.title}</Typography>
+            </Box>
+          )}
           renderInput={(params) => <TextField {...params} placeholder="Select" />}
         />
       </Box>
