@@ -63,6 +63,9 @@ export const SelectBlog = () => {
           sx={{ width: 400 }}
           loading={loading}
           options={options}
+          onClose={() => {
+            setAutoCompleteListBoxScrolledPosition(0);
+          }}
           getOptionLabel={(option) => option.title}
           isOptionEqualToValue={(option, value) => option.title === value.title}
           ListboxComponent={(props) => (
