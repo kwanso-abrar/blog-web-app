@@ -235,3 +235,10 @@ export type SelectBlogOption = {
   id: number;
   title: string;
 };
+
+export type ListBoxProps = React.HTMLAttributes<HTMLUListElement> & {
+  isLoading: boolean;
+  position?: number;
+};
+
+export type NullableHTMLUListElement = HTMLUListElement | null;

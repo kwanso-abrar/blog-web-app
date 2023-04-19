@@ -1,49 +1,14 @@
 import toast from 'react-hot-toast';
 import { SelectBlogOption } from 'types';
+import { AutoCompleteListBox } from 'components';
+import { useEffect, useState } from 'react';
 import { useFindAllPostsLazyQuery } from 'generated';
-import { Autocomplete, Box, CircularProgress, TextField, Typography } from '@mui/material';
-import { ForwardedRef, forwardRef, useEffect, useImperativeHandle, useRef, useState } from 'react';
-
-type ListBoxProps = React.HTMLAttributes<HTMLUListElement> & {
-  isLoading: boolean;
-  position?: number;
-};
-
-type NullableHTMLUListElement = HTMLUListElement | null;
-
-const ListBox = forwardRef(function ListBoxBase(
-  props: ListBoxProps,
-  ref: ForwardedRef<HTMLUListElement>
-) {
-  const { children, isLoading, position, ...rest } = props;
-
-  const innerRef = useRef<HTMLUListElement>(null);
-
-  useImperativeHandle<NullableHTMLUListElement, NullableHTMLUListElement>(
-    ref,
-    () => innerRef.current
-  );
-
-  useEffect(() => {
-    if (innerRef.current && typeof position !== 'undefined' && position !== 0)
-      innerRef.current.scrollTop = position - (innerRef.current.offsetHeight + 40);
-  }, []);
-
-  return (
-    <>
-      <ul {...rest} ref={innerRef} role="list-box">
-        {children}
-      </ul>
-      {isLoading && <CircularProgress color="inherit" size={30} sx={{ margin: '0 180px' }} />}
-    </>
-  );
-});
+import { Autocomplete, Box, TextField, Typography } from '@mui/material';
 
 export const SelectBlog = () => {
-  const [total, setTotal] = useState(0);
+  const [totalOptions, setTotalOptions] = useState(0);
   const [options, setOptions] = useState<SelectBlogOption[]>([]);
-
-  const [position, setPosition] = useState(0);
+  const [AutoCompleteListBoxScrolledPosition, setAutoCompleteListBoxScrolledPosition] = useState(0);
 
   const [findAllPosts, { loading }] = useFindAllPostsLazyQuery({
     onError: (error) => toast.error(error.message),
@@ -54,7 +19,7 @@ export const SelectBlog = () => {
         }) || [];
 
       setOptions((preOptions) => [...preOptions, ...newOptions]);
-      setTotal(data.findAllPosts.total);
+      setTotalOptions(data.findAllPosts.total);
     },
     fetchPolicy: 'network-only'
   });
@@ -70,9 +35,15 @@ export const SelectBlog = () => {
 
   const onListBoxScrollHandler = (event: React.UIEvent<HTMLUListElement, UIEvent>) => {
     const listboxNode = event.currentTarget;
+    console.log('scrolling');
+    console.log('scroll', {
+      scrollTop: listboxNode.scrollTop,
+      clientHeight: listboxNode.clientHeight,
+      scrollHeight: listboxNode.scrollHeight
+    });
     const Scrollposition = listboxNode.scrollTop + listboxNode.clientHeight;
-    if (listboxNode.scrollHeight - Scrollposition <= 1 && options.length !== total) {
-      setPosition(Scrollposition);
+    if (listboxNode.scrollHeight - Scrollposition <= 1 && options.length !== totalOptions) {
+      setAutoCompleteListBoxScrolledPosition(Scrollposition);
       findAllPosts({
         variables: {
           skip: options.length,
@@ -89,13 +60,17 @@ export const SelectBlog = () => {
         <Autocomplete
           disablePortal
           id="select-blog"
-          isOptionEqualToValue={(option, value) => option.title === value.title}
-          getOptionLabel={(option) => option.title}
+          sx={{ width: 400 }}
           loading={loading}
           options={options}
-          sx={{ width: 400 }}
+          getOptionLabel={(option) => option.title}
+          isOptionEqualToValue={(option, value) => option.title === value.title}
           ListboxComponent={(props) => (
-            <ListBox {...props} isLoading={loading} position={position} />
+            <AutoCompleteListBox
+              {...props}
+              isLoading={loading}
+              position={AutoCompleteListBoxScrolledPosition}
+            />
           )}
           ListboxProps={{
             onScroll: (event) => {
