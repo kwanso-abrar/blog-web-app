@@ -1,15 +1,15 @@
 import toast from 'react-hot-toast';
+import { useForm } from 'react-hook-form';
 import { SelectBlogOption } from 'types';
-import { AutoCompleteListBox } from 'components';
-import { AutoCompleteProvider } from 'contexts';
+import { PrimaryAutoComplete } from 'components';
+import { Box, Button, Typography } from '@mui/material';
 import { useFindAllPostsLazyQuery } from 'generated';
 import { useCallback, useEffect, useState } from 'react';
-import { Autocomplete, Box, TextField, Typography } from '@mui/material';
 
 export const SelectBlog = () => {
-  const [totalOptions, setTotalOptions] = useState(0);
   const [options, setOptions] = useState<SelectBlogOption[]>([]);
-  const [AutoCompleteListBoxScrolledPosition, setAutoCompleteListBoxScrolledPosition] = useState(0);
+  const { control, handleSubmit } = useForm();
+  const [totalOptions, setTotalOptions] = useState(0);
 
   const [findAllPosts, { loading }] = useFindAllPostsLazyQuery({
     onError: (error) => toast.error(error.message),
@@ -34,55 +34,38 @@ export const SelectBlog = () => {
     });
   }, []);
 
-  const onListBoxScrollHandler = useCallback(
-    (event: React.UIEvent<HTMLUListElement, UIEvent>) => {
-      const listboxNode = event.currentTarget;
-      console.log('scroll', {
-        scrollTop: listboxNode.scrollTop,
-        clientHeight: listboxNode.clientHeight,
-        scrollHeight: listboxNode.scrollHeight
-      });
-      const Scrollposition = listboxNode.scrollTop + listboxNode.clientHeight;
-      if (listboxNode.scrollHeight - Scrollposition <= 1 && options.length !== totalOptions) {
-        setAutoCompleteListBoxScrolledPosition(Scrollposition);
-        findAllPosts({
-          variables: {
-            skip: options.length,
-            take: 3
-          }
-        });
+  const fetchMoreData = useCallback(() => {
+    findAllPosts({
+      variables: {
+        skip: options.length,
+        take: 3
       }
-    },
-    [options]
-  );
+    });
+  }, [options]);
+
+  const onFormSubmit = async (values: any) => {
+    console.log('values', values);
+  };
 
   return (
     <Box>
       <Typography variant="h2">Select Blog</Typography>
-      <AutoCompleteProvider isLoading={loading} position={AutoCompleteListBoxScrolledPosition}>
-        <Box sx={{ marginTop: '25px', width: '400px' }}>
-          <Autocomplete
-            disablePortal
-            id="select-blog"
-            loading={loading}
+      <Box sx={{ marginTop: '20px' }}>
+        <form onSubmit={handleSubmit(onFormSubmit)}>
+          <PrimaryAutoComplete
+            name="post"
+            control={control}
             options={options}
-            onClose={() => {
-              setAutoCompleteListBoxScrolledPosition(0);
-            }}
-            getOptionLabel={(option) => option.title}
-            ListboxComponent={AutoCompleteListBox}
-            ListboxProps={{
-              onScroll: (event) => {
-                onListBoxScrollHandler(event);
-              },
-              sx: {
-                height: '150px'
-              }
-            }}
-            renderInput={(params) => <TextField {...params} placeholder="Select" />}
+            placeholder="Select Blog"
+            totalOptions={totalOptions}
+            fetchMoreData={fetchMoreData}
+            isFetchingMoreData={loading}
           />
-        </Box>
-      </AutoCompleteProvider>
+          <Button variant="contained" color="primary" type="submit" sx={{ marginTop: '25px' }}>
+            Get Post Comments
+          </Button>
+        </form>
+      </Box>
     </Box>
   );
 };

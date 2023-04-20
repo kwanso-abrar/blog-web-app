@@ -2,7 +2,7 @@ import { AutoCompleteContextType } from 'types';
 import { createContext, useContext } from 'react';
 
 export const AutoCompleteContext = createContext<AutoCompleteContextType>({
-  position: -1,
+  position: 0,
   isLoading: false
 });
 

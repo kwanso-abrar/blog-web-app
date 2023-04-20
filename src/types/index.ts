@@ -250,3 +250,15 @@ export type AutoCompleteContextType = {
   position: number;
   isLoading: boolean;
 };
+
+export type AutoCompleteOptions = SelectBlogOption[];
+
+export type PrimaryAutoCompleteProps = {
+  name: string;
+  control: any;
+  options: AutoCompleteOptions;
+  placeholder: string;
+  totalOptions: number;
+  isFetchingMoreData: boolean;
+  fetchMoreData: () => void;
+};
