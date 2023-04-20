@@ -1,8 +1,9 @@
 import toast from 'react-hot-toast';
 import { SelectBlogOption } from 'types';
 import { AutoCompleteListBox } from 'components';
-import { useEffect, useState } from 'react';
+import { AutoCompleteProvider } from 'contexts';
 import { useFindAllPostsLazyQuery } from 'generated';
+import { useCallback, useEffect, useState } from 'react';
 import { Autocomplete, Box, TextField, Typography } from '@mui/material';
 
 export const SelectBlog = () => {
@@ -21,7 +22,7 @@ export const SelectBlog = () => {
       setOptions((preOptions) => [...preOptions, ...newOptions]);
       setTotalOptions(data.findAllPosts.total);
     },
-    fetchPolicy: 'network-only'
+    fetchPolicy: 'cache-and-network'
   });
 
   useEffect(() => {
@@ -33,59 +34,55 @@ export const SelectBlog = () => {
     });
   }, []);
 
-  const onListBoxScrollHandler = (event: React.UIEvent<HTMLUListElement, UIEvent>) => {
-    const listboxNode = event.currentTarget;
-    console.log('scrolling');
-    console.log('scroll', {
-      scrollTop: listboxNode.scrollTop,
-      clientHeight: listboxNode.clientHeight,
-      scrollHeight: listboxNode.scrollHeight
-    });
-    const Scrollposition = listboxNode.scrollTop + listboxNode.clientHeight;
-    if (listboxNode.scrollHeight - Scrollposition <= 1 && options.length !== totalOptions) {
-      setAutoCompleteListBoxScrolledPosition(Scrollposition);
-      findAllPosts({
-        variables: {
-          skip: options.length,
-          take: 3
-        }
+  const onListBoxScrollHandler = useCallback(
+    (event: React.UIEvent<HTMLUListElement, UIEvent>) => {
+      const listboxNode = event.currentTarget;
+      console.log('scroll', {
+        scrollTop: listboxNode.scrollTop,
+        clientHeight: listboxNode.clientHeight,
+        scrollHeight: listboxNode.scrollHeight
       });
-    }
-  };
+      const Scrollposition = listboxNode.scrollTop + listboxNode.clientHeight;
+      if (listboxNode.scrollHeight - Scrollposition <= 1 && options.length !== totalOptions) {
+        setAutoCompleteListBoxScrolledPosition(Scrollposition);
+        findAllPosts({
+          variables: {
+            skip: options.length,
+            take: 3
+          }
+        });
+      }
+    },
+    [options]
+  );
 
   return (
     <Box>
       <Typography variant="h2">Select Blog</Typography>
-      <Box sx={{ marginTop: '25px' }}>
-        <Autocomplete
-          disablePortal
-          id="select-blog"
-          sx={{ width: 400 }}
-          loading={loading}
-          options={options}
-          onClose={() => {
-            setAutoCompleteListBoxScrolledPosition(0);
-          }}
-          getOptionLabel={(option) => option.title}
-          isOptionEqualToValue={(option, value) => option.title === value.title}
-          ListboxComponent={(props) => (
-            <AutoCompleteListBox
-              {...props}
-              isLoading={loading}
-              position={AutoCompleteListBoxScrolledPosition}
-            />
-          )}
-          ListboxProps={{
-            onScroll: (event) => {
-              onListBoxScrollHandler(event);
-            },
-            sx: {
-              height: '150px'
-            }
-          }}
-          renderInput={(params) => <TextField {...params} placeholder="Select" />}
-        />
-      </Box>
+      <AutoCompleteProvider isLoading={loading} position={AutoCompleteListBoxScrolledPosition}>
+        <Box sx={{ marginTop: '25px', width: '400px' }}>
+          <Autocomplete
+            disablePortal
+            id="select-blog"
+            loading={loading}
+            options={options}
+            onClose={() => {
+              setAutoCompleteListBoxScrolledPosition(0);
+            }}
+            getOptionLabel={(option) => option.title}
+            ListboxComponent={AutoCompleteListBox}
+            ListboxProps={{
+              onScroll: (event) => {
+                onListBoxScrollHandler(event);
+              },
+              sx: {
+                height: '150px'
+              }
+            }}
+            renderInput={(params) => <TextField {...params} placeholder="Select" />}
+          />
+        </Box>
+      </AutoCompleteProvider>
     </Box>
   );
 };

@@ -212,6 +212,12 @@ export type AppProviderProps = {
   children: ReactNode;
 };
 
+export type AutoCompleteProviderProps = {
+  children: ReactNode;
+  position: number;
+  isLoading: boolean;
+};
+
 export type OnlineUserCardProps = {
   onlineUser: OnlineUser;
 };
@@ -236,9 +242,11 @@ export type SelectBlogOption = {
   title: string;
 };
 
-export type ListBoxProps = React.HTMLAttributes<HTMLUListElement> & {
-  isLoading: boolean;
-  position?: number;
-};
+export type ListBoxProps = React.HTMLAttributes<HTMLUListElement>;
 
 export type NullableHTMLUListElement = HTMLUListElement | null;
+
+export type AutoCompleteContextType = {
+  position: number;
+  isLoading: boolean;
+};
