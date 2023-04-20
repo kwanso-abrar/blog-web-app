@@ -28,7 +28,7 @@ export const SelectBlog = () => {
   useEffect(() => {
     findAllPosts({
       variables: {
-        skip: options.length,
+        skip: 0,
         take: 6
       }
     });
