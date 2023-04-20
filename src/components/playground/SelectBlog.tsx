@@ -8,12 +8,17 @@ import { useCallback, useEffect, useState } from 'react';
 
 export const SelectBlog = () => {
   const [options, setOptions] = useState<SelectBlogOption[]>([]);
-  const { control, handleSubmit } = useForm();
+  const [fetchOptions, setFetchOptions] = useState(true);
   const [totalOptions, setTotalOptions] = useState(0);
+  const { control, handleSubmit } = useForm();
 
   const [findAllPosts, { loading }] = useFindAllPostsLazyQuery({
-    onError: (error) => toast.error(error.message),
+    onError: (error) => {
+      setFetchOptions(false);
+      toast.error(error.message);
+    },
     onCompleted: (data) => {
+      setFetchOptions(false);
       const newOptions =
         data?.findAllPosts.items.map((item) => {
           return { title: item.title, id: item.id };
@@ -26,21 +31,17 @@ export const SelectBlog = () => {
   });
 
   useEffect(() => {
-    findAllPosts({
-      variables: {
-        skip: 0,
-        take: 6
-      }
-    });
-  }, []);
+    if (fetchOptions)
+      findAllPosts({
+        variables: {
+          skip: options.length,
+          take: 6
+        }
+      });
+  }, [fetchOptions]);
 
   const fetchMoreData = useCallback(() => {
-    findAllPosts({
-      variables: {
-        skip: options.length,
-        take: 3
-      }
-    });
+    setFetchOptions(true);
   }, [options]);
 
   const onFormSubmit = async (values: any) => {

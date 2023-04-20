@@ -51,7 +51,7 @@ export const PrimaryAutoComplete = ({
                 onListBoxScrollHandler(event);
               },
               sx: {
-                height: '200px'
+                height: '250px'
               }
             }}
             renderInput={(params) => <TextField {...params} {...field} placeholder={placeholder} />}

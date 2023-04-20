@@ -12,6 +12,7 @@ export const Playground = () => (
       <Box sx={{ width: '30%' }}>
         <SelectBlog />
       </Box>
+
       <Box sx={{ flexGrow: 1 }}>
         <DisplayBlogComments />
       </Box>
