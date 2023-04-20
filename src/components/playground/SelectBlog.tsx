@@ -43,7 +43,7 @@ export const SelectBlog = ({ setComments }: SelectBlogProps) => {
 
   const fetchMoreData = useCallback(() => {
     setFetchOptions(true);
-  }, [options]);
+  }, []);
 
   const onFormSubmit = async (value: any) => {
     if (value.post) {
