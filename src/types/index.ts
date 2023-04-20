@@ -256,9 +256,9 @@ export type AutoCompleteOptions = SelectBlogOption[];
 export type PrimaryAutoCompleteProps = {
   name: string;
   control: any;
+  loading: boolean;
   options: AutoCompleteOptions;
   placeholder: string;
   totalOptions: number;
-  isFetchingMoreData: boolean;
-  fetchMoreData: () => void;
+  fetchMoreData?: () => void;
 };

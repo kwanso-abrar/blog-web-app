@@ -55,11 +55,11 @@ export const SelectBlog = () => {
           <PrimaryAutoComplete
             name="post"
             control={control}
+            loading={loading}
             options={options}
             placeholder="Select Blog"
             totalOptions={totalOptions}
             fetchMoreData={fetchMoreData}
-            isFetchingMoreData={loading}
           />
           <Button variant="contained" color="primary" type="submit" sx={{ marginTop: '25px' }}>
             Get Post Comments

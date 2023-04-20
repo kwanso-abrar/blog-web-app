@@ -8,11 +8,11 @@ import { PrimaryAutoCompleteProps } from 'types';
 export const PrimaryAutoComplete = ({
   name,
   control,
+  loading,
   options,
   placeholder,
   totalOptions,
-  fetchMoreData,
-  isFetchingMoreData
+  fetchMoreData
 }: PrimaryAutoCompleteProps) => {
   const [AutoCompleteListBoxScrolledPosition, setAutoCompleteListBoxScrolledPosition] = useState(0);
 
@@ -22,17 +22,14 @@ export const PrimaryAutoComplete = ({
       const Scrollposition = listboxNode.scrollTop + listboxNode.clientHeight;
       if (listboxNode.scrollHeight - Scrollposition <= 1 && options.length !== totalOptions) {
         setAutoCompleteListBoxScrolledPosition(Scrollposition);
-        fetchMoreData();
+        fetchMoreData && fetchMoreData();
       }
     },
     [options]
   );
 
   return (
-    <AutoCompleteProvider
-      isLoading={isFetchingMoreData}
-      position={AutoCompleteListBoxScrolledPosition}
-    >
+    <AutoCompleteProvider isLoading={loading} position={AutoCompleteListBoxScrolledPosition}>
       <Controller
         name={name}
         control={control}
@@ -41,7 +38,7 @@ export const PrimaryAutoComplete = ({
           <Autocomplete
             disablePortal
             id="select-blog"
-            loading={isFetchingMoreData}
+            loading={loading}
             options={options}
             onChange={(_, data) => onChange(data)}
             onClose={() => {
