@@ -1,4 +1,4 @@
-import { CircularProgress } from '@mui/material';
+import { CircularProgress, Stack } from '@mui/material';
 import { useAutoCompleteContextContext } from 'contexts';
 import { ListBoxProps, NullableHTMLUListElement } from 'types';
 import { ForwardedRef, forwardRef, useImperativeHandle, useLayoutEffect, useRef } from 'react';
@@ -17,16 +17,15 @@ export const AutoCompleteListBox = forwardRef(function ListBoxBase(
   );
 
   useLayoutEffect(() => {
-    if (innerRef.current && typeof position !== 'undefined' && position !== 0)
-      innerRef.current.scrollTop = position - (innerRef.current.offsetHeight + 40);
+    if (innerRef.current && position) innerRef.current.scrollTop = position;
   }, []);
 
   return (
-    <>
+    <Stack sx={{ paddingBottom: '10px' }}>
       <ul {...rest} ref={innerRef} role="list-box">
         {children}
       </ul>
-      {isLoading && <CircularProgress color="inherit" size={30} sx={{ margin: '0 180px' }} />}
-    </>
+      {isLoading && <CircularProgress size={15} sx={{ alignSelf: 'center' }} />}
+    </Stack>
   );
 });
