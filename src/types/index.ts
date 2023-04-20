@@ -212,6 +212,12 @@ export type AppProviderProps = {
   children: ReactNode;
 };
 
+export type AutoCompleteProviderProps = {
+  children: ReactNode;
+  position: number;
+  isLoading: boolean;
+};
+
 export type OnlineUserCardProps = {
   onlineUser: OnlineUser;
 };
@@ -229,4 +235,38 @@ export type ChatThreadCardProps = {
 
 export type ChatBoxProps = {
   data: { chat: Chat; otherUser: OnlineUser; currentUser: User } | undefined;
+};
+
+export type SelectBlogOption = {
+  id: number;
+  title: string;
+};
+
+export type ListBoxProps = React.HTMLAttributes<HTMLUListElement>;
+
+export type NullableHTMLUListElement = HTMLUListElement | null;
+
+export type AutoCompleteContextType = {
+  position: number;
+  isLoading: boolean;
+};
+
+export type AutoCompleteOptions = SelectBlogOption[];
+
+export type PrimaryAutoCompleteProps = {
+  name: string;
+  control: any;
+  loading: boolean;
+  options: AutoCompleteOptions;
+  placeholder: string;
+  totalOptions: number;
+  fetchMoreData?: () => void;
+};
+
+export type DisplayBlogCommentsProps = {
+  comments: string[];
+};
+
+export type SelectBlogProps = {
+  setComments: React.Dispatch<React.SetStateAction<string[]>>;
 };

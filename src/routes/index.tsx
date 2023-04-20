@@ -10,6 +10,7 @@ import {
   Messenger,
   CreatePost,
   MyArticles,
+  Playground,
   ReadBlogBySearch
 } from 'pages';
 
@@ -57,6 +58,14 @@ export const mainRoutes: RouteProps[] = [
   {
     path: `${ROUTES_PATH.readBlogBySearch}/:search`,
     element: <ReadBlogBySearch />
+  },
+  {
+    path: ROUTES_PATH.playground,
+    element: (
+      <Protected>
+        <Playground />
+      </Protected>
+    )
   }
 ];
 

@@ -13,6 +13,7 @@ export const ROUTES_PATH = {
   messenger: '/messenger',
   createPost: '/create',
   myArticles: '/my-articles',
+  playground: '/playground',
   readBlogBySearch: '/read-by-search'
 };
 
@@ -56,6 +57,12 @@ export const HEADER_NAV_LINKS: HeaderNavLinkType[] = [
     id: 3,
     to: ROUTES_PATH.messenger,
     text: 'Messenger',
+    isProtected: true
+  },
+  {
+    id: 4,
+    to: ROUTES_PATH.playground,
+    text: 'Playground',
     isProtected: true
   }
 ];
