@@ -1,13 +1,14 @@
 import toast from 'react-hot-toast';
 import { useForm } from 'react-hook-form';
-import { SelectBlogOption } from 'types';
 import { PrimaryAutoComplete } from 'components';
 import { Box, Button, Typography } from '@mui/material';
-import { useFindAllPostsLazyQuery } from 'generated';
+import { Posts, useFindAllPostsLazyQuery } from 'generated';
 import { useCallback, useEffect, useState } from 'react';
+import { SelectBlogOption, SelectBlogProps } from 'types';
 
-export const SelectBlog = () => {
+export const SelectBlog = ({ setComments }: SelectBlogProps) => {
   const [options, setOptions] = useState<SelectBlogOption[]>([]);
+  const [blogsData, setBlogsData] = useState<Posts[]>([]);
   const [fetchOptions, setFetchOptions] = useState(true);
   const [totalOptions, setTotalOptions] = useState(0);
   const { control, handleSubmit } = useForm();
@@ -18,14 +19,14 @@ export const SelectBlog = () => {
       toast.error(error.message);
     },
     onCompleted: (data) => {
-      setFetchOptions(false);
       const newOptions =
         data?.findAllPosts.items.map((item) => {
           return { title: item.title, id: item.id };
         }) || [];
-
+      setFetchOptions(false);
       setOptions((preOptions) => [...preOptions, ...newOptions]);
       setTotalOptions(data.findAllPosts.total);
+      setBlogsData((preBlogsData) => [...preBlogsData, ...(data.findAllPosts.items as Posts[])]);
     },
     fetchPolicy: 'cache-and-network'
   });
@@ -44,8 +45,12 @@ export const SelectBlog = () => {
     setFetchOptions(true);
   }, [options]);
 
-  const onFormSubmit = async (values: any) => {
-    console.log('values', values);
+  const onFormSubmit = async (value: any) => {
+    if (value.post) {
+      const selectedBlog = blogsData?.find((blog) => blog.id === value.post.id);
+      const comments = selectedBlog?.comments.map((comment) => comment.text);
+      setComments(comments || []);
+    }
   };
 
   return (

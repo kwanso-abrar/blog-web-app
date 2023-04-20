@@ -262,3 +262,11 @@ export type PrimaryAutoCompleteProps = {
   totalOptions: number;
   fetchMoreData?: () => void;
 };
+
+export type DisplayBlogCommentsProps = {
+  comments: string[];
+};
+
+export type SelectBlogProps = {
+  setComments: React.Dispatch<React.SetStateAction<string[]>>;
+};

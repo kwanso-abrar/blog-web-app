@@ -1,21 +1,26 @@
+import { useState } from 'react';
 import { Box, Stack, Typography } from '@mui/material';
-import { DisplayBlogComments, SelectBlog } from 'components';
 import { TITLE_WITH_BORDER_BOTTOM } from 'styles/constants';
+import { DisplayBlogComments, SelectBlog } from 'components';
 
-export const Playground = () => (
-  <Box>
-    <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
-      Play ground: For Developers Only
-    </Typography>
+export const Playground = () => {
+  const [comments, setComments] = useState<string[]>([]);
 
-    <Stack direction="row" sx={{ marginTop: '35px' }}>
-      <Box sx={{ width: '30%' }}>
-        <SelectBlog />
-      </Box>
+  return (
+    <Box>
+      <Typography variant="h1" sx={TITLE_WITH_BORDER_BOTTOM}>
+        Play ground: For Developers Only
+      </Typography>
 
-      <Box sx={{ flexGrow: 1 }}>
-        <DisplayBlogComments />
-      </Box>
-    </Stack>
-  </Box>
-);
+      <Stack direction="row" sx={{ marginTop: '35px' }}>
+        <Box sx={{ width: '30%' }}>
+          <SelectBlog setComments={setComments} />
+        </Box>
+
+        <Box sx={{ flexGrow: 1 }}>
+          <DisplayBlogComments comments={comments} />
+        </Box>
+      </Stack>
+    </Box>
+  );
+};

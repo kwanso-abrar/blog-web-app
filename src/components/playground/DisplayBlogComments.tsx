@@ -1,9 +1,14 @@
-import { Box, Typography } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
+import { DisplayBlogCommentsProps } from 'types';
 
-export const DisplayBlogComments = () => (
-  <Box>
-    <Typography variant="h2" sx={{ textAlign: 'center' }}>
-      Blog Comments
-    </Typography>
+export const DisplayBlogComments = ({ comments }: DisplayBlogCommentsProps) => (
+  <Box sx={{ paddingLeft: '250px' }}>
+    <Typography variant="h2">Blog Comments</Typography>
+
+    <Stack sx={{ marginTop: '30px' }}>
+      {comments.map((comment, index) => (
+        <Typography key={comment + index}>{comment}</Typography>
+      ))}
+    </Stack>
   </Box>
 );
