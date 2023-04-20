@@ -41,6 +41,7 @@ export const PrimaryAutoComplete = ({
             loading={loading}
             options={options}
             onChange={(_, data) => onChange(data)}
+            disableClearable
             onClose={() => {
               setAutoCompleteListBoxScrolledPosition(0);
             }}

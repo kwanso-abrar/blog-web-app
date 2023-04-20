@@ -7,7 +7,9 @@ export const DisplayBlogComments = ({ comments }: DisplayBlogCommentsProps) => (
 
     <Stack sx={{ marginTop: '30px' }}>
       {comments.map((comment, index) => (
-        <Typography key={comment + index}>{comment}</Typography>
+        <Typography key={comment + index}>
+          <b> {index + 1}.</b> {comment}
+        </Typography>
       ))}
     </Stack>
   </Box>
