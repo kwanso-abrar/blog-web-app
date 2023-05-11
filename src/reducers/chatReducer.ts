@@ -37,12 +37,13 @@ type AddChatAction = {
   type: Chat_Action.ADD_CHAT;
   payload: {
     chat: Chat;
+    chatStoreRef: React.MutableRefObject<ChatStore>;
   };
 };
 
 type AddNeWMessageInChaTAction = {
   type: Chat_Action.ADD_NEW_MESSAGE_IN_CHAT;
-  payload: { chat: Chat };
+  payload: { chat: Chat; chatStoreRef: React.MutableRefObject<ChatStore> };
 };
 
 type OnLogoutChatAction = {
@@ -101,7 +102,7 @@ export const chatReducer = (state: ChatStore, action: ChatAction): ChatStore => 
 
     case Chat_Action.ADD_CHAT:
     case Chat_Action.ADD_NEW_MESSAGE_IN_CHAT: {
-      const { chat } = payload;
+      const { chat, chatStoreRef } = payload;
       let notifications = 0;
       const previousChat = state.chats.find((preChat) => preChat.roomName === chat.roomName);
 
@@ -116,7 +117,9 @@ export const chatReducer = (state: ChatStore, action: ChatAction): ChatStore => 
         (existedChat) => existedChat.roomName !== chat.roomName
       );
       const updatedChats = { ...chat, notifications };
-      return { ...state, chats: [...previousChats, updatedChats] };
+      const updatedChatStore = { ...state, chats: [...previousChats, updatedChats] };
+      chatStoreRef.current = updatedChatStore; // updating chatStoreRef with update state so that updated state can be accesible in event listeners
+      return updatedChatStore;
     }
 
     case Chat_Action.ON_LOGOUT: {

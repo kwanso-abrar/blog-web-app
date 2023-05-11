@@ -1,3 +1,4 @@
+import { ChatStore } from 'types';
 import { ChatAction, Chat_Action } from 'reducers';
 
 export const updateOnlineUsers = (onlineUsers: any, mySocketId: string): ChatAction => {
@@ -20,20 +21,25 @@ export const updateCurrentUser = (onlineUsers: any, mySocketId: string): ChatAct
   };
 };
 
-export const addChat = (data: any): ChatAction => {
+export const addChat = (data: any, chatStoreRef: React.MutableRefObject<ChatStore>): ChatAction => {
   return {
     type: Chat_Action.ADD_CHAT,
     payload: {
-      chat: data
+      chat: data,
+      chatStoreRef
     }
   };
 };
 
-export const addNewMessageInChat = (data: any): ChatAction => {
+export const addNewMessageInChat = (
+  data: any,
+  chatStoreRef: React.MutableRefObject<ChatStore>
+): ChatAction => {
   return {
     type: Chat_Action.ADD_NEW_MESSAGE_IN_CHAT,
     payload: {
-      chat: data
+      chat: data,
+      chatStoreRef
     }
   };
 };
